@@ -21,6 +21,11 @@ For **each field**, enter a supported value and source, or `Unknown`, `Unavailab
 - Reason for each label:
 - One-sentence observed behavior:
 - Current disposition: incident only / reproduction in progress / packaged / evaluated / deferred.
+- Original temporal relevance: temporal candidate / evidence needed / short control; reason:
+- Original work exposure: substantial intervening work observed / short mechanism only / unknown; evidence:
+- If rejected as a nonfailure: still-applicable requirement checked, reason, and relevance not applicable:
+- Current task readiness: faithful enough for a pilot / needs redesign / short mechanism demonstration / not built:
+- Completed temporal-review.md record or answers embedded below:
 - Incident-index row and problem package path, if present:
 - Duplicate of, related incidents, or causal chain IDs:
 - Reason records are distinct or duplicates; whether they share an earlier state:
@@ -101,6 +106,7 @@ Use only available observable records. Do not request private chain-of-thought, 
 - Existing failures and unrelated known limitations:
 - Where this information remained available to the later agent:
 - Evidence the later agent actually read it, or explicit statement that only availability is established:
+- If studying propagation: the earlier provisional mistake and how it enters later work; do not label it a correct baseline:
 
 ## Complete relevant chronology
 
@@ -181,6 +187,9 @@ Record **every relevant result**, including a pass after a failure on unchanged 
 - Why intervening work or a boundary might matter:
 - Temporal conclusion: observed sequence / suspected contribution / comparison supports contribution / no temporal connection established.
 - Evidence supporting that conclusion and strongest alternative explanation:
+- Whole-session duration, pre-error span, idle time, and recovery kept separate:
+- Separate first-mistake-to-later-harm interval if propagation is the target:
+- Completed temporal review from templates/temporal-review.md, following docs/LONG_HORIZON.md:
 
 ## Intended failure and meaningfulness
 

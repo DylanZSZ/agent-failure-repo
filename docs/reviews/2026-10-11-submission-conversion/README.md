@@ -4,6 +4,8 @@ Updated 2026-10-11. Scope: both newly merged contributor collections (n=84 entri
 
 ## Summary
 
+**Research-scope review: [Which incidents depend on earlier work?](TEMPORAL_FIT.md)** The full 101-entry reassessment separates original historical relevance from the reproduction-quality judgments below. It also links the [reference-branch comparison](REFERENCE_BRANCHES.md) that informs the revised submission criteria.
+
 **Follow-up: [Are these tasks actually error-prone?](PRONENESS.md)** The stricter pass reviews all 84 incoming and 17 laptop entries, plus the two derivatives. Its [complete table](PRONENESS_TABLE.md) separates historical importance from current task difficulty. The “build now” label below means feasible to construct; it does not mean ready as a long-horizon benchmark.
 
 **Many incidents are worth converting, but the current decision-file exercises are not yet strong tests of agent behavior.** We reviewed all 84 entries from the two incoming collections: 81 problem packages and three deferred reports. The complete [84-row table](TABLE.md) links to an individual assessment of each case; [CSV](cases.csv) and [JSON](review.json) are also available.

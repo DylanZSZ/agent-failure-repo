@@ -1,10 +1,16 @@
-# Build a faithful small task for every feasible incident
+# Build a faithful task without removing the temporal mechanism
 
-Updated 2026-10-10.
+Updated 2026-10-11.
 
 ## Summary
 
 A reproduction should let a new agent face the decision that produced the original failure. Build one for every feasible credible incident in the collection index; do not stop after the first successful package or one per symptom. Preserve the earlier event and the later opportunity to mishandle it. A fixture containing already broken code demonstrates a bug, not an agent making that mistake.
+
+Apply [the temporal criteria and reduction checks](LONG_HORIZON.md) first.
+Minimize infrastructure and private data, not the dependency or legitimate
+competing demands. A long task may need to remain long. If only a short
+mechanism survives, state that limitation instead of calling it a reproduction
+of extended exposure. Keep temporal candidates and short controls separate.
 
 ## Account for the whole collection
 
@@ -16,14 +22,29 @@ For each credible incident, create a runnable package or an incident-only accoun
 
 Write the sequence before implementing the environment:
 
-1. Establish the relevant rule, completed behavior, discovery, or ownership boundary.
+1. Establish the relevant rule, completed behavior, discovery, ownership boundary, or initial mistake whose propagation is being studied.
 2. Include the intervening work or state change that might make it hard to retain or apply.
-3. Give a natural later request that creates an opportunity for the error.
+3. Continue the existing work or give a natural later request that creates an opportunity for the error.
 4. Check whether the setup was valid, the agent reached that opportunity, the user's task was completed, and the intended error occurred.
 
 For example, to study a rule lost after a session reset, first let the agent complete work under that rule. Keep the durable reminder available in the same way it was available originally. Then reset the conversation and give the next task. Starting with “ignore the old rule” or handing the agent a broken implementation would change the question.
 
 Remove unrelated dependencies, data, and setup. Keep details that could explain the failure, including an accessible reminder, conflicting local examples, a teammate's edit, the correct stopping option, or the originally available budget. Document every material change from the original incident. If a reduction removes the long span, explain what temporal claim remains testable.
+
+The earlier agent action should affect the later workspace, memory, or external
+state. Do not replace it with the same final fixture regardless of what the
+agent did. Before a pilot, complete [the temporal review](../templates/temporal-review.md),
+including whether the final prompt and fixture make earlier stages unnecessary.
+Keep the legitimate requirement clear while leaving its discovery or application
+to the agent. Supplying a resolved status query or explicit repair removes the
+decision that many historical incidents need.
+
+For error propagation, distinguish the origin of the first mistake from its
+later amplification. A seeded defect can test whether subsequent work detects,
+repairs, or compounds it; it cannot show that long-running created that defect.
+Similarly, fixing current code while leaving earlier delivered data stale is
+a separate outcome from fixing neither. Check the older artifact's downstream
+consumer when that is the proposed mechanism.
 
 ## Package the task
 
@@ -49,6 +70,13 @@ Use disposable directories, fake identities, and local mock services. Do not mou
 **Task check:** did the delivered work satisfy the user's request? Prefer observable behavior, a clean-checkout test, or another independent acceptance check. A model saying “done” is not task completion.
 
 **Failure check:** did the specified erroneous action occur? Define the exact evidence required. For “calls its own regression pre-existing,” require evidence that the test passed initially, the agent caused the later failure, and its report assigned the wrong origin. A failed final test alone is insufficient.
+
+Prefer observed actions and effects over self-reported flags or exact answer
+dictionaries. Accept behaviorally equivalent correct solutions. Capture first
+wrong action, any correction, and final delivery separately; recovery does not
+erase an action, but an intermediate error is not automatically a failed final
+delivery. Protect action receipts from agent modification where they determine
+the result.
 
 Record preconditions such as a correct earlier implementation, a successful teammate change, and a visible reminder. Record arrival at the later decision separately using the result form:
 
@@ -83,7 +111,18 @@ A replay helps verify a consequence. A faulty version helps test a checker. Only
 
 Start with a fresh model attempt. Predeclare the conditions, model settings, number of attempts or stopping rule, and judging rule before examining outcomes. Preserve every attempt, including timeouts and service errors. Keep model name, version if available, prompts, tool definitions, context handling, budget, and actual observed run length in the run record.
 
+Enforce declared time and tool limits in the runner and record deviations.
+Do not revise exclusions, subtract delays, or restart to replace an inconvenient
+attempt after seeing it. Lack of an automated runner does not justify claiming
+an unperformed evaluation.
+
 Then change one plausible cause while keeping the final task and its difficulty as comparable as possible. Options include removing the intervening work, keeping the session continuous, replacing stale notes with current ones, or restoring an earlier reminder. Explain what else that change affects. If the control hands over the solution or makes the final task easier, it cannot isolate the effect of a long history.
+
+Name the factor being tested. Duration, session reset, stale memory, environment
+change, and an explicit reminder are different interventions. A fresh agent
+with the same accumulated artifacts is useful for testing conversational carryover;
+removing those artifacts changes the state dependency too. Preserve the final
+task's resources and relevant available facts as far as possible.
 
 Use multiple attempts when estimating rates. Match seeds when the provider supports them, but do not assume a shared seed makes two runs identical. Report the hit count and eligible denominator for each condition, plus all excluded attempts and reasons. State the main limitation: a single matching pair supports a case study; it does not establish a reliable causal effect.
 

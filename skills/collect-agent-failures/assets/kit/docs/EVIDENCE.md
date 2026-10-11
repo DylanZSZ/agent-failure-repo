@@ -1,12 +1,19 @@
 # Capture the evidence before reducing the task
 
-Updated 2026-10-10.
+Updated 2026-10-11.
 
 ## Summary
 
 Collect enough information for another investigator to reconstruct what happened, check competing explanations, and build a faithful reproduction. Search every authorized source against [all 20 symptoms](SYMPTOMS.md), retain other symptoms, and record every distinct candidate. There is no maximum number of incidents, no quota per symptom, and no requirement to fill every category.
 
 Use one private copy of the [incident evidence form](../templates/incident-evidence.md) for each incident. Link it from the incident index. Capture relevant evidence first; write the short account and choose a minimal task afterward. The richer incident record and the smaller runnable task serve different purposes.
+
+Complete the accompanying [temporal review](../templates/temporal-review.md)
+using [the long-running criteria](LONG_HORIZON.md). Identify the information or
+artifact that carries the earlier work into the later decision. Record original
+relevance separately from reproduction readiness. A known earlier mistake may
+be the starting point of a propagation study; do not describe it as an earlier
+correct baseline or attribute its creation to later running.
 
 ## Start with scope and access
 

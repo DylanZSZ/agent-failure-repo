@@ -1,14 +1,21 @@
 ---
 name: collect-agent-failures
-description: Investigate user-authorized historical Claude Code and Codex runs, collect failures across 20 symptom classes and new modes, and build minimal reproducible tasks. Use for retrospective failure collection, not general debugging or permission to search unrelated history.
+description: Investigate authorized historical Claude Code and Codex runs for failures connected to earlier work, accumulated state, and context changes. Collect evidence across 20 symptoms and new modes, distinguish short controls, and build faithful reproductions. Use for retrospective collection, not general debugging or unrelated history access.
 ---
 
 # Collect agent failures comprehensively
 
 Produce a complete incident inventory, detailed evidence for each candidate,
-and small reproducible tasks for every feasible credible incident. Focus on
+and faithful reproducible tasks for every feasible credible incident. Focus on
 failures connected to earlier work, accumulating context, compaction, restarts,
-and handoffs. A long session is an observation, not by itself a causal finding.
+and handoffs, including earlier mistakes that compound and goals lost through
+successive work. A long session is an observation, not by itself a causal finding.
+
+Read [the long-running failure criteria](assets/kit/docs/LONG_HORIZON.md) before
+choosing reproductions. Record original relevance as temporal candidate,
+evidence needed, or short control; assess reproduction readiness separately.
+Credible incident-only leads are welcome without causal experiments. Ordinary
+bugs remain in the inventory, with separate counts from primary candidates.
 
 ## Start with scope and a private workspace
 
@@ -85,7 +92,7 @@ For each candidate, use the [evidence guide](assets/kit/docs/EVIDENCE.md) and
 as much relevant, available evidence as possible before summarizing:
 
 - The exact legitimate request, applicable rules, expected behavior, and source.
-- The earlier correct state or finding, intervening work, and decisive later action.
+- The earlier state or finding, whether correct or mistaken, intervening work, and decisive later action.
 - Observable messages, tool calls and results, commands, exit codes, edits,
   diffs, file versions, and the delivered artifact or commit.
 - Baseline and final checks, the agent's claims, user corrections, independent
@@ -109,6 +116,17 @@ Before writing reproduction code, save the candidate's index entry and detailed
 evidence record, including unknowns and source anchors. Update coverage as each
 history range is reviewed; an untouched report template is not a saved inventory.
 
+Complete [the temporal review](assets/kit/templates/temporal-review.md): earlier
+anchor, natural intervening work, later wrong action, consequence, what remained
+available, and the strongest alternative explanation. Separate pre-error work
+from idle time and recovery. If studying a cascade, identify the earlier mistake
+and the later dependent harm explicitly. Do not use a turn threshold as a proxy
+for this dependency.
+State whether substantial intervening work is observed, only a short mechanism
+is shown, or exposure is unknown. Keep short stateful retries out of the
+observed long-running count. Reject leads with no supported violation, such as
+an approved change of goal, without deleting them from the inventory.
+
 Follow [the reproduction guide](assets/kit/docs/REPRODUCING.md). From the
 collection directory, create each package with:
 
@@ -125,6 +143,12 @@ and report that distinction. Never mark invented records as real incidents.
 Preserve the earlier event, relevant intervening work or boundary, and later
 choice. Do not substitute an already broken final file for the agent making
 that choice. Explain what minimization removed and what temporal claim survives.
+Minimize infrastructure rather than the decision burden. Test whether the final
+prompt and fixture make earlier stages unnecessary. Do not supply the diagnosis,
+correct source, resolved live state, or joined result that the original agent
+had to discover. Preserve actual agent-created artifacts and legitimate competing
+demands. Judge actions against independent observations, not self-reported action
+flags. Clearly label short mechanism demonstrations when the long span is removed.
 Provide explicit stage inputs, local setup, a feasible correct solution, an
 independent task check, and a separate predicate for the target error.
 Expose only each stage's intended messages and files to the evaluated agent.
@@ -157,6 +181,8 @@ for every deferred candidate. Write `REPORT.md` at the collection root with a
 short summary, complete candidate table, and links to the full material. Give
 the user its absolute path. Do not let a summary replace the evidence or an
 unread queue disappear.
+Include each temporal review in the problem account or linked reviewed evidence.
+Report original relevance, task readiness, and causal support independently.
 If access, cost, time, or context limits stop work, save exact continuation
 points instead of claiming exhaustive coverage.
 

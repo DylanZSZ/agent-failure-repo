@@ -1,6 +1,6 @@
 # Review the exact files before sharing
 
-Updated 2026-10-10.
+Updated 2026-10-11.
 
 ## Summary
 
@@ -42,6 +42,21 @@ The contributor should review the complete collection and sanitized packages bef
 - A claimed reproduction links to the actual sanitized trace and outcome. A claimed temporal effect includes the control and its limitations.
 
 ## Maintainer decision
+
+First apply [the temporal criteria](LONG_HORIZON.md). Require the completed
+temporal review in each new account or linked evidence file. Record the original
+incident's relevance and the current task's readiness independently. A primary
+candidate needs a plausible, sourced dependency on earlier work; controlled
+causal evidence may remain unrun. Keep unclear leads and local reliability
+controls visible with separate counts, rather than deleting them or describing
+all of them as long-running failures.
+
+Request a task revision when the final prompt supplies the diagnosis, the
+fixture supplies a previously missing observation, or setup overwrites earlier
+agent work with a fixed answer-bearing state. Preserve clear requirements and
+accessible remedies. Assess whether actual actions and their effects are checked,
+whether a legitimate correct path exists, and whether the proposed comparison
+changes history rather than quietly making the final task easier.
 
 Accept incident-only reports when they are clear and useful, even without a runnable environment. Ask for missing evaluation results when a contribution claims a model reproduction or a temporal effect. Do not demand that contributors invent a stronger evidence level to get their incident reviewed. Ask for the complete index and explicit search gaps when only selected examples are presented.
 

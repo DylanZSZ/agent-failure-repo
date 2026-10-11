@@ -29,3 +29,10 @@ Use `incident-evidence.md` for a detailed record of each candidate in private
 working storage. Follow `docs/EVIDENCE.md` for relevant source material, execution
 context, chronology, contradictions, impact, and reasons information is missing.
 Summarize only after preserving the available evidence.
+
+Complete `temporal-review.md` alongside each incident record, following
+`docs/LONG_HORIZON.md`. Include a sanitized version in the problem account or
+linked reviewed evidence. Record original relevance separately from task
+readiness and contribution status. The existing index's `temporal_evidence`
+column can carry the relevance decision and explanation; the complete review
+belongs in the linked incident record. No new problem manifest fields are needed.

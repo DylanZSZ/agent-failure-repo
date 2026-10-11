@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-11",
+  "kind": "collection_instruction_and_review_verification",
+  "submission_baseline": "c054c1ed7f5b96ec1ffd6e56cdf1f80dc919bb95",
+  "benchmark_model_attempts_added": 0,
+  "original_problem_and_result_files_changed": 0,
+  "checks": [
+    {
+      "command": "make check",
+      "exit_code": 0,
+      "unit_tests": 100,
+      "metadata_problems": 100,
+      "metadata_result_records": 409,
+      "scripted_example": "passed",
+      "bundle_files": 28
+    },
+    {
+      "command": "python3 commands/validate.py --submission",
+      "exit_code": 0,
+      "metadata_problems": 100,
+      "metadata_result_records": 409
+    },
+    {
+      "command": "skill-creator quick_validate.py skills/collect-agent-failures",
+      "exit_code": 0
+    },
+    {
+      "command": "readable_lint.py --strict",
+      "files": [
+        "docs/LONG_HORIZON.md",
+        "docs/reviews/2026-10-11-submission-conversion/REFERENCE_BRANCHES.md",
+        "docs/reviews/2026-10-11-submission-conversion/TEMPORAL_FIT.md",
+        "docs/reviews/2026-10-11-submission-conversion/TEMPORAL_FIT_TABLE.md",
+        "docs/reviews/2026-10-11-submission-conversion/TEMPORAL_FIT_DETAILS.md"
+      ],
+      "exit_code": 0,
+      "errors": 0,
+      "warnings": 0,
+      "notes": "The per-case appendix has an informational suggestion to tabulate numbers; the separate full table provides those comparisons."
+    },
+    {
+      "check": "Fresh standalone initialization",
+      "outcome": "passed",
+      "details": "The installed-style kit creates the criteria and temporal-review form, the generated README links them, and no existing incident packages are copied."
+    },
+    {
+      "check": "Review record integrity",
+      "outcome": "passed",
+      "entries": 101,
+      "checks": [
+        "unique IDs",
+        "counts",
+        "evidence paths",
+        "detail anchors",
+        "report links",
+        "no established causal claim"
+      ]
+    },
+    {
+      "check": "Independent instruction review",
+      "outcome": "revised and resolved",
+      "findings": [
+        "Permit later decisions within a continuing request, not only new requests.",
+        "Do not disqualify artifact-state tasks solely because the final repository contains discoverable evidence."
+      ]
+    },
+    {
+      "check": "Synthetic instruction smoke test",
+      "invented_histories": 5,
+      "outcome": "clarified and rechecked",
+      "findings": [
+        "Report short stateful retries separately from observed substantial work.",
+        "Retain approved reprioritization as a rejected nonfailure, with temporal relevance not applicable."
+      ],
+      "not_incidents_or_model_benchmark_results": true
+    },
+    {
+      "check": "Scoped content review",
+      "outcome": "passed",
+      "details": "No original problems/results changed; new review files use previously shared evidence and source aliases. Pattern scan found no host-home paths or common credential formats; this does not replace the content review."
+    },
+    {
+      "command": "git diff --cached --check",
+      "exit_code": 0,
+      "details": "Normalized the new CSV to LF line endings before staging."
+    }
+  ]
+}

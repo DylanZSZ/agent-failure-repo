@@ -1,13 +1,15 @@
-# Collect agent failures with one message
+# Collect failures from long-running agent work with one message
 
-Updated 2026-10-10.
+Updated 2026-10-11.
 
 ## Summary
 
 Give the message below to the coding agent you already use on a project. It
 reads this guide, prepares a private workspace, reviews historical runs from
 **both Claude Code and Codex** for your project,
-collects detailed evidence, and builds small reproductions. You do not need to
+collects detailed evidence, and builds faithful reproductions. The target is
+failure contributed to by earlier work, accumulated state, or context changes,
+not every bug found in a long transcript. You do not need to
 install a skill, choose a template, or run the commands yourself. The agent
 continues in the same conversation and produces a report for you to review.
 
@@ -20,8 +22,21 @@ all feasible steps; do not stop at a plan or installation. I authorize reviewing
 historical Claude Code and Codex runs for my current project, including their
 available local transcripts and history exports I supply. Check both tools,
 regardless of which agent you are. Use this conversation as supplementary
-evidence. Collect as many supported failures as possible,
-with detailed evidence and minimal reproductions. Keep everything local and
+evidence. Find as many supported failures connected to long-running work as
+possible: earlier obligations or discoveries lost, stale or misapplied memory,
+completed work damaged, mistakes compounded through later actions, goals lost
+across revisions, or broken handoffs. Read docs/LONG_HORIZON.md before choosing
+reproductions. For every candidate, show the earlier anchor, real intervening
+work, later wrong action, consequence, and strongest alternative explanation.
+Keep ordinary local bugs as separately labeled controls and uncertain cases as
+evidence-needed leads. Do not count transcript length alone as causation.
+Separate substantial intervening work from short stateful mistakes and unknown
+exposure; a quick retry error is not an observed long-running failure.
+Minimize infrastructure, not the history dependency or competing demands. Do
+not give the tested agent the diagnosis or a fixture containing the answer.
+Collect detailed evidence, build all feasible faithful tasks, and request or
+record every actual evaluation, including misses and exclusions. Keep causal
+claims separate from observations. Keep everything local and
 show me the report and proposed sharing files before uploading anything.
 ```
 
@@ -180,14 +195,25 @@ Keep uncertain, rejected, duplicate, and deferred candidates
 in `.local/incident-index.csv`, with their reasons. Mark a category absent only
 within the material actually reviewed. Save progress while reading.
 
-### 4. Save detailed evidence before writing reproduction code
+### 4. Establish why earlier work matters before writing reproduction code
+
+Read [the long-running failure criteria](docs/LONG_HORIZON.md) and complete
+[the temporal review form](templates/temporal-review.md) for every candidate.
+Classify its original relevance as **temporal candidate**, **evidence needed**,
+or **short control**, separately from whether a reproduction is ready. A credible
+historical lead does not need a completed causal experiment to be submitted.
+Within temporal candidates, distinguish observed substantial work, short
+mechanisms, and unknown exposure. Reject leads with no supported failure, such
+as an explicitly approved change of goal, while keeping them in the index.
+For an older collection without these files, use the current kit's versions by
+absolute path; preserve existing records and add a dated reassessment.
 
 For every candidate, copy `templates/incident-evidence.md` into
 `.local/incidents/` and link it from the index. Adjust its relative links for
 the new location. Preserve as much relevant available evidence as possible:
 
 - Exact requests, acceptance criteria, standing rules, and source references.
-- Earlier correct state, intervening work, and the later decision and action.
+- Earlier state, whether correct or mistaken, intervening work, and the later decision and action.
 - Observable messages, tool calls and results, commands, exit codes, file
   versions, diffs, tests, and delivered artifacts.
 - Model and agent settings where exposed, tools and permissions, memory,
@@ -207,7 +233,7 @@ alone does not establish that its length caused an error. Keep ordinary local
 mistakes and ambiguous cases honestly labeled. The detailed checklist is in
 `docs/EVIDENCE.md` in the collection workspace.
 
-### 5. Build every feasible minimal reproduction
+### 5. Build faithful reproductions without removing the difficult decision
 
 From the collection workspace, create a package for each credible incident:
 
@@ -220,6 +246,17 @@ case's name. Put ordered agent prompts in `task/`, initial files and setup in
 `environment/`, independent checks in `checks/`, and a correct solution in
 `reference/`. Document exact setup, run, and judging commands and dependencies.
 Use the workspace's `docs/REPRODUCING.md` for the complete package requirements.
+Prioritize temporal candidates. Retain ordinary local errors and their useful
+reproductions as separately counted short controls.
+
+Before packaging, ask whether using only the final prompt and fixture removes
+the proposed burden. If the needed information remains in the repository,
+explain whether the target is accumulated artifact state or conversational
+memory. Preserve actual agent-created state and natural
+intervening work. Do not replace discovery with the resolved job state, correct
+path, joined metric, or diagnosis. Check executed behavior rather than an
+agent's declaration of what it would do. If the mechanism is preserved but the
+long span is removed, call it a short mechanism demonstration.
 
 Preserve the earlier event, the relevant intervening work or boundary, and the
 later choice. An already broken final file does not reproduce an agent's
@@ -260,7 +297,7 @@ need their own checks. Record actual commands and outcomes.
 
 Write **`REPORT.md`** at the collection root with a short findings summary and
 a complete candidate table: incident, symptom, observed horizon, consequence,
-evidence, reproduction status, and next action. Link the detailed records and
+evidence, original temporal relevance, reproduction readiness, and next action. Link the detailed records and
 packages. Include searched scope, gaps, all attempt counts and exclusions,
 contrary evidence, and the exact continuation point for unfinished work.
 Reconcile the table with `.local/incident-index.csv` and the coverage report.
@@ -302,6 +339,11 @@ not create imaginary run records. For each incident, explicitly answer:
 **Was the horizon long? Why is the error meaningful? What behavior should the
 task trigger and the evaluator detect?**
 
+Include the completed temporal review in the problem account or a linked
+reviewed evidence file. Primary long-running candidates need an evidenced
+earlier-to-later dependency; pending evidence and short controls remain visible
+with separate counts. The [criteria](docs/LONG_HORIZON.md) define these decisions.
+
 Keep `.local/`, raw transcripts, history indexes, private `REPORT.md`, secrets,
 and unreviewed material local. Create reviewed collection summaries at the
 paths above. After the owner approves the exact files and sharing destination,
@@ -328,6 +370,7 @@ updates. Installation is unnecessary for the workflow above.
 | --- | --- |
 | [AGENTS.md](AGENTS.md) | Detailed collection instructions |
 | [docs/](docs/ARCHITECTURE.md) | Search, evidence, reproduction, and review guides |
+| [Current submission review](docs/reviews/2026-10-11-submission-conversion/TEMPORAL_FIT.md) | Full case reassessment and comparison of the reference branches |
 | [problems/](problems/) | One task package per real incident |
 | [results/](results/) | Reviewed attempt records and evidence |
 | [commands/](commands/) | Start, read historical runs, scaffold, validate, and install |
@@ -342,8 +385,9 @@ or run paid model evaluations.
 
 ## Limitations
 
-No real incident or model evaluation ships with this starter. The agent needs
-access to history to collect it; this guide cannot unlock inaccessible past chats.
+The repository contains reviewed contributions, but the standalone collection
+kit includes no one else's histories or results. The agent needs access to the
+authorized project's history; this guide cannot unlock inaccessible past chats.
 
 ## Sources
 

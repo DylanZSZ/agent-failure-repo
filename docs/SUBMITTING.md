@@ -1,6 +1,6 @@
 # What contributors should push
 
-Updated 2026-10-10.
+Updated 2026-10-11.
 
 ## Summary
 
@@ -13,6 +13,16 @@ claim. Collect broadly across historical Claude Code and Codex runs and all
 Prepare this material locally before requesting the owner's review. An
 incident-only contribution is useful when code or evaluation is unavailable.
 State the achieved evidence level and missing work honestly.
+
+The primary target is failures connected to long-running work. Apply
+[the temporal criteria](LONG_HORIZON.md) and include a completed
+[temporal review](../templates/temporal-review.md) in each incident account or a
+linked reviewed evidence file. Record **original relevance**, **current task
+readiness**, and **causal support** separately. Keep short controls and uncertain
+leads in the inventory with separate counts; do not inflate the primary count.
+Within temporal candidates, separately count substantial intervening work,
+short mechanisms, and unknown exposure. Temporal dependence can exist in a
+short retry; it does not establish a long-running incident.
 
 ## Files to include
 
@@ -51,6 +61,13 @@ For each incident, answer explicitly:
    what a correct agent could have done, and plausible alternative explanations.
 4. **What error should the reproduction trigger and detect?** The preconditions,
    exact failure rule, correct task outcome, and invalid or unjudgeable cases.
+5. **Why does earlier work contribute?** Anchors for the earlier condition and
+   later action, substantive intervening work, the information or artifact that
+   carries the dependency, and the strongest alternative explanation. Unknowns
+   justify an evidence-needed report, not an invented causal account.
+6. **Does the reduction preserve that dependency?** The natural continuation or later request,
+   competing demands, actual state passed forward, independent behavioral check,
+   accidental answer cues, and what the proposed comparison can establish.
 
 Retain enough of the relevant sequence to assess those answers, including
 contrary evidence and later recovery. Excerpts can span multiple files; keep
@@ -72,6 +89,12 @@ dependencies, setup and run commands, separate task and failure checks, and a
 correct reference. Record the scripted checks you ran. Preserve the earlier
 event and later decision; an already broken final file is insufficient.
 
+Complete the reduction review before calling it ready for a pilot. An exact
+decision dictionary or self-reported action is insufficient when the intended
+failure concerns executed behavior. A final fixture that supplies the diagnosis
+or correct observation may be a short control, but does not recreate the
+original discovery burden. Keep historical suitability distinct from task quality.
+
 For **fresh model evaluations**, include every attempt: hits, misses, invalid
 or unjudgeable attempts, development trials, and controls. Record model and
 settings when exposed, actual length, task/judge versions, preconditions,
@@ -86,6 +109,12 @@ directory. Put original historical evidence in the problem account or its
 `evidence/` directory; the original incident is not a fresh evaluation.
 Describe that evidence in `source.evidence_note` and link it from the problem
 readme; do not invent additional manifest fields.
+
+Record the temporal review and relevance decision in Markdown; keep the current
+problem/result schema unchanged. Existing submissions retain their records.
+Add a dated reassessment when applying these criteria to an older package.
+Metadata validation does not certify that a temporal review is scientifically
+adequate; maintainers must read it.
 
 ## Material that stays local
 

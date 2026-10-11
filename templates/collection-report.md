@@ -1,6 +1,6 @@
 # Coverage of the selected interaction history
 
-Updated 2026-10-10.
+Updated 2026-10-11.
 
 ## Summary
 
@@ -52,6 +52,19 @@ label their uncertainty instead of silently discarding them.
 - Fresh model reproductions:
 - Rejected or duplicate candidates, with reasons in the index:
 - Deferred candidates and unsearched ranges:
+
+Report original relevance separately from reproduction status:
+
+- Temporal candidates with a plausible earlier-to-later dependency:
+- Within those candidates: substantial intervening work observed / short mechanism only / exposure unknown, counted separately:
+- Evidence-needed leads with a specific missing anchor or causal bridge:
+- Short controls without established dependence on earlier work:
+- Current tasks ready for pilots, needing redesign, limited to short mechanism demonstrations, or not built:
+
+Include relevance and task readiness in the full candidate table. Link each
+completed temporal review. These are review judgments, not measured error rates.
+Do not mix short controls into the primary long-running candidate count or infer
+temporal causation from a packaged status. Keep every candidate in the inventory.
 
 ## Symptom coverage
 

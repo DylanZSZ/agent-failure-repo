@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-11 — Focus collection on failures contributed to by extended work
+
+- Added temporal submission criteria informed by the release and cleanup reference suites.
+- Updated the one-message prompt, agent instructions, installable skill, and evidence forms to require an earlier-to-later account, meaningful consequence, alternative explanation, and faithful reproduction plan.
+- Separated original incident relevance, current task readiness, and evidence for causation; retained uncertain leads and short controls with separate counts.
+- Revisited all 101 historical entries without rewriting contributor packages or existing result records.
+- Requested all actual evaluation attempts and exclusions while allowing incident-only submissions with missing results.
+
 ## 2026-10-10 — Explicit submission contents and console delivery
 
 - Defined which collection summaries, incident evidence, task files, and actual evaluation records contributors should push.

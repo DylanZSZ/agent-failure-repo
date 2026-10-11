@@ -1,10 +1,17 @@
 # Find every supported failure within the authorized history
 
-Updated 2026-10-10.
+Updated 2026-10-11.
 
 ## Summary
 
 Collect as many distinct credible incidents as the agreed history supports. Search [all 20 symptoms](SYMPTOMS.md), keep unmatched modes, and continue after finding examples in a class. For each candidate, ask whether extended work, lost context, accumulated state, or a handoff helps explain the later mistake. A large number of messages is supporting context, not a diagnosis.
+
+Apply [the long-running failure criteria](LONG_HORIZON.md). Search for the
+earlier-to-later dependency, not just failure words near the end of long logs.
+Include previous mistakes that become later assumptions, incomplete repairs of
+older artifacts, and original goals displaced by successive tasks. Keep the
+complete inventory, with temporal candidates, evidence-needed leads, and short
+controls separately counted.
 
 ## Inspect only the agreed history
 
@@ -70,6 +77,11 @@ Be cautious when the only evidence is â€œthe answer was wrong after many turns.â
 There is no universal turn count that makes a task long. Record both the total task length and the span between the earlier event and the later decision. A configured maximum is not an observed run length. A long real incident reduced to a short toy task must be described as a reduction, with the removed work made explicit.
 
 ## Package all feasible incidents and report the rest
+
+Complete [the temporal review](../templates/temporal-review.md) before task
+construction. A reproduction that supplies the exact missing observation is a
+different task from the original. Record that loss explicitly; do not promote
+an easy final decision exercise because the original transcript was long.
 
 For every credible distinct incident, attempt a reduced task using [the reproduction guide](REPRODUCING.md) when the required material and tools are available. You may order the work by feasibility, but do not silently drop less convenient incidents after completing the easiest ones. Shared setup code is fine; distinct historical incidents still need separate evidence and accounting.
 

@@ -1,12 +1,20 @@
 # Search guide: 20 symptoms of agent failure
 
-Updated 2026-10-10.
+Updated 2026-10-11.
 
 ## Summary
 
 Use this guide to inspect the histories the contributor authorized. Collect as many **distinct, credible incidents** as those histories contain. Keep uncertain candidates in a separate list with the missing evidence and a next step; do not turn uncertainty into a confirmed failure. Summarize coverage and findings in the [collection report](../templates/collection-report.md).
 
 These 20 modes come from the failure catalog supplied for this project. They are search aids, not a claim that our new collection has reproduced them. They are also not instructions or traps to show the agent being evaluated. A contribution may identify another mode; label it `other` and explain it.
+
+**A symptom is not a temporal mechanism.** Apply [the long-running criteria](LONG_HORIZON.md)
+to every match. The primary collection needs a plausible dependency on earlier
+work or accumulated state. A local bug, secret disclosure, or false completion
+can fit this catalog without being caused by extended running. Retain such
+cases as short controls or evidence-needed leads. Also search for compounding
+mistakes, stale prior outputs after a repair, self-written rules that outlive
+their scope, and goals displaced by ongoing work; use `other` when needed.
 
 A single incident can match several modes. Give it one incident ID and multiple tags, then count the incident once. Separate incidents require separate observed episodes or consequences, not merely different descriptions of the same action. A mode's absence from accessible history is not evidence that an agent never makes that error.
 

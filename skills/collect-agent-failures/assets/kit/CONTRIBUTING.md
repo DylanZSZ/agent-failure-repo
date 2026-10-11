@@ -1,10 +1,17 @@
 # Collect as many real failures as your history supports
 
-Updated 2026-10-10.
+Updated 2026-10-11.
 
 ## Summary
 
 Ask your agent to search the full history you authorize and collect every distinct credible failure it can find. Use [all 20 symptoms](docs/SYMPTOMS.md) as a search checklist, while retaining other modes too. There is no quota or limit, and finding one example does not finish the search. Incident reports are welcome when a runnable reproduction is not yet feasible.
+
+The primary target is failure contributed to by extended work, accumulated
+state, or a context boundary. Apply [the temporal criteria](docs/LONG_HORIZON.md)
+before reducing a case. Record temporal candidates, evidence-needed leads, and
+short controls separately. Assess original relevance independently of task
+readiness and causal evidence; a long transcript or a familiar symptom is not
+sufficient for the primary count.
 
 Start with **historical Claude Code and Codex runs** for your selected project.
 The collecting agent checks both tools' transcript stores and reports coverage
@@ -26,7 +33,7 @@ These are evidence levels, not a promise that every incident must reach the last
 
 Point your agent to [AGENTS.md](AGENTS.md) and name the histories it may inspect. For example:
 
-> Read this repository's AGENTS.md and docs/SYMPTOMS.md. You may inspect the conversation exports I selected and the accompanying project copies. Search the entire authorized scope in multiple passes for all 20 symptoms and any unmatched failure modes. Collect as many distinct credible incidents as you can; do not stop after a few examples or one per class. Inventory every candidate and document coverage and gaps. Build a minimal reproduction for every feasible credible incident; record the reason and next action for anything deferred. Keep raw material private and show me the exact sanitized contribution before uploading anything.
+> Read this repository's AGENTS.md, docs/LONG_HORIZON.md, and docs/SYMPTOMS.md. You may inspect the selected exports and project copies. Search the full authorized scope for failures in which earlier work, accumulated state, or context changes contribute to a later mistake. Collect every credible candidate, with both event anchors, intervening work, consequences, and alternative explanations. Keep short controls and evidence-needed leads separately labeled. Build faithful reproductions where feasible without supplying the diagnosis or removing the history dependency. Record all attempts and gaps. Keep raw material private and show the exact sanitized contribution before uploading anything.
 
 If the agent cannot access your old conversations, give it a selected export or describe an incident. Do not give it broad access to your accounts simply to fill in missing details.
 

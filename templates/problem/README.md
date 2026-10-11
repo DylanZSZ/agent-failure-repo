@@ -26,6 +26,15 @@ State which source material is unavailable or withheld. Never paste raw secrets.
 
 ## Why the earlier work matters
 
+Original relevance: temporal candidate / evidence needed / short control.
+Original work exposure: substantial intervening work observed / short mechanism only / unknown; evidence:
+Current task readiness: faithful enough for a pilot / needs redesign /
+short mechanism demonstration / not built. Explain these separately from status.
+
+Complete the collection's templates/temporal-review.md in the private evidence
+record. Include its reviewed answers here or link a sanitized evidence document.
+Apply docs/LONG_HORIZON.md; a symptom or a long log alone does not establish fit.
+
 Describe the earlier event, intervening work, and later decision. What needed
 to persist: a rule, a fact, a file change, a boundary, or a status? Could the
 agent recover it from current files? Did it actually read the relevant evidence?
@@ -34,6 +43,11 @@ Record observed turns, tool calls, session changes, and elapsed time when known.
 Define the counting unit and endpoints. Distinguish configured budgets from
 actual execution. Explain plausible alternative causes; a long session alone
 does not establish causation.
+
+Distinguish a correct earlier state from a provisional mistake whose later
+propagation is the target. Identify the natural competing demand and what
+observation would weaken the temporal explanation. Separate the pre-error span
+from idle time and recovery; measure a propagation interval separately.
 
 ## Intended failure and how to identify it
 
@@ -48,6 +62,12 @@ State what the agent receives at every stage, which files persist, what resets,
 and what simulates a teammate or environment change. Keep judge, reference, and
 incident narrative outside the evaluated workspace. List changes from the real
 incident, what mechanism each preserves, and what the reduction loses.
+
+Explain whether the final prompt and fixture can solve the task without the
+earlier stages. Preserve the agent's actual earlier state. Identify any diagnosis,
+resolved observation, correct path, or answer inadvertently supplied during
+reduction. Describe the actual behavior checked and why an agent-written action
+flag alone would be insufficient. Label a short mechanism demonstration honestly.
 
 Describe dependencies, supported operating systems, installation, network use,
 expected cost, and safe disposable execution. Use fake data and local services.

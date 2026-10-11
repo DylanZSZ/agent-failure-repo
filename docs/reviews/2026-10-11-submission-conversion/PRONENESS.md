@@ -4,6 +4,8 @@ Updated 2026-10-11.
 
 ## Summary
 
+The [temporal-fit review](TEMPORAL_FIT.md) separately reassesses whether each original incident fits the long-running research goal. Its classifications do not replace the task-readiness judgments here.
+
 **That has not been established. Many historical incidents are meaningful, but their current reproductions make the decisive choice much easier.** The review sample (n=101 entries) covers all 84 incoming entries and our own 17 laptop entries. None currently has fresh-agent evidence establishing a long-history effect. The earlier recommendation to “build now” concerned conversion feasibility; it did not mean a task was already difficult or likely to trigger the error.
 
 The two new behavioral tasks received one fresh attempt each. The scheduler agent avoided the duplicate-job error. The data-selection attempt exceeded its planned time limit because of evaluator delay and is excluded; its later correct behavior remains exploratory evidence. These observations cannot establish a failure rate or general robustness.
