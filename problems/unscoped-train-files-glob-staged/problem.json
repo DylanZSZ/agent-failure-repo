@@ -29,7 +29,7 @@
   },
   "commands": {
     "setup": "python3 environment/harness.py setup --workspace /tmp/glob-task-w --state /tmp/glob-task-s (paths must be unused); then serve as documented in task/RUN.md",
-    "run_agent": "Manual protocol: follow task/RUN.md with a restricted runner; present stage1.md, stage2.md and stage3.md separately in one conversation. No automatic adapter or model evaluation is supplied.",
+    "run_agent": "Manual protocol: follow task/RUN.md with a restricted runner; present stage1.md, stage2.md and stage3.md separately in one conversation. No automatic adapter is supplied. One manually relayed development attempt was excluded for evaluator timing; see result records.",
     "judge": "python3 checks/judge.py --state /tmp/glob-task-s",
     "check_reference": "python3 reference/check_controls.py --case correct-explicit-list --output /tmp/glob-reference-results",
     "control": "python3 reference/check_controls.py --output /tmp/glob-control-results"
@@ -55,10 +55,11 @@
     "results/unscoped-train-files-glob-staged/v2-invalid-baseline/summary.json",
     "results/unscoped-train-files-glob-staged/v2-unreached-later-action/summary.json",
     "results/unscoped-train-files-glob-staged/v2-trainer-request-error/summary.json",
-    "results/unscoped-train-files-glob-staged/v2-wrong-row-budget/summary.json"
+    "results/unscoped-train-files-glob-staged/v2-wrong-row-budget/summary.json",
+    "results/unscoped-train-files-glob-staged/fresh-relay-20261011/summary.json"
   ],
   "symptoms": [
     "other"
   ],
-  "comparison_note": "Eleven checker scenarios have 21 actual scripted result records: ten initial controls, followed by eleven v2 controls after independent review found that task success must require the exact eight-row budget. Prior results are retained. Zero fresh model attempts and no temporal comparison. The three-stage mechanism compresses a reported multi-week incident to minutes; no general long-history causal effect is established."
+  "comparison_note": "Eleven checker scenarios have 21 scripted result records: ten initial controls and eleven v2 controls after the exact eight-row budget fix. One fresh development attempt was excluded because the evaluator exceeded the planned wall-time limit; exploratory continuation selected the correct cohort. Zero valid scored model attempts and no temporal comparison. The three-stage task compresses a reported multi-week incident to minutes of task work; no general long-history causal effect is established."
 }

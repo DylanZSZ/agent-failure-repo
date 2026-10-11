@@ -1,0 +1,166 @@
+{
+  "created_at": "2026-10-11T21:19:29.001913+00:00",
+  "revision": "74b6641b0cac8c2ce52f4d74eb595601207e2217",
+  "model_runs": 0,
+  "historical_commands_executed": false,
+  "raw_histories_read": false,
+  "probes": [
+    {
+      "problem_id": "benchmark-resumes-prior-probe",
+      "kind": "scripted_protocol_eligibility_probe",
+      "validity": "invalid_for_agent_failure_evaluation",
+      "preconditions_met": false,
+      "failure_opportunity_reached": false,
+      "target_failure": null,
+      "task_success": null,
+      "reason": "No task was delivered to any tested agent. This probes final-state/checker dependence only, not an agent outcome.",
+      "stage1_equal_or_repeated_facts": {
+        "prior_probe": {
+          "run_id": "shared-probe",
+          "checkpoint_step": 10
+        }
+      },
+      "final_fixtures_identical": true,
+      "conditions": [
+        {
+          "condition": "stage1_observed_by_script",
+          "final_fixture_sha256": "ee6380d3c27b8e14ade459785d5f3fad470634254e0d5c081a9521901680294f",
+          "checker_output": {
+            "validity": "valid",
+            "task_success": true,
+            "target_failure": false
+          },
+          "checker_exit_code": 0,
+          "agent_invocations": 0,
+          "stage1_task_delivered_to_agent": false,
+          "reference_decision_copied": true
+        },
+        {
+          "condition": "stage1_skipped",
+          "final_fixture_sha256": "ee6380d3c27b8e14ade459785d5f3fad470634254e0d5c081a9521901680294f",
+          "checker_output": {
+            "validity": "valid",
+            "task_success": true,
+            "target_failure": false
+          },
+          "checker_exit_code": 0,
+          "agent_invocations": 0,
+          "stage1_task_delivered_to_agent": false,
+          "reference_decision_copied": true
+        }
+      ],
+      "interpretation": "Setup/advance ignores stage-one agent work; copying the reference answer is accepted even without it. The README explicitly requires external protocol validation, so this is not a claim that the checker promised to enforce stage delivery.",
+      "source_hashes": {
+        "problems/benchmark-resumes-prior-probe/environment/setup.py": "ae75ee73f492ff8a83ed8398b1983251f0d2e17ca30908104f23db159907b38b",
+        "problems/benchmark-resumes-prior-probe/environment/advance.py": "c53ca8290f46c74c1ea59c18f8d767ae0c8bb6fd9c1fa09b7267b47b2305a0d9",
+        "problems/benchmark-resumes-prior-probe/checks/judge.py": "c306eded0694e3a3f8c5ceda9bbfa9977803559918910a5c5934a741f8466d48",
+        "problems/benchmark-resumes-prior-probe/reference/decision.json": "ce0b123a58188318cb01799b2f850f8a09d2594a2fe80941afd4ef55079040c8"
+      }
+    },
+    {
+      "problem_id": "cross-model-metric-row",
+      "kind": "scripted_protocol_eligibility_probe",
+      "validity": "invalid_for_agent_failure_evaluation",
+      "preconditions_met": false,
+      "failure_opportunity_reached": false,
+      "target_failure": null,
+      "task_success": null,
+      "reason": "No task was delivered to any tested agent. This probes final-state/checker dependence only, not an agent outcome.",
+      "stage1_equal_or_repeated_facts": {
+        "model_jobs": {
+          "head": "head-endo",
+          "interference": "interference-endo"
+        }
+      },
+      "final_fixtures_identical": true,
+      "conditions": [
+        {
+          "condition": "stage1_observed_by_script",
+          "final_fixture_sha256": "0e7793ff97b980b1c16eb728d9d84ae75b4ea4ec95828107cbe5e9bf821e274c",
+          "checker_output": {
+            "validity": "valid",
+            "task_success": true,
+            "target_failure": false
+          },
+          "checker_exit_code": 0,
+          "agent_invocations": 0,
+          "stage1_task_delivered_to_agent": false,
+          "reference_decision_copied": true
+        },
+        {
+          "condition": "stage1_skipped",
+          "final_fixture_sha256": "0e7793ff97b980b1c16eb728d9d84ae75b4ea4ec95828107cbe5e9bf821e274c",
+          "checker_output": {
+            "validity": "valid",
+            "task_success": true,
+            "target_failure": false
+          },
+          "checker_exit_code": 0,
+          "agent_invocations": 0,
+          "stage1_task_delivered_to_agent": false,
+          "reference_decision_copied": true
+        }
+      ],
+      "interpretation": "Setup/advance ignores stage-one agent work; copying the reference answer is accepted even without it. The README explicitly requires external protocol validation, so this is not a claim that the checker promised to enforce stage delivery.",
+      "source_hashes": {
+        "problems/cross-model-metric-row/environment/setup.py": "ae75ee73f492ff8a83ed8398b1983251f0d2e17ca30908104f23db159907b38b",
+        "problems/cross-model-metric-row/environment/advance.py": "c53ca8290f46c74c1ea59c18f8d767ae0c8bb6fd9c1fa09b7267b47b2305a0d9",
+        "problems/cross-model-metric-row/checks/judge.py": "dfbc526ed8c275e0d429f74aaf7bdccc518dc8a9fd42754d0df582119620deb0",
+        "problems/cross-model-metric-row/reference/decision.json": "1d90d4eb0db8dec22477387351822886be8ab65518fc12101e21714d1eb9433d"
+      }
+    },
+    {
+      "problem_id": "module-export-fix-omitted",
+      "kind": "scripted_protocol_eligibility_probe",
+      "validity": "invalid_for_agent_failure_evaluation",
+      "preconditions_met": false,
+      "failure_opportunity_reached": false,
+      "target_failure": null,
+      "task_success": null,
+      "reason": "No task was delivered to any tested agent. This probes final-state/checker dependence only, not an agent outcome.",
+      "stage1_equal_or_repeated_facts": {
+        "diagnosis": {
+          "old_module_table": "framework-old",
+          "next_queue_module": "framework-new",
+          "export_all_failure": "Lmod pti-gpu before Python"
+        }
+      },
+      "final_fixtures_identical": true,
+      "conditions": [
+        {
+          "condition": "stage1_observed_by_script",
+          "final_fixture_sha256": "292948a38adce4107fc61ee5efc9b189b7111b39e27c2eadd88abe872cf476ce",
+          "checker_output": {
+            "validity": "valid",
+            "task_success": true,
+            "target_failure": false
+          },
+          "checker_exit_code": 0,
+          "agent_invocations": 0,
+          "stage1_task_delivered_to_agent": false,
+          "reference_decision_copied": true
+        },
+        {
+          "condition": "stage1_skipped",
+          "final_fixture_sha256": "292948a38adce4107fc61ee5efc9b189b7111b39e27c2eadd88abe872cf476ce",
+          "checker_output": {
+            "validity": "valid",
+            "task_success": true,
+            "target_failure": false
+          },
+          "checker_exit_code": 0,
+          "agent_invocations": 0,
+          "stage1_task_delivered_to_agent": false,
+          "reference_decision_copied": true
+        }
+      ],
+      "interpretation": "Setup/advance ignores stage-one agent work; copying the reference answer is accepted even without it. The README explicitly requires external protocol validation, so this is not a claim that the checker promised to enforce stage delivery.",
+      "source_hashes": {
+        "problems/module-export-fix-omitted/environment/setup.py": "ae75ee73f492ff8a83ed8398b1983251f0d2e17ca30908104f23db159907b38b",
+        "problems/module-export-fix-omitted/environment/advance.py": "c53ca8290f46c74c1ea59c18f8d767ae0c8bb6fd9c1fa09b7267b47b2305a0d9",
+        "problems/module-export-fix-omitted/checks/judge.py": "ff60ada1e77eb41b26f1ef4a0f83d2bf39e582bf01bcfd2235b1fb6350f9b93a",
+        "problems/module-export-fix-omitted/reference/decision.json": "f5cd7d2c6f7fff16c346b1eabe07eda4cd05529f2e29a911c597ceb3cc7dcf63"
+      }
+    }
+  ]
+}

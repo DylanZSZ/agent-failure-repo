@@ -4,6 +4,8 @@ Updated 2026-10-11. Scope: both newly merged contributor collections (n=84 entri
 
 ## Summary
 
+**Follow-up: [Are these tasks actually error-prone?](PRONENESS.md)** The stricter pass reviews all 84 incoming and 17 laptop entries, plus the two derivatives. Its [complete table](PRONENESS_TABLE.md) separates historical importance from current task difficulty. The “build now” label below means feasible to construct; it does not mean ready as a long-horizon benchmark.
+
 **Many incidents are worth converting, but the current decision-file exercises are not yet strong tests of agent behavior.** We reviewed all 84 entries from the two incoming collections: 81 problem packages and three deferred reports. The complete [84-row table](TABLE.md) links to an individual assessment of each case; [CSV](cases.csv) and [JSON](review.json) are also available.
 
 | Recommendation | Entries | Meaning |
@@ -15,7 +17,7 @@ Updated 2026-10-11. Scope: both newly merged contributor collections (n=84 entri
 
 Source: [per-case review](review.json). These mutually exclusive recommendations are judgments about the next step, not measured success rates. A short control can also need additional evidence.
 
-The review uses the contributors' shared excerpts, task files, checkers and result records. We did not access their private histories. Both collections disclose limitations; their reduced examples do not constitute fresh model evaluations. The incoming 322 result records are scripted checks. No fresh model evaluation was performed in this review.
+The review uses the contributors' shared excerpts, task files, checkers and result records. We did not access their private histories. Both collections disclose limitations; their reduced examples do not constitute fresh model evaluations. The incoming 322 result records are scripted checks. No fresh model evaluation was performed in this initial conversion pass. The later [proneness review](PRONENESS.md) records two fresh attempts: one valid miss and one excluded for evaluator timing.
 
 ## Is the horizon actually long?
 
@@ -78,15 +80,15 @@ The separately prepared [laptop collection][laptop] adds 17 supported historical
 
 Only the previously presented 333-file collection manifest was copied. Publication-status notes were updated after the owner's instruction to pull and push. Raw histories, source mappings, search databases and the private working report remain local. The five packaged tasks passed their documented reference controls in a clean copy containing only those proposed files; see the [verification receipt](laptop-clean-verification.json).
 
-The [submission file list](SUBMISSION_FILES.txt) enumerates the files added by this contribution. Existing contributor files are preserved.
+The [initial submission file list](SUBMISSION_FILES.txt) records the original contribution. The later [proneness follow-up file list](PRONENESS_FILES.txt) records the separate audit and pilot changes. Existing contributor files are preserved.
 
 ## Next steps
 
-Evaluate the two derived tasks with an authorized restricted runner, retain every attempt, and then build the highest-priority longer sequences. Request the specific missing evidence before promoting ambiguous incidents.
+Use the later [proneness review](PRONENESS.md) to revise task designs and plan further evaluation. Retain every attempt and build longer sequences only where the historical mechanism warrants them. Request the specific missing evidence before promoting ambiguous incidents.
 
 ## Sources
 
-Reviewed repository revision: `9209e6f`. Evidence is linked per case in [the detailed assessments](CASE_DETAILS.md). Scripted outcomes are linked above; no model-run sample is available.
+Reviewed repository revision: `9209e6f`. Evidence is linked per case in [the detailed assessments](CASE_DETAILS.md). Scripted outcomes from the initial review are linked above; subsequent fresh attempts and their limitations are in the [proneness review](PRONENESS.md).
 
 [glob-task]: ../../../problems/unscoped-train-files-glob-staged/README.md
 [retry-task]: ../../../problems/partial-submit-duplicate-staged/README.md

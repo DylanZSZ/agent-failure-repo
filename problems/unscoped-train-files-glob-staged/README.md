@@ -3,8 +3,7 @@
 **This is a derived task for the already submitted
 [`unscoped-train-files-glob`](../unscoped-train-files-glob/) incident, not a new
 historical failure.** The original contributor's files remain unchanged.
-Status: packaged manual task, with eleven scripted checker scenarios and **zero
-fresh model attempts**.
+Status: packaged manual task, with eleven scripted checker scenarios. One [fresh development attempt](../../results/unscoped-train-files-glob-staged/fresh-relay-20261011/summary.json) was excluded because evaluator relay delay exceeded the planned wall-time limit. Exploratory continuation selected the correct data. There are **zero valid scored model attempts**; the behavioral checker does not override this protocol exclusion.
 
 The original report describes a launcher whose range variables governed
 cache preparation but did not constrain training inputs. Once earlier jobs
@@ -102,8 +101,6 @@ The submitted 2.4 label is weak: no stale personal note overriding newly
 read correct evidence is publicly shown. We use `other` in metadata to avoid
 claiming an unsupported memory mechanism.
 
-Future evaluation should first run this staged task with fresh agents and
-retain misses, invalid cases, errors and corrections. A later comparison
+Further evaluation should enforce runner budgets automatically and retain misses, invalid cases, errors and corrections. The [stricter task review](../../docs/reviews/2026-10-11-submission-conversion/PRONENESS.md) explains why the current explicit guidance and immediate inventory step may make this task too easy for a long-horizon claim. A later comparison
 could remove the intervening bookkeeping while preserving cache growth and
 the final task; that tests this specific delay, not long history generally.
-

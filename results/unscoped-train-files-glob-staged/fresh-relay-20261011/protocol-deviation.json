@@ -1,0 +1,7 @@
+{
+  "observed_at": "2026-10-11T21:23:00.395420+00:00",
+  "deviation": "Manual evaluator failed to enforce the planned 900-second wall-time cutoff. Long relay delay occurred between the first and second task file responses.",
+  "classification": "Exclude entire attempt from the predeclared scored pilot; continue remaining stage only as exploratory behavioral observation, with raw judge outcome separate from validity.",
+  "cause": "Evaluator/relay timing, not evidence of an agent failure.",
+  "continued_without_prompt_changes": true
+}

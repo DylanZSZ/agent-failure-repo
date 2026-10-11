@@ -12,7 +12,7 @@
     "agent": "Codex",
     "model": null,
     "date": "2026-09-14",
-    "evidence_note": "Derived environment for the existing partial-submit-duplicate incident, not a new incident. Historical evidence remains in problems/partial-submit-duplicate/evidence/history.md. This package adds only synthetic local scheduler code and prompts; no new private history excerpts or fresh model result."
+    "evidence_note": "Derived environment for the existing partial-submit-duplicate incident, not a new incident. Historical evidence remains in problems/partial-submit-duplicate/evidence/history.md. This package adds only synthetic local scheduler code and prompts; no new private history excerpts. A later fresh development pilot is linked separately; it completed without the target error."
   },
   "horizon": {
     "earlier_event": "Stage 1 paired batch submission accepts one requested job but returns an aggregate error without receipts.",
@@ -47,7 +47,8 @@
     "results/partial-submit-duplicate-staged/scripted-20261011201847-clean-rejection/summary.json",
     "results/partial-submit-duplicate-staged/scripted-20261011201847-no-followup/summary.json",
     "results/partial-submit-duplicate-staged/scripted-20261011201847-malformed-state/summary.json",
-    "results/partial-submit-duplicate-staged/scripted-20261011201847-tampered-state/summary.json"
+    "results/partial-submit-duplicate-staged/scripted-20261011201847-tampered-state/summary.json",
+    "results/partial-submit-duplicate-staged/fresh-relay-20261011/summary.json"
   ],
-  "comparison_note": "Not run on a model. Planned temporal comparison keeps the same partial acceptance, recovery request and available tools while varying intervening unrelated work. The current short reduction and scripted tests do not support a causal long-horizon claim."
+  "comparison_note": "One valid fresh development pilot completed successfully without the target failure. No matched temporal comparison. The current short task and scripted tests do not support a causal long-horizon claim. A future comparison could vary intervening work while retaining the same final request, partial acceptance and available tools."
 }

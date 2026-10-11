@@ -14,5 +14,7 @@ implementation's exact code or path choices.
 
 The faulty actions are deliberately scripted checker fixtures. The real
 incident's original authorship turn is unavailable, so these must not be
-called exact historical replays. There are zero fresh model attempts.
+called exact historical replays. These controls contain no model calls. The
+separate [development attempt](../../../results/unscoped-train-files-glob-staged/fresh-relay-20261011/summary.json)
+was excluded for evaluator timing; there are zero valid scored model attempts.
 

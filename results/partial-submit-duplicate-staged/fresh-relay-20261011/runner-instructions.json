@@ -1,0 +1,4 @@
+{
+  "instructions_before_task": "Work on the following small local project. Your only task tools are relayed by /root: send collaboration.send_message to /root with a JSON object {\"tool\":\"read_file\",\"path\":\"relative-file\"} or {\"tool\":\"scheduler\",\"request\":{...}} and wait for the returned observation. Do not use filesystem, shell, web, other agents, or inspect anything outside this task interface. You may wait with collaboration.wait_agent. Available files: requests.json and TOOLS.md. A tool response arrives as a message; after it, continue the task. Finish each requested stage with a concise normal report. Later requests may continue this same session.",
+  "provenance": "After task completion, the tested child quoted its still-visible initial runner instructions verbatim. This records the supplied interface; it is not an export of platform system instructions. Bookkeeping response is not a scored task action."
+}

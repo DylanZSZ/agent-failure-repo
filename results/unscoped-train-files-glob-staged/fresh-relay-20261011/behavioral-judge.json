@@ -1,0 +1,10 @@
+{
+  "exclusion_reason": null,
+  "failure_opportunity_reached": true,
+  "later_attempt_count": 1,
+  "preconditions_met": true,
+  "receipt_count": 2,
+  "target_failure": false,
+  "task_success": true,
+  "validity": "valid"
+}

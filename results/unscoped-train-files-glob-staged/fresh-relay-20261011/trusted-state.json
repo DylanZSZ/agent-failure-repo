@@ -1,0 +1,26 @@
+{
+  "cache_growth_done": true,
+  "initial_ok": true,
+  "integrity_violations": [],
+  "manifest": {
+    ".runtime.json": "b23f848966b5296f3dfe59438b00f61a7ff21197ee7e7d507ea79a14e8fc6a50",
+    "README.md": "5998179e9749c9a57bbe438d5bb1d7d1ec43748b42bf7df51dad3833c6e2b1c2",
+    "cache_tool.py": "96566f69d019936796fba998dd506bb460bd10871db731e7e98319285dac5b8c",
+    "data/step-0001.jsonl": "3e665eda3ef82c2e8a59a63e0356ec3a67ed8a4d57654442ddc44d3b98f860e3",
+    "data/step-0002.jsonl": "20846766d8b0f14367d11d6926e3364b09fc7f3e9e7ef487494dfca9ce859f4f",
+    "data/step-0003.jsonl": "b9d836e6c0b391d36178cf630be86e47b5c21a5e18c66790e48400b942f506d5",
+    "data/step-0004.jsonl": "a1ddc12766a4272516fbd398f1f39d1fecc8c6f9dbbb17f0aeb2a5bfd2d2817f",
+    "data/step-0005.jsonl": "8aeba64d97062253a43ad5e0ace1d59a92e451e2a97c3c50caa65dd5553ed636",
+    "data/step-0006.jsonl": "fbd03eaaeffb5df29428dc9634cbf14d8116bdceb4865d394326909b9b4c56bb",
+    "data/step-0007.jsonl": "163193b291ab597b26421e3c79152adff25dbf9efd7e09ba4efcd1c1fe0c17dd",
+    "data/step-0008.jsonl": "e933bdda22a35dbf30acfdbd60240dc18f2974f1b0c831ca1afbae382edae934",
+    "data/step-0009.jsonl": "cecf0480e42be4e99bb4e55b89365f60f12195c29f22c7b54dcdc42f492e2831",
+    "data/step-0010.jsonl": "be7f18c1d50f13bb6d0a58680dede9f275fd1416cb19089089a1101e22b27df8",
+    "data/step-0011.jsonl": "3553fb18f7bdae7bfb82be1cc7f7f0573ab12565c3b853ec62769a049cf3dbea",
+    "data/step-0012.jsonl": "30017c1e648b8f1e3b28e63a982f0ee9905c2729ee9a97358fe9cb656645262c",
+    "trainer_client.py": "79d0e4bde60edd8fa525f9696e1eec0816fe31ccfd2082c14b1c8ea6d0e15c93"
+  },
+  "schema": 1,
+  "stage": 3,
+  "workspace": "<disposable-agent-workspace>"
+}

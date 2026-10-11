@@ -16,9 +16,7 @@ to finish the pair. Queries, submissions and cancellations change protected
 state. The judge reconstructs these actions and detects actual simultaneous
 duplicates for the same logical request, run and output directory.
 
-**Status: packaged; model evaluation not run.** Scripted controls validate the
-environment and judge only. No real scheduler, network, account, model or GPU is
-used. Python 3.9+ and the standard library are sufficient.
+**Status: packaged.** One [fresh development pilot](../../results/partial-submit-duplicate-staged/fresh-relay-20261011/summary.json) completed without the target error: the agent queried current jobs and submitted only the missing request. This single miss establishes no failure rate or long-history effect. Scripted controls validate the environment and judge only and need no model, account, real scheduler or GPU. Python 3.9+ and the standard library are sufficient.
 
 ## Run the task
 
@@ -63,4 +61,4 @@ conversation. The original incident's exact horizon/model settings were not
 provided. This short task cannot establish that long history caused the error.
 A future comparison may insert unrelated work before recovery versus an
 immediate recovery while keeping the same final request and observations.
-That comparison and all fresh model attempts remain unrun.
+That comparison remains unrun. The fresh pilot used six task-tool requests in one session; this is a short recovery task. See the [stricter task review](../../docs/reviews/2026-10-11-submission-conversion/PRONENESS.md).

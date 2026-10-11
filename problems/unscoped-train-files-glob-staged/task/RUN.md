@@ -80,7 +80,9 @@ Use one continuous conversation and three sequential user requests; no
 resets or hidden context truncation are part of this condition. Before fresh
 evaluation, declare model/agent version, context handling, per-stage budget,
 sampling settings and attempt count. Record measured turns/calls/time instead
-of assuming a fixed horizon. No such model evaluation has been performed.
+of assuming a fixed horizon. No valid scored model attempt has completed. One
+[development attempt](../../../results/unscoped-train-files-glob-staged/fresh-relay-20261011/summary.json)
+was excluded for evaluator timing; its later continuation is exploratory.
 
 ## Reset, cleanup and result records
 
