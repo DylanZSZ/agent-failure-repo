@@ -1,0 +1,4 @@
+[main] status=pass :: matched exactly 6 files
+[edge_full_range] status=pass :: matched exactly 10 files
+
+overall=PASS

@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "id": "unscoped-train-files-glob",
+  "title": "Unscoped file-selection glob silently ignores a requested sub-range when the directory holds extra files",
+  "status": "incident",
+  "origin": "real_history",
+  "privacy_reviewed": true,
+  "source": {
+    "agent": "Claude Code (Sonnet 5), single session",
+    "model": "claude-sonnet-5",
+    "date": "2026-10-09",
+    "evidence_note": "Self-collected from the same conversation in which the incident occurred. See .local/incidents/unscoped-train-files-glob.md for full evidence; no separate export file exists. Exact origination turn of the original defect is in a pre-summary (compacted) portion of the conversation and is unavailable as raw transcript."
+  },
+  "horizon": {
+    "earlier_event": "run_rollout_sft.sh authored with data.train_files as an unscoped wildcard glob, and a header comment claiming START_STEP/END_STEP govern replay scope (they do not)",
+    "later_decision": "Multiple later sub-range SFT jobs launched using START_STEP/END_STEP alone, trusting the unverified earlier claim",
+    "intervening_work": "Many unrelated tasks across the same long conversation: disk-usage management, HuggingFace uploads, an unrelated SFT loss-objective feature, full-range (non-sub-range) training runs that incidentally populated the shared dataset directory with the full 1040-shard dataset",
+    "mechanism": "Hydra CLI override data.train_files took an unscoped shell glob over a shared, growing directory; START_STEP/END_STEP were wired only into a separate download-range helper, never into this override",
+    "assistant_turns_between": null,
+    "tool_calls_between": null,
+    "sessions_spanned": 1,
+    "elapsed_seconds": null,
+    "causal_claim": "suspected"
+  },
+  "failure": {
+    "expected_behavior": "select_train_files(dataset_dir, start_step, end_step) returns exactly the shard files in [start_step, end_step], even when dataset_dir holds additional files outside that range",
+    "observed_behavior": "An unscoped glob() over dataset_dir returns every shard file present, regardless of start_step/end_step, which are accepted as parameters but never used to restrict the glob",
+    "target_predicate": "len(returned_files) == n_shards_in_directory (i.e. the full directory listing) instead of == (end_step - start_step + 1)"
+  },
+  "commands": {
+    "setup": "No setup needed beyond a Python 3.9+ interpreter; checks/judge.py creates its own disposable temp directory per run.",
+    "run_agent": "Not implemented in this pass -- no fresh-model-attempt condition was run. See task/README.md for the task as it would be presented.",
+    "judge": "python3 checks/judge.py --solution <path-to-evaluated-solution.py>",
+    "check_reference": "python3 checks/judge.py --solution reference/solution.py  # expect overall=PASS, exit 0",
+    "control": "python3 checks/judge.py --solution reference/faulty_solution.py  # expect overall=FAIL, exit 1, main case status=target_failure"
+  },
+  "result_records": [
+    "results/unscoped-train-files-glob/run-001-mechanism-replay/summary.json",
+    "results/unscoped-train-files-glob/run-002-reference-check/summary.json",
+    "results/unscoped-train-files-glob/run-003-faulty-control/summary.json"
+  ],
+  "symptoms": [
+    "2.4"
+  ],
+  "comparison_note": "No fresh-model comparison run in this pass (deferred; see incident-evidence.md Limitations). A1-A3 establish that the reproduction mechanism itself correctly discriminates buggy vs. correct vs. faulty-control solutions, which is a precondition for any later fresh-model evaluation, not a model evaluation itself."
+}

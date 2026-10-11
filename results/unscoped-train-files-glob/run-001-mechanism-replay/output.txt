@@ -1,0 +1,3 @@
+mode=buggy requested_range=5-10 (expected 6 files) directory_has=40 shards
+matched_count=40
+matched_ok=NO (BUG REPRODUCED)
