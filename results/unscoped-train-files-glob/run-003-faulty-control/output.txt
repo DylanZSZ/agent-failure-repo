@@ -1,0 +1,4 @@
+[main] status=target_failure :: returned all 40 shards in the directory instead of the requested 6 -- this is the incident's target predicate (START_STEP/END_STEP silently ignored)
+[edge_full_range] status=pass :: matched exactly 10 files
+
+overall=FAIL
