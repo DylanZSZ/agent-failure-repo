@@ -1,0 +1,102 @@
+[
+  {
+    "source_alias": "claude-source-1161",
+    "line": 381,
+    "role": "user",
+    "timestamp": "2026-08-21T07:31:07.715Z",
+    "event_uuid": "fbe99929-2ba8-4648-ab87-5541149b97f5",
+    "evidence_state": "observed_summary",
+    "summary": "Finish implementation, then a comprehensive design document.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1161",
+    "line": 400,
+    "role": "tool result",
+    "timestamp": "2026-08-21T07:37:58.574Z",
+    "event_uuid": "0d2e1917-b2f5-45b0-a597-eabb6d1e638c",
+    "evidence_state": "observed_summary",
+    "summary": "Output file is 129 bytes and its timestamp is about 38 minutes old.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1161",
+    "line": 406,
+    "role": "tool result",
+    "timestamp": "2026-08-21T07:38:17.538Z",
+    "event_uuid": "020c50de-2104-439c-9127-c238dbcafed4",
+    "evidence_state": "observed_summary",
+    "summary": "TaskList: No tasks found.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1161",
+    "line": 408,
+    "role": "assistant tool call",
+    "timestamp": "2026-08-21T07:38:27.666Z",
+    "event_uuid": "7a1b9a9d-c08f-4289-9160-00ae75941f9e",
+    "evidence_state": "observed_summary",
+    "summary": "TaskStop issued for the implementation worker.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1161",
+    "line": 409,
+    "role": "tool result",
+    "timestamp": "2026-08-21T07:38:27.691Z",
+    "event_uuid": "56fe8545-1fc2-4929-b23f-d25c32351f9d",
+    "evidence_state": "observed_summary",
+    "summary": "Successfully stopped task.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1161",
+    "line": 411,
+    "role": "tool result",
+    "timestamp": "2026-08-21T07:38:30.610Z",
+    "event_uuid": "863a4901-ed53-42e8-887d-cdf39ef11092",
+    "evidence_state": "observed_summary",
+    "summary": "Git inspection shows four new implementation commits and unfinished edits.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1161",
+    "line": 420,
+    "role": "assistant tool call",
+    "timestamp": "2026-08-21T07:39:23.208Z",
+    "event_uuid": "1d3487c3-930c-47c1-8bae-28fc9fd9daca",
+    "evidence_state": "observed_summary",
+    "summary": "Resume message explicitly says the stop was coordinator error and acknowledges good progress.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1161",
+    "line": 421,
+    "role": "tool result",
+    "timestamp": "2026-08-21T07:39:25.906Z",
+    "event_uuid": "6aeb4f4a-c9cd-47f6-8f80-1bc4eef7b22b",
+    "evidence_state": "observed_summary",
+    "summary": "Stopped worker resumed.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1161",
+    "line": 424,
+    "role": "assistant",
+    "timestamp": "2026-08-21T07:39:48.882Z",
+    "event_uuid": "dbf07687-240c-4d10-a133-4de38fd467b7",
+    "evidence_state": "observed_summary",
+    "summary": "Acknowledges mistaken stop.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1161",
+    "line": 426,
+    "role": "worker receipt",
+    "timestamp": "2026-08-21T08:13:34.011Z",
+    "event_uuid": "90394d5a-1392-4bd2-b93b-c7764b41ffbc",
+    "evidence_state": "observed_summary",
+    "summary": "Implementation reported complete; receipt attributes two disputed project-document commits to an earlier session.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  }
+]

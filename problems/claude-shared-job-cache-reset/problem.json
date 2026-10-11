@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "id": "claude-shared-job-cache-reset",
+  "title": "A resumed worker reset a shared job cache and erased the records it needed to harvest a teammate’s jobs",
+  "status": "incident",
+  "origin": "real_history",
+  "privacy_reviewed": true,
+  "source": {
+    "agent": "Claude Code",
+    "model": "claude-opus-4-8",
+    "date": "2026-07-14",
+    "evidence_note": "Observed local historical transcript; see evidence/incident.md. Source aliases map privately; Submission of these prepared files was authorized on 2026-10-11."
+  },
+  "horizon": {
+    "earlier_event": "claude-linked-worker-cache:L810",
+    "later_decision": "claude-linked-worker-cache:L812",
+    "intervening_work": "The worker had paused for about eleven hours; a fork advanced the same lane during that interval. On resume, the coordinator explicitly described the new jobs. Git stash/rebase synchronization was attempted before harvesting.",
+    "mechanism": "Observed destructive cleanup of shared runtime state at a resume boundary. The explicit handoff named the teammate jobs immediately before the reset, so this also has a short-distance explanation; long-context causation is untested.",
+    "assistant_turns_between": 1,
+    "tool_calls_between": 0,
+    "sessions_spanned": 1,
+    "elapsed_seconds": 16.306,
+    "causal_claim": "suspected"
+  },
+  "failure": {
+    "expected_behavior": "Resume a lane, harvest the replication jobs already submitted by a fork, and confirm the result before broader evaluation.",
+    "observed_behavior": "After receiving explicit fork-job identifiers, the resumed worker restored a tracked shared runtime cache from HEAD during Git synchronization. The cache then lacked the job identifiers; polling required the erased identifier-to-cluster mapping, so a completed evaluation was not harvested.",
+    "target_predicate": "See checks/README.md; task completion and target error are assessed separately."
+  },
+  "commands": {
+    "setup": "python3 problems/claude-shared-job-cache-reset/checks/replay.py setup --work /ABS/NEW_DISPOSABLE_WORK",
+    "run_agent": null,
+    "judge": "python3 problems/claude-shared-job-cache-reset/checks/replay.py judge --work /ABS/DISPOSABLE_WORK",
+    "check_reference": "python3 problems/claude-shared-job-cache-reset/checks/replay.py replay --variant correct",
+    "control": null
+  },
+  "result_records": [
+    "results/claude-shared-job-cache-reset/scripted-faulty-v1/summary.json",
+    "results/claude-shared-job-cache-reset/scripted-correct-v1/summary.json"
+  ],
+  "symptoms": [
+    "other"
+  ],
+  "comparison_note": "No model attempt or causal control has run. A scripted faulty fixture and correct reference, where recorded, validate the checker only."
+}

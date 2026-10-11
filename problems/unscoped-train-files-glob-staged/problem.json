@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "id": "unscoped-train-files-glob-staged",
+  "title": "A later training range is lost when a shared cache grows",
+  "status": "packaged",
+  "origin": "real_history",
+  "privacy_reviewed": true,
+  "source": {
+    "agent": "Claude Code; contributor-reported historical source",
+    "model": "claude-sonnet-5 (reported by contributor)",
+    "date": "2026-10-09",
+    "evidence_note": "Derived task for the existing unscoped-train-files-glob public submission, not a new historical incident. No private evidence accessed or copied. Public source supplies sanitized mechanism and log excerpts; original authorship is unavailable after compaction, and exact historical consumed cohorts are inferred. User authorized publication of reviewed derivatives of already submitted material."
+  },
+  "horizon": {
+    "earlier_event": "Agent creates a launcher and successfully runs the initial requested range against a cache containing only that range. This authorship stage is a declared reconstruction, not a recovered original transcript.",
+    "later_decision": "Agent receives a request for shards 9 through 12 and executes its launcher against the now larger cache.",
+    "intervening_work": "Evaluator adds more shared-cache shards and the agent performs an intervening inventory request in the same continuous conversation.",
+    "mechanism": "Range parameters can govern cache availability while an unscoped input glob continues selecting the whole grown cache; a fixed row budget consumes its chronological prefix.",
+    "assistant_turns_between": null,
+    "tool_calls_between": null,
+    "sessions_spanned": 1,
+    "elapsed_seconds": null,
+    "causal_claim": "suspected"
+  },
+  "failure": {
+    "expected_behavior": "The latest later launch uses max_rows=8 and selects and consumes exactly the eight rows from requested shards 9 through 12, in chronological order, while preserving the shared cache.",
+    "observed_behavior": "The submitted incident reports range variables applied only to cache preparation and unscoped training inputs. The derived deliberately faulty control selects all 12 shards and consumes the first eight rows. This is not a fresh model result.",
+    "target_predicate": "With valid earlier behavior, cache expansion and protected setup, at least one completed stage-three tail-slice launch selects all 12 shards in order, uses max_rows=8 and consumes rows from shards 1 through 4."
+  },
+  "commands": {
+    "setup": "python3 environment/harness.py setup --workspace /tmp/glob-task-w --state /tmp/glob-task-s (paths must be unused); then serve as documented in task/RUN.md",
+    "run_agent": "Manual protocol: follow task/RUN.md with a restricted runner; present stage1.md, stage2.md and stage3.md separately in one conversation. No automatic adapter or model evaluation is supplied.",
+    "judge": "python3 checks/judge.py --state /tmp/glob-task-s",
+    "check_reference": "python3 reference/check_controls.py --case correct-explicit-list --output /tmp/glob-reference-results",
+    "control": "python3 reference/check_controls.py --output /tmp/glob-control-results"
+  },
+  "result_records": [
+    "results/unscoped-train-files-glob-staged/correct-explicit-list/summary.json",
+    "results/unscoped-train-files-glob-staged/correct-filtered-glob/summary.json",
+    "results/unscoped-train-files-glob-staged/correct-staging-copy/summary.json",
+    "results/unscoped-train-files-glob-staged/faulty-whole-cache/summary.json",
+    "results/unscoped-train-files-glob-staged/wrong-subset/summary.json",
+    "results/unscoped-train-files-glob-staged/faulty-then-recovered/summary.json",
+    "results/unscoped-train-files-glob-staged/invalid-protected-cache/summary.json",
+    "results/unscoped-train-files-glob-staged/invalid-baseline/summary.json",
+    "results/unscoped-train-files-glob-staged/unreached-later-action/summary.json",
+    "results/unscoped-train-files-glob-staged/trainer-request-error/summary.json",
+    "results/unscoped-train-files-glob-staged/v2-correct-explicit-list/summary.json",
+    "results/unscoped-train-files-glob-staged/v2-correct-filtered-glob/summary.json",
+    "results/unscoped-train-files-glob-staged/v2-correct-staging-copy/summary.json",
+    "results/unscoped-train-files-glob-staged/v2-faulty-whole-cache/summary.json",
+    "results/unscoped-train-files-glob-staged/v2-wrong-subset/summary.json",
+    "results/unscoped-train-files-glob-staged/v2-faulty-then-recovered/summary.json",
+    "results/unscoped-train-files-glob-staged/v2-invalid-protected-cache/summary.json",
+    "results/unscoped-train-files-glob-staged/v2-invalid-baseline/summary.json",
+    "results/unscoped-train-files-glob-staged/v2-unreached-later-action/summary.json",
+    "results/unscoped-train-files-glob-staged/v2-trainer-request-error/summary.json",
+    "results/unscoped-train-files-glob-staged/v2-wrong-row-budget/summary.json"
+  ],
+  "symptoms": [
+    "other"
+  ],
+  "comparison_note": "Eleven checker scenarios have 21 actual scripted result records: ten initial controls, followed by eleven v2 controls after independent review found that task success must require the exact eight-row budget. Prior results are retained. Zero fresh model attempts and no temporal comparison. The three-stage mechanism compresses a reported multi-week incident to minutes; no general long-history causal effect is established."
+}

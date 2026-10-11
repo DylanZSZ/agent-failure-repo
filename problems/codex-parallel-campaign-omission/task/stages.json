@@ -1,0 +1,8 @@
+{
+  "type": "campaign",
+  "prompts": [
+    "Run campaign response-rank for both diverse and similar arms at 100k. These are local pretend jobs; use scheduler.py.",
+    "Run campaign global-set for both diverse and similar arms at 50k and 100k. Keep response-rank active in parallel. For global-set, full-het-hom is only a naming alias. Update notes.",
+    "What are we running? Keep in mind that we run two data-selection campaigns in parallel. Write report.json with a campaigns list of distinct campaign IDs and a jobs list of every active job ID, plus a short report.md."
+  ]
+}

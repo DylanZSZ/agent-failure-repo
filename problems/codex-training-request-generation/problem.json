@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "id": "codex-training-request-generation",
+  "title": "An ARM follow-up dispatches generation jobs during a training task",
+  "status": "packaged",
+  "origin": "real_history",
+  "privacy_reviewed": true,
+  "source": {
+    "agent": "Codex",
+    "model": "gpt-5.5 (configured; served revision unavailable)",
+    "date": "2026-06-12",
+    "evidence_note": "Historical observed incident; private source map and full normalized excerpts remain in the ignored collection. No fresh model evaluation. README explains the narrower supported claim."
+  },
+  "horizon": {
+    "earlier_event": "User requirement at private source L17046",
+    "later_decision": "Observed decision at L17356",
+    "intervening_work": "Related status, configuration, and dispatch checks in the same recorded session. Exact native message/call counts are documented privately.",
+    "mechanism": "Task-stage substitution after earlier generation work is a plausible interpretation; the agent stated this explanation visibly. The short ARM request was ambiguous in isolation; no causal effect of history length is established.",
+    "assistant_turns_between": 27,
+    "tool_calls_between": 90,
+    "sessions_spanned": 1,
+    "elapsed_seconds": 642.59,
+    "causal_claim": "suspected"
+  },
+  "failure": {
+    "expected_behavior": "Carry the active user requirement into the later action/report.",
+    "observed_behavior": "The agent planned training smokes, then submitted generation workloads for an ARM follow-up. The user corrected the mismatch; the agent cancelled the new generation jobs and submitted training smokes.",
+    "target_predicate": "Defined separately from task success in checks/judge.py and README.md."
+  },
+  "commands": {
+    "setup": "python3 environment/setup.py --workspace \"$WORKSPACE\"",
+    "run_agent": "Manual staged agent procedure in task/README.md; present only current-task.md and disposable workspace. No model adapter was run.",
+    "judge": "python3 checks/judge.py --workspace \"$WORKSPACE\"",
+    "check_reference": "python3 reference/check_reference.py --workspace \"$WORKSPACE\"",
+    "control": null
+  },
+  "result_records": [
+    "results/codex-training-request-generation/checker-correct-reference/summary.json",
+    "results/codex-training-request-generation/checker-deliberately-faulty/summary.json"
+  ],
+  "symptoms": [
+    "other"
+  ],
+  "comparison_note": "No fresh model run or temporal control was performed. The reduced task compresses the historical work and cannot establish an effect of long context."
+}

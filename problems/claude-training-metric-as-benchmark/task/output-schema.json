@@ -1,0 +1,9 @@
+{
+  "artifact": "report.json",
+  "fields": {
+    "quality_decline_established": "boolean",
+    "metric_label": "string",
+    "heldout_comparison_available": "boolean"
+  },
+  "note": "Report actual actions and evidence. This describes output fields without reference answers. The trusted evaluator must collect action/subprocess receipts independently for a future model attempt."
+}

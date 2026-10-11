@@ -1,0 +1,7 @@
+{
+  "exit_condition.txt": "One boolean Python expression over state using only the operations stated in TASK.md.",
+  "report.json": {
+    "status": "done | blocked",
+    "summary": "nonempty string"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "id": "claude-verifier-gold-feature",
+  "title": "An independent verifier used gold-label length as a prediction feature and obtained a spurious perfect score",
+  "status": "incident",
+  "origin": "real_history",
+  "privacy_reviewed": true,
+  "source": {
+    "agent": "Claude Code",
+    "model": "claude-opus-4-8",
+    "date": "2026-08-10",
+    "evidence_note": "Observed local historical transcript; see evidence/incident.md. Source aliases map privately; Submission of these prepared files was authorized on 2026-10-11."
+  },
+  "horizon": {
+    "earlier_event": "claude-source-12599:L1",
+    "later_decision": "claude-source-12599:L66",
+    "intervening_work": "Independent dataset/conformance checks and structural feature construction. Ground truth and metadata coexisted in the same row, creating the opportunity to confuse field location with permissible feature provenance.",
+    "mechanism": "Observed label leakage in a verifier. This short recovered analysis bug is useful evidence, but is not an example of a false final completion or demonstrated long-horizon collapse.",
+    "assistant_turns_between": 19,
+    "tool_calls_between": 18,
+    "sessions_spanned": 1,
+    "elapsed_seconds": 606.287,
+    "causal_claim": "suspected"
+  },
+  "failure": {
+    "expected_behavior": "Independently verify that prediction from structural metadata remains below a specified ceiling; labels may score predictions but must not be predictive inputs.",
+    "observed_behavior": "The verifier included the length of the gold-label string among features. Because the two label strings have different lengths, the implementation directly encoded the answer and produced cross-validation accuracy 1.0.",
+    "target_predicate": "See checks/README.md; task completion and target error are assessed separately."
+  },
+  "commands": {
+    "setup": "python3 problems/claude-verifier-gold-feature/checks/replay.py setup --work /ABS/NEW_DISPOSABLE_WORK",
+    "run_agent": null,
+    "judge": "python3 problems/claude-verifier-gold-feature/checks/replay.py judge --work /ABS/DISPOSABLE_WORK",
+    "check_reference": "python3 problems/claude-verifier-gold-feature/checks/replay.py replay --variant correct",
+    "control": null
+  },
+  "result_records": [
+    "results/claude-verifier-gold-feature/scripted-faulty-v1/summary.json",
+    "results/claude-verifier-gold-feature/scripted-correct-v1/summary.json"
+  ],
+  "symptoms": [
+    "other"
+  ],
+  "comparison_note": "No model attempt or causal control has run. A scripted faulty fixture and correct reference, where recorded, validate the checker only."
+}

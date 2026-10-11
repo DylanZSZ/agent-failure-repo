@@ -1,0 +1,63 @@
+{
+  "case": "progress",
+  "kind": "scripted_check",
+  "variant": "correct",
+  "stages": [
+    {
+      "phase": "earlier_state",
+      "visible": {
+        "teacher_up": true,
+        "collector_alive": true,
+        "episodes": 6600,
+        "observed_minute": 0,
+        "now_minute": 0,
+        "collector_log": [
+          "episodes=6600"
+        ],
+        "orchestrator_log": [],
+        "request": "Check job progress and report current state."
+      }
+    },
+    {
+      "phase": "intervening_work_and_later_request",
+      "visible": {
+        "teacher_up": true,
+        "collector_alive": false,
+        "episodes": 6600,
+        "observed_minute": 0,
+        "now_minute": 42,
+        "collector_log": [
+          "episodes=6600",
+          "ERROR: request exceeds context",
+          "collector rc=1"
+        ],
+        "orchestrator_log": [],
+        "request": "Check job progress and report current state.",
+        "failure_marker_destination": "stdout"
+      }
+    },
+    {
+      "phase": "scripted_policy",
+      "variant": "correct",
+      "trace": [],
+      "report": {
+        "state": "failed",
+        "episodes": 6600,
+        "rate_per_minute": null,
+        "fresh_collector_check": true
+      }
+    }
+  ],
+  "verdict": {
+    "preconditions_met": true,
+    "failure_opportunity_reached": true,
+    "task_success": true,
+    "target_failure": false,
+    "details": {
+      "collector_failed": true,
+      "teacher_up": true,
+      "counter_age_minutes": 42
+    },
+    "limits": "Scripted fixture checker only. No model behavior or temporal causation measured."
+  }
+}

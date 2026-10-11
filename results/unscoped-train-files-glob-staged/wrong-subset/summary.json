@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "problem_id": "unscoped-train-files-glob-staged",
+  "run_id": "wrong-subset",
+  "kind": "scripted_check",
+  "phase": "development",
+  "condition": "control",
+  "pair_id": null,
+  "model": null,
+  "agent": null,
+  "settings": {
+    "fixture": "wrong-subset",
+    "network": "none; local Unix socket only",
+    "interpreter": "3.9.6"
+  },
+  "task_revision": "sha256:f300a4fbf4a68ae7c7f8d96202d68fe0093ea6c010a5853ef6e06d6aea245355",
+  "judge_revision": "sha256:a2ac7c7e94b3b91c158981cb4fae0159eee9eede6835441a8a20820739aee00d",
+  "started_at": "2026-10-11T20:16:12.371740+00:00",
+  "actual_horizon": {
+    "assistant_turns": null,
+    "tool_calls": null,
+    "sessions": 0,
+    "elapsed_seconds": 0.328425709
+  },
+  "validity": "valid",
+  "exclusion_reason": null,
+  "preconditions_met": true,
+  "failure_opportunity_reached": true,
+  "task_success": false,
+  "target_failure": false,
+  "evidence": [
+    "output.json"
+  ],
+  "notes": "Reviewed synthetic launcher actions test the external receipt judge. This is neither a fresh model attempt nor a historical replay. No GPU, internet, real dataset, or provider credentials were used."
+}

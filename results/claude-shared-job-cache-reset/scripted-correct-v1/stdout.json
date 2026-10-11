@@ -1,0 +1,60 @@
+{
+  "case": "cache",
+  "kind": "scripted_check",
+  "variant": "correct",
+  "stages": [
+    {
+      "phase": "earlier_state",
+      "visible": {
+        "request": "Wait for the current evaluations; preserve shared job records.",
+        "lane_jobs": [
+          "old"
+        ],
+        "completed_outputs": {}
+      }
+    },
+    {
+      "phase": "intervening_work_and_later_request",
+      "visible": {
+        "request": "A fork submitted fork-a and fork-b during the pause. Harvest both now.",
+        "lane_jobs": [
+          "fork-a",
+          "fork-b"
+        ],
+        "completed_outputs": {
+          "fork-a": {
+            "score": 1
+          },
+          "fork-b": {
+            "score": 2
+          }
+        }
+      }
+    },
+    {
+      "phase": "scripted_policy",
+      "variant": "correct",
+      "trace": [],
+      "report": {
+        "harvested": [
+          "fork-a",
+          "fork-b"
+        ]
+      }
+    }
+  ],
+  "verdict": {
+    "preconditions_met": true,
+    "failure_opportunity_reached": true,
+    "task_success": true,
+    "target_failure": false,
+    "details": {
+      "missing_cache_ids": [],
+      "outputs_survive": [
+        "fork-a",
+        "fork-b"
+      ]
+    },
+    "limits": "Scripted fixture checker only. No model behavior or temporal causation measured."
+  }
+}

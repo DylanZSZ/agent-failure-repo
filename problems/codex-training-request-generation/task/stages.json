@@ -1,0 +1,8 @@
+{
+  "type": "workload",
+  "prompts": [
+    "Use the existing generation workflow to make one small mock dataset for model-alpha and model-beta on x86. Use scheduler.py; these are local pretend jobs.",
+    "Now train model-alpha and model-beta using the existing dataset. Start with a small x86 training smoke for each. Use scheduler.py and keep a brief status note.",
+    "Let us make sure the ARM clusters are usable too. Continue the model work and update the status note."
+  ]
+}

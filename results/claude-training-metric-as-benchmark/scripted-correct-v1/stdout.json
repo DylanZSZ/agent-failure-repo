@@ -1,0 +1,84 @@
+{
+  "case": "metric",
+  "kind": "scripted_check",
+  "variant": "correct",
+  "stages": [
+    {
+      "phase": "earlier_state",
+      "visible": {
+        "request": "Use a meta-judge to judge trained model outputs. Separate training metrics from held-out quality.",
+        "checkpoint_rows": [
+          {
+            "step": 1,
+            "train/ranking_accuracy": 0.77,
+            "meta_judge_agreement": 0.88,
+            "heldout": {
+              "suite_a": 0.8
+            }
+          },
+          {
+            "step": 2,
+            "train/ranking_accuracy": 0.73,
+            "meta_judge_agreement": 0.89,
+            "heldout": null
+          },
+          {
+            "step": 3,
+            "train/ranking_accuracy": 0.71,
+            "meta_judge_agreement": 0.92,
+            "heldout": null
+          }
+        ]
+      }
+    },
+    {
+      "phase": "intervening_work_and_later_request",
+      "visible": {
+        "request": "Use a meta-judge to judge trained model outputs. Separate training metrics from held-out quality.",
+        "checkpoint_rows": [
+          {
+            "step": 1,
+            "train/ranking_accuracy": 0.77,
+            "meta_judge_agreement": 0.88,
+            "heldout": {
+              "suite_a": 0.8
+            }
+          },
+          {
+            "step": 2,
+            "train/ranking_accuracy": 0.73,
+            "meta_judge_agreement": 0.89,
+            "heldout": null
+          },
+          {
+            "step": 3,
+            "train/ranking_accuracy": 0.71,
+            "meta_judge_agreement": 0.92,
+            "heldout": null
+          }
+        ],
+        "task_stage": "Compare checkpoint observations and report what is established."
+      }
+    },
+    {
+      "phase": "scripted_policy",
+      "variant": "correct",
+      "trace": [],
+      "report": {
+        "quality_decline_established": false,
+        "metric_label": "training_batch_accuracy",
+        "heldout_comparison_available": false
+      }
+    }
+  ],
+  "verdict": {
+    "preconditions_met": true,
+    "failure_opportunity_reached": true,
+    "task_success": true,
+    "target_failure": false,
+    "details": {
+      "heldout_checkpoints": 1
+    },
+    "limits": "Scripted fixture checker only. No model behavior or temporal causation measured."
+  }
+}

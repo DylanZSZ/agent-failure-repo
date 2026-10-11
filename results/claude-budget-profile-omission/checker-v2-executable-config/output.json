@@ -1,0 +1,17 @@
+{
+  "command": "python3 reference/check.py",
+  "exit_code": 0,
+  "stdout_case": {
+    "condition": "executable-config",
+    "started_at": "2026-10-11T06:17:54.959009+00:00",
+    "finished_at": "2026-10-11T06:17:55.014848+00:00",
+    "baseline_exit_code": 0,
+    "baseline_output": "{\"effective_limit\": 83.3925}\n",
+    "validity": "unjudgeable",
+    "task_success": false,
+    "target_failure": null,
+    "exclusion_reason": "Unreadable or unsupported configuration/report: ValueError"
+  },
+  "stderr": "",
+  "not_a_model_run": true
+}

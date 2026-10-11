@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "problem_id": "claude-verifier-gold-feature",
+  "run_id": "scripted-faulty-v1",
+  "kind": "scripted_check",
+  "condition": "main",
+  "pair_id": null,
+  "model": null,
+  "agent": null,
+  "settings": {
+    "temperature": null,
+    "seed": null,
+    "max_steps": null,
+    "context_window": null,
+    "tools": null,
+    "prompt_record": null
+  },
+  "task_revision": "b7c2f23cfd34ec0e11cd4619aa3ec9234fd5c4dee7a60c39b910f9502b4bef4c",
+  "judge_revision": "b7c2f23cfd34ec0e11cd4619aa3ec9234fd5c4dee7a60c39b910f9502b4bef4c",
+  "started_at": "2026-10-11T06:30:45.505971+00:00",
+  "actual_horizon": {
+    "assistant_turns": 0,
+    "tool_calls": 0,
+    "sessions": 0,
+    "elapsed_seconds": 0.066058
+  },
+  "validity": "valid",
+  "exclusion_reason": null,
+  "task_success": false,
+  "target_failure": true,
+  "evidence": [
+    "stdout.json"
+  ],
+  "notes": "Executed command: python3 checks/replay.py replay --variant faulty; exit=0. Deliberately scripted faulty policy in a staged local reduction. No model/provider call. The horizon is fixture runtime, unrelated to the historical horizon. Correct/faulty is a checker contrast, not a causal main/control comparison.",
+  "phase": "development",
+  "preconditions_met": true,
+  "failure_opportunity_reached": true
+}

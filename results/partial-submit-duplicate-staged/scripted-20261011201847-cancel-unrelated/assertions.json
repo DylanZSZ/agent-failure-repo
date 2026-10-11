@@ -1,0 +1,14 @@
+{
+  "expected": [
+    "valid",
+    false,
+    false
+  ],
+  "observed": [
+    "valid",
+    false,
+    false
+  ],
+  "judge_exit_code": 0,
+  "matched": true
+}

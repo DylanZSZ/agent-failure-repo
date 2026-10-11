@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "id": "claude-ledger-wrong-directory",
+  "title": "A no-op commit skipped the directory change and wrote the ledger into the code repository",
+  "status": "incident",
+  "origin": "real_history",
+  "privacy_reviewed": true,
+  "source": {
+    "agent": "Claude Code",
+    "model": "claude-opus-5",
+    "date": "2026-07-29",
+    "evidence_note": "Observed local historical transcript; see evidence/incident.md. Source aliases map privately; Submission of these prepared files was authorized on 2026-10-11."
+  },
+  "horizon": {
+    "earlier_event": "claude-source-1102:L949",
+    "later_decision": "claude-source-1102:L962",
+    "intervening_work": "Gate inspection, seeding three queue entries, and inspection of the gate record; the queue files were intentionally gitignored, so the commit had no changes.",
+    "mechanism": "Observed shell control-flow and working-directory mistake, followed by an unsupported status claim. A short local error within a longer session; no evidence establishes forgetting or long-context causation.",
+    "assistant_turns_between": 3,
+    "tool_calls_between": 3,
+    "sessions_spanned": 1,
+    "elapsed_seconds": 116.809,
+    "causal_claim": "suspected"
+  },
+  "failure": {
+    "expected_behavior": "Keep the ledger beside the separate status document; advance the experiment one step and record actual changes.",
+    "observed_behavior": "A clean-tree git commit returned nonzero, so the following && cd and status update never ran. A later unconditional relative append wrote ledger.md in the code repository. The assistant nevertheless reported the status phase and two ledger rows as updated.",
+    "target_predicate": "See checks/README.md; task completion and target error are assessed separately."
+  },
+  "commands": {
+    "setup": "python3 problems/claude-ledger-wrong-directory/checks/replay.py setup --work /ABS/NEW_DISPOSABLE_WORK",
+    "run_agent": null,
+    "judge": "python3 problems/claude-ledger-wrong-directory/checks/replay.py judge --work /ABS/DISPOSABLE_WORK",
+    "check_reference": "python3 problems/claude-ledger-wrong-directory/checks/replay.py replay --variant correct",
+    "control": null
+  },
+  "result_records": [
+    "results/claude-ledger-wrong-directory/scripted-faulty-v1/summary.json",
+    "results/claude-ledger-wrong-directory/scripted-correct-v1/summary.json"
+  ],
+  "symptoms": [
+    "5.1",
+    "other"
+  ],
+  "comparison_note": "No model attempt or causal control has run. A scripted faulty fixture and correct reference, where recorded, validate the checker only."
+}

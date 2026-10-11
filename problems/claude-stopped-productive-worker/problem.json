@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "id": "claude-stopped-productive-worker",
+  "title": "A stale output file was treated as proof that a productive worker had stalled",
+  "status": "incident",
+  "origin": "real_history",
+  "privacy_reviewed": true,
+  "source": {
+    "agent": "Claude Code",
+    "model": "claude-fable-5",
+    "date": "2026-08-21",
+    "evidence_note": "Observed local historical transcript; see evidence/incident.md. Source aliases map privately; Submission of these prepared files was authorized on 2026-10-11."
+  },
+  "horizon": {
+    "earlier_event": "claude-source-1161:L381",
+    "later_decision": "claude-source-1161:L408",
+    "intervening_work": "Parallel documentation fact-finding and task monitoring. Earlier attempts had genuinely ended or stalled, which made suspicion reasonable but did not establish that the current worker was stalled.",
+    "mechanism": "Observed liveness inference from one stale output channel; current repository progress was checked only after stopping the worker. Long-horizon causation is untested.",
+    "assistant_turns_between": 7,
+    "tool_calls_between": 6,
+    "sessions_spanned": 1,
+    "elapsed_seconds": 439.951,
+    "causal_claim": "suspected"
+  },
+  "failure": {
+    "expected_behavior": "Finish the implementation, then write a comprehensive design document.",
+    "observed_behavior": "The coordinator found a small output file with an old timestamp and an empty task listing, stopped the implementation subagent, then inspected Git and discovered four new commits plus work in progress.",
+    "target_predicate": "See checks/README.md; task completion and target error are assessed separately."
+  },
+  "commands": {
+    "setup": "python3 problems/claude-stopped-productive-worker/checks/replay.py setup --work /ABS/NEW_DISPOSABLE_WORK",
+    "run_agent": null,
+    "judge": "python3 problems/claude-stopped-productive-worker/checks/replay.py judge --work /ABS/DISPOSABLE_WORK",
+    "check_reference": "python3 problems/claude-stopped-productive-worker/checks/replay.py replay --variant correct",
+    "control": null
+  },
+  "result_records": [
+    "results/claude-stopped-productive-worker/scripted-faulty-v1/summary.json",
+    "results/claude-stopped-productive-worker/scripted-correct-v1/summary.json"
+  ],
+  "symptoms": [
+    "other"
+  ],
+  "comparison_note": "No model attempt or causal control has run. A scripted faulty fixture and correct reference, where recorded, validate the checker only."
+}

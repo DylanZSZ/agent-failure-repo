@@ -1,0 +1,2 @@
+Scripted fixture; no model. Exit 0
+{"validity": "valid", "preconditions_met": true, "failure_opportunity_reached": true, "task_success": true, "target_failure": false}

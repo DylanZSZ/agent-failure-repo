@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "mode": "partial_accept",
+  "phase": "finished",
+  "jobs": [
+    {
+      "id": "job-existing",
+      "request": "unrelated",
+      "run": "run-existing",
+      "output": "runs/existing",
+      "state": "cancelled"
+    },
+    {
+      "id": "job-001",
+      "request": "alpha",
+      "run": "run-alpha",
+      "output": "runs/alpha",
+      "state": "running"
+    },
+    {
+      "id": "job-002",
+      "request": "beta",
+      "run": "run-beta",
+      "output": "runs/beta",
+      "state": "running"
+    }
+  ],
+  "next_id": 3,
+  "first_batch_done": true,
+  "uncertain_acceptance": true,
+  "events": [
+    {
+      "sequence": 1,
+      "action": "deliver_stage1",
+      "payload": {},
+      "response": {
+        "ok": true,
+        "stage": 1
+      }
+    },
+    {
+      "sequence": 2,
+      "action": "call",
+      "payload": {
+        "op": "batch_submit",
+        "requests": [
+          "alpha",
+          "beta"
+        ]
+      },
+      "response": {
+        "error": "batch transport failed before returning per-request receipts"
+      }
+    },
+    {
+      "sequence": 3,
+      "action": "advance",
+      "payload": {},
+      "response": {
+        "ok": true,
+        "stage": 2
+      }
+    },
+    {
+      "sequence": 4,
+      "action": "call",
+      "payload": {
+        "op": "query"
+      },
+      "response": {
+        "jobs": [
+          {
+            "id": "job-existing",
+            "request": "unrelated",
+            "run": "run-existing",
+            "output": "runs/existing",
+            "state": "running"
+          },
+          {
+            "id": "job-001",
+            "request": "alpha",
+            "run": "run-alpha",
+            "output": "runs/alpha",
+            "state": "running"
+          }
+        ]
+      }
+    },
+    {
+      "sequence": 5,
+      "action": "call",
+      "payload": {
+        "op": "submit",
+        "request": "beta"
+      },
+      "response": {
+        "accepted": "job-002"
+      }
+    },
+    {
+      "sequence": 6,
+      "action": "call",
+      "payload": {
+        "op": "cancel",
+        "job_id": "job-existing"
+      },
+      "response": {
+        "cancelled": "job-existing"
+      }
+    },
+    {
+      "sequence": 7,
+      "action": "finish",
+      "payload": {},
+      "response": {
+        "ok": true
+      }
+    }
+  ]
+}

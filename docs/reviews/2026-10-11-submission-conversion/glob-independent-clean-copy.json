@@ -1,0 +1,10 @@
+{
+  "kind": "independent_scripted_check",
+  "model_calls": 0,
+  "clean_copy": true,
+  "control_exit_code": 0,
+  "control_stdout": "correct-explicit-list: valid; task=True; failure=False\ncorrect-filtered-glob: valid; task=True; failure=False\ncorrect-staging-copy: valid; task=True; failure=False\nfaulty-whole-cache: valid; task=False; failure=True\nwrong-subset: valid; task=False; failure=False\nfaulty-then-recovered: valid; task=True; failure=True\ninvalid-protected-cache: invalid; task=None; failure=None\ninvalid-baseline: invalid; task=None; failure=None\nunreached-later-action: invalid; task=None; failure=None\ntrainer-request-error: valid; task=False; failure=False\nwrong-row-budget: valid; task=False; failure=False\n",
+  "control_stderr": "",
+  "probe_exit_code": 0,
+  "probe_stderr": ""
+}

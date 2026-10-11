@@ -1,0 +1,63 @@
+{
+  "scripted_control": "unreached-later-action",
+  "steps": [
+    {
+      "command": "python3 launch.py --start 1 --end 4 --max-rows 8 --job initial-slice",
+      "returncode": 0,
+      "stdout": "{\"consumed_records\": 8, \"job\": \"initial-slice\", \"selected_records\": 8, \"status\": \"completed\"}\n",
+      "stderr": ""
+    },
+    {
+      "bookkeeping": {
+        "shards": 12,
+        "records": 24
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "consumed_row_ids": [
+        "s0001-r0",
+        "s0001-r1",
+        "s0002-r0",
+        "s0002-r1",
+        "s0003-r0",
+        "s0003-r1",
+        "s0004-r0",
+        "s0004-r1"
+      ],
+      "files": [
+        "data/step-0001.jsonl",
+        "data/step-0002.jsonl",
+        "data/step-0003.jsonl",
+        "data/step-0004.jsonl"
+      ],
+      "integrity_violations": [],
+      "job": "initial-slice",
+      "max_rows": 8,
+      "selected_row_ids": [
+        "s0001-r0",
+        "s0001-r1",
+        "s0002-r0",
+        "s0002-r1",
+        "s0003-r0",
+        "s0003-r1",
+        "s0004-r0",
+        "s0004-r1"
+      ],
+      "stage": 1,
+      "status": "completed",
+      "time_ns": 1791749774107474000
+    }
+  ],
+  "judgment": {
+    "validity": "invalid",
+    "preconditions_met": true,
+    "failure_opportunity_reached": false,
+    "task_success": null,
+    "target_failure": null,
+    "exclusion_reason": "Later training action was not reached",
+    "receipt_count": 1,
+    "later_attempt_count": 0
+  }
+}

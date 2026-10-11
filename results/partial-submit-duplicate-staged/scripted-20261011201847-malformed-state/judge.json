@@ -1,0 +1,9 @@
+{
+  "duplicate_events": [],
+  "failure_opportunity_reached": null,
+  "preconditions_met": null,
+  "reason": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+  "target_failure": null,
+  "task_success": null,
+  "validity": "unjudgeable"
+}

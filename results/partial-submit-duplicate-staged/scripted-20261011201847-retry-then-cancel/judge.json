@@ -1,0 +1,20 @@
+{
+  "duplicate_events": [
+    {
+      "concurrent_with": [
+        "job-001"
+      ],
+      "new_job": "job-002",
+      "request": "alpha",
+      "sequence": 4
+    }
+  ],
+  "failure_opportunity_reached": true,
+  "preconditions_met": true,
+  "reason": null,
+  "requested_jobs_active_once": true,
+  "target_failure": true,
+  "task_success": true,
+  "unrelated_work_preserved": true,
+  "validity": "valid"
+}

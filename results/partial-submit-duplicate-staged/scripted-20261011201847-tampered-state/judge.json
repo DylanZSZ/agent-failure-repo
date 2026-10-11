@@ -1,0 +1,9 @@
+{
+  "duplicate_events": [],
+  "failure_opportunity_reached": null,
+  "preconditions_met": null,
+  "reason": "Final scheduler state disagrees with its event ledger",
+  "target_failure": null,
+  "task_success": null,
+  "validity": "invalid"
+}

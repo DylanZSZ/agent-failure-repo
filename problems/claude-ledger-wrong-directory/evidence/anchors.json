@@ -1,0 +1,122 @@
+[
+  {
+    "source_alias": "claude-source-1102",
+    "line": 949,
+    "role": "user",
+    "timestamp": "2026-07-29T07:45:50.016Z",
+    "event_uuid": "af2d30f9-732a-4946-bcbf-5d9051ec0052",
+    "evidence_state": "observed_summary",
+    "summary": "Requirement: ledger.md belongs beside the status document; update records only on real state changes.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1102",
+    "line": 952,
+    "role": "assistant tool call",
+    "timestamp": "2026-07-29T07:46:02.857Z",
+    "event_uuid": "87d734d1-f045-48bb-971f-bb4540d02573",
+    "evidence_state": "observed_summary",
+    "summary": "Tick the experiment.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1102",
+    "line": 953,
+    "role": "tool result",
+    "timestamp": "2026-07-29T07:47:12.123Z",
+    "event_uuid": "f65fea97-92ab-41fd-b7ef-c988834df178",
+    "evidence_state": "observed_summary",
+    "summary": "Gate passes; fresh seeds are needed.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1102",
+    "line": 955,
+    "role": "assistant tool call",
+    "timestamp": "2026-07-29T07:47:20.368Z",
+    "event_uuid": "bc6d6c7b-e143-46d4-9c91-9dd4c9b31153",
+    "evidence_state": "observed_summary",
+    "summary": "Seed three queue entries.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1102",
+    "line": 956,
+    "role": "tool result",
+    "timestamp": "2026-07-29T07:47:20.539Z",
+    "event_uuid": "725af3af-a384-4559-bdfc-d9ec33826ba5",
+    "evidence_state": "observed_summary",
+    "summary": "Three seed files written.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1102",
+    "line": 962,
+    "role": "assistant tool call",
+    "timestamp": "2026-07-29T07:47:46.825Z",
+    "event_uuid": "60944866-9e1c-4e17-8248-4cb941fd5d12",
+    "evidence_state": "observed_summary",
+    "summary": "git add ... && git commit ... && cd BOOKKEEPING && python3 ... followed by unconditional cat >> ledger.md.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1102",
+    "line": 963,
+    "role": "tool result",
+    "timestamp": "2026-07-29T07:47:46.916Z",
+    "event_uuid": "1fc7c760-194b-4af2-8761-47e13dce6585",
+    "evidence_state": "observed_summary",
+    "summary": "nothing to commit, working tree clean; then ok; outer tool result is not an error.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1102",
+    "line": 969,
+    "role": "assistant",
+    "timestamp": "2026-07-29T07:48:00.551Z",
+    "event_uuid": "f0493a95-d240-488e-8bef-ac5c73d4d952",
+    "evidence_state": "observed_summary",
+    "summary": "Claims two ledger rows and status.md phase advanced to SEARCHING.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1102",
+    "line": 974,
+    "role": "tool result",
+    "timestamp": "2026-07-29T07:48:16.537Z",
+    "event_uuid": "ecbab327-53dd-4b1d-8fda-ce4d265474ac",
+    "evidence_state": "observed_summary",
+    "summary": "Next tick refuses dirty repository: ?? ledger.md.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1102",
+    "line": 978,
+    "role": "tool result",
+    "timestamp": "2026-07-29T07:48:31.383Z",
+    "event_uuid": "c236ebf5-6d9f-41cd-aed5-90126015c25b",
+    "evidence_state": "observed_summary",
+    "summary": "Stray ledger has the new rows; correct bookkeeping ledger still has earlier rows.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1102",
+    "line": 982,
+    "role": "assistant tool call",
+    "timestamp": "2026-07-29T07:48:37.657Z",
+    "event_uuid": "a9c1dee4-4105-4b64-9229-524a8116a98d",
+    "evidence_state": "observed_summary",
+    "summary": "Move the two rows, remove the stray ledger, verify clean status.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1102",
+    "line": 990,
+    "role": "assistant",
+    "timestamp": "2026-07-29T07:49:31.505Z",
+    "event_uuid": "62e04785-50cd-46a7-8aa2-bff459dd9c18",
+    "evidence_state": "observed_summary",
+    "summary": "Acknowledges failed commit skipped cd and caused the wrong-directory append.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  }
+]

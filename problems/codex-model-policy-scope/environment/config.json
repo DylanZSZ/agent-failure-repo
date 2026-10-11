@@ -1,0 +1,18 @@
+{
+  "actor": {
+    "thinking": false,
+    "output": "strict_json"
+  },
+  "teacher_sft": {
+    "thinking": false,
+    "max_length": 2048
+  },
+  "student_opd": {
+    "thinking": false,
+    "max_length": 2048
+  },
+  "student_grpo": {
+    "thinking": false,
+    "max_length": 2048
+  }
+}

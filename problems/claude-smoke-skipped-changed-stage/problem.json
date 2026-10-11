@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "id": "claude-smoke-skipped-changed-stage",
+  "title": "The changed training stack was declared proven before fresh-stage failures caused repeated full-job retries",
+  "status": "incident",
+  "origin": "real_history",
+  "privacy_reviewed": true,
+  "source": {
+    "agent": "Claude Code",
+    "model": "claude-opus-4-8",
+    "date": "2026-07-15",
+    "evidence_note": "Observed local historical transcript; see evidence/incident.md. Source aliases map privately; Submission of these prepared files was authorized on 2026-10-11."
+  },
+  "horizon": {
+    "earlier_event": "claude-source-1617:L5231",
+    "later_decision": "claude-source-1617:L5944",
+    "intervening_work": "Multiple environment fixes and thirteen smoke iterations, including a Torch/vLLM change. Earlier SFT success on the former stack was carried forward as evidence for the new stack.",
+    "mechanism": "Observed stale validation coverage after environment mutation and checkpoint reuse; compound error with masked inner failure and repeated retries without diagnosing the same failure (historical monitor bounded at 200 rounds). The record’s claim that smoke #13 reused a checkpoint is not yet independently pinned to its complete raw stdout.",
+    "assistant_turns_between": 157,
+    "tool_calls_between": 134,
+    "sessions_spanned": 1,
+    "elapsed_seconds": 42108.952,
+    "causal_claim": "suspected"
+  },
+  "failure": {
+    "expected_behavior": "Select diverse and similar examples from the extended pool, then run SFT and RL to evaluate diversification.",
+    "observed_behavior": "After changing the dependency stack, the assistant treated a successful multi-step RL smoke as proof of the entire SFT-to-RL chain and launched fresh SFT jobs. Those jobs repeatedly failed at a missing imported symbol while their outer launcher reported completion. A monitor resubmitted them without resolving the failure.",
+    "target_predicate": "See checks/README.md; task completion and target error are assessed separately."
+  },
+  "commands": {
+    "setup": "python3 problems/claude-smoke-skipped-changed-stage/checks/replay.py setup --work /ABS/NEW_DISPOSABLE_WORK",
+    "run_agent": null,
+    "judge": "python3 problems/claude-smoke-skipped-changed-stage/checks/replay.py judge --work /ABS/DISPOSABLE_WORK",
+    "check_reference": "python3 problems/claude-smoke-skipped-changed-stage/checks/replay.py replay --variant correct",
+    "control": null
+  },
+  "result_records": [
+    "results/claude-smoke-skipped-changed-stage/scripted-faulty-v1/summary.json",
+    "results/claude-smoke-skipped-changed-stage/scripted-correct-v1/summary.json"
+  ],
+  "symptoms": [
+    "5.1",
+    "other"
+  ],
+  "comparison_note": "No model attempt or causal control has run. A scripted faulty fixture and correct reference, where recorded, validate the checker only."
+}

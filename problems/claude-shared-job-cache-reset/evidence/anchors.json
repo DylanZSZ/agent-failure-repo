@@ -1,0 +1,112 @@
+[
+  {
+    "source_alias": "claude-linked-worker-cache",
+    "line": 810,
+    "role": "coordinator message",
+    "timestamp": "2026-07-14T19:56:51.373Z",
+    "event_uuid": "545c18aa-86e6-41e8-8452-52d9b02f28e4",
+    "evidence_state": "observed_summary",
+    "summary": "A fork already submitted a replication draw; harvest it and confirm the winner.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-linked-worker-cache",
+    "line": 812,
+    "role": "assistant tool call",
+    "timestamp": "2026-07-14T19:57:07.679Z",
+    "event_uuid": "058b74d3-addb-4059-bc2c-8001279d78cc",
+    "evidence_state": "observed_summary",
+    "summary": "git stash/pull/pop followed by git checkout HEAD -- campaigns/slurm_jobs.jsonl.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-linked-worker-cache",
+    "line": 813,
+    "role": "tool result",
+    "timestamp": "2026-07-14T19:57:11.248Z",
+    "event_uuid": "8a617512-488b-4551-953c-3463f5de7116",
+    "evidence_state": "observed_summary",
+    "summary": "Lane rows still refer to the two fork job IDs; the completed job exists.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-linked-worker-cache",
+    "line": 816,
+    "role": "assistant tool call",
+    "timestamp": "2026-07-14T19:57:32.865Z",
+    "event_uuid": "cbcb0fc2-54b2-4773-9aa0-2063142471b3",
+    "evidence_state": "observed_summary",
+    "summary": "Again restores the shared cache from HEAD before a harvest tick.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-linked-worker-cache",
+    "line": 817,
+    "role": "tool result",
+    "timestamp": "2026-07-14T19:58:03.486Z",
+    "event_uuid": "4c38a86f-5508-4770-ac53-f269618e6487",
+    "evidence_state": "observed_summary",
+    "summary": "Evaluation output exists, but harvested is empty.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-linked-worker-cache",
+    "line": 821,
+    "role": "tool result",
+    "timestamp": "2026-07-14T19:58:20.227Z",
+    "event_uuid": "dbad207c-e829-489e-a5e9-8f41d9f6e2cb",
+    "evidence_state": "observed_summary",
+    "summary": "The lane row retains the job ID; grep count in the shared cache is 0.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-linked-worker-cache",
+    "line": 827,
+    "role": "tool result",
+    "timestamp": "2026-07-14T19:58:54.560Z",
+    "event_uuid": "69d40d4f-0dfb-416b-8d28-069df7df4f1c",
+    "evidence_state": "observed_summary",
+    "summary": "Backend polling requires a cached job-to-cluster mapping; unknown IDs remain unpolled.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-linked-worker-cache",
+    "line": 839,
+    "role": "assistant tool call",
+    "timestamp": "2026-07-14T20:00:00.978Z",
+    "event_uuid": "6a46e174-b988-43cf-abbe-7be0a676f911",
+    "evidence_state": "observed_summary",
+    "summary": "Reconstruct and append two full job records.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-linked-worker-cache",
+    "line": 840,
+    "role": "tool result",
+    "timestamp": "2026-07-14T20:00:01.086Z",
+    "event_uuid": "9cff8524-af8e-41cb-ab6e-c160e0e8c12d",
+    "evidence_state": "observed_summary",
+    "summary": "Both reconstructed IDs have count 1.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-linked-worker-cache",
+    "line": 843,
+    "role": "tool result",
+    "timestamp": "2026-07-14T20:00:39.027Z",
+    "event_uuid": "f158dd73-dd7b-42ae-bbb5-eeff1ed79c19",
+    "evidence_state": "observed_summary",
+    "summary": "Harvest now processes both evaluations.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-linked-worker-cache",
+    "line": 853,
+    "role": "assistant",
+    "timestamp": "2026-07-14T20:01:57.561Z",
+    "event_uuid": "1ede06d2-0df9-4dd2-9772-4e59c3214870",
+    "evidence_state": "observed_summary",
+    "summary": "Reports its own reset erased the fork records and flags shared-writer coordination.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  }
+]

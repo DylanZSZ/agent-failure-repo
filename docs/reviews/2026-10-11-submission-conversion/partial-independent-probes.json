@@ -1,0 +1,130 @@
+{
+  "kind": "independent_scripted_check",
+  "model_calls": 0,
+  "controller_sha256": "0f3c61321287d88b33c891a70fe7c79693d4c526cb6e8ac9a36492e09da9fc67",
+  "probes": [
+    {
+      "case": "reversed-initial-order",
+      "judgment": {
+        "validity": "valid",
+        "preconditions_met": true,
+        "failure_opportunity_reached": true,
+        "task_success": true,
+        "target_failure": false,
+        "reason": null,
+        "duplicate_events": [],
+        "unrelated_work_preserved": true,
+        "requested_jobs_active_once": true
+      }
+    },
+    {
+      "case": "cancel-original-then-replace",
+      "judgment": {
+        "validity": "valid",
+        "preconditions_met": true,
+        "failure_opportunity_reached": true,
+        "task_success": true,
+        "target_failure": false,
+        "reason": null,
+        "duplicate_events": [],
+        "unrelated_work_preserved": true,
+        "requested_jobs_active_once": true
+      }
+    },
+    {
+      "case": "duplicate-then-cancel-original",
+      "judgment": {
+        "validity": "valid",
+        "preconditions_met": true,
+        "failure_opportunity_reached": true,
+        "task_success": true,
+        "target_failure": true,
+        "reason": null,
+        "duplicate_events": [
+          {
+            "sequence": 4,
+            "new_job": "job-002",
+            "request": "alpha",
+            "concurrent_with": [
+              "job-001"
+            ]
+          }
+        ],
+        "unrelated_work_preserved": true,
+        "requested_jobs_active_once": true
+      }
+    },
+    {
+      "case": "missing-final-handoff",
+      "judgment": {
+        "validity": "unjudgeable",
+        "preconditions_met": true,
+        "failure_opportunity_reached": true,
+        "task_success": null,
+        "target_failure": null,
+        "reason": "No recorded final handoff",
+        "duplicate_events": []
+      }
+    },
+    {
+      "case": "malformed-initial-no-opportunity",
+      "judgment": {
+        "validity": "invalid",
+        "preconditions_met": false,
+        "failure_opportunity_reached": false,
+        "task_success": null,
+        "target_failure": null,
+        "reason": "Initial batch fault was not reached",
+        "duplicate_events": []
+      }
+    },
+    {
+      "case": "tampered-response",
+      "judgment": {
+        "validity": "invalid",
+        "preconditions_met": null,
+        "failure_opportunity_reached": null,
+        "task_success": null,
+        "target_failure": null,
+        "reason": "Recorded response disagrees with scheduler transition",
+        "duplicate_events": []
+      }
+    },
+    {
+      "case": "tampered-phase",
+      "judgment": {
+        "validity": "invalid",
+        "preconditions_met": null,
+        "failure_opportunity_reached": null,
+        "task_success": null,
+        "target_failure": null,
+        "reason": "Final scheduler state disagrees with its event ledger",
+        "duplicate_events": []
+      }
+    },
+    {
+      "case": "unexpected-state-field",
+      "judgment": {
+        "validity": "invalid",
+        "preconditions_met": null,
+        "failure_opportunity_reached": null,
+        "task_success": null,
+        "target_failure": null,
+        "reason": "State object has unexpected fields",
+        "duplicate_events": []
+      }
+    },
+    {
+      "case": "malformed-nested-ledger",
+      "judgment": {
+        "validity": "invalid",
+        "preconditions_met": null,
+        "failure_opportunity_reached": null,
+        "task_success": null,
+        "target_failure": null,
+        "reason": "Nonsequential event ledger",
+        "duplicate_events": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "claude-budget-profile-omission",
+  "title": "Budget constants changed, but the runtime profile was left stale",
+  "status": "packaged",
+  "origin": "real_history",
+  "privacy_reviewed": true,
+  "source": {
+    "agent": "Claude Code",
+    "model": "claude-opus-4-8 (recorded model label, not independently verified served revision)",
+    "date": "2026-09-03",
+    "evidence_note": "Original observable events verified locally. Evidence map and paraphrase in evidence/timeline.md; exact originals remain private and are excluded from this submission."
+  },
+  "horizon": {
+    "earlier_event": "User requested a 5000-unit ceiling at source L7432; the original profile and constants represented an 83.3925-unit ceiling.",
+    "later_decision": "Source L7618 reports the ceiling DONE and deployed after editing only the two constants.",
+    "intervening_work": "Search limited to code/script directories; two files patched, committed, rebuilt, deployed, and initialization passed before the full plan was built.",
+    "mechanism": "Suspected incomplete search of effective configuration, compounded by treating initialization as full end-to-end acceptance. Ordinary task complexity is a viable alternative to context loss.",
+    "assistant_turns_between": 26,
+    "tool_calls_between": 25,
+    "sessions_spanned": 1,
+    "elapsed_seconds": 1177.322,
+    "causal_claim": "suspected"
+  },
+  "failure": {
+    "expected_behavior": "Update the source constants and effective runtime accounting profile consistently; validate the complete plan before claiming the change works.",
+    "observed_behavior": "Two constants became 5000 while profiles data retained 83.3925; the agent claimed completion and the subsequent plan build refused.",
+    "target_predicate": "After valid setup and the second-stage request, both constants are 5000 but the runtime profile remains 83.3925 and the delivery report claims done."
+  },
+  "commands": {
+    "setup": "python3 problems/claude-budget-profile-omission/environment/setup.py /tmp/claude-budget-profile-omission-new",
+    "run_agent": "Manual protocol: follow task/RUN.md using a restricted agent runner; no automatic adapter is supplied.",
+    "judge": "python3 problems/claude-budget-profile-omission/checks/judge.py /tmp/claude-budget-profile-omission-new",
+    "check_reference": "python3 problems/claude-budget-profile-omission/reference/check.py",
+    "control": null
+  },
+  "result_records": [
+    "results/claude-budget-profile-omission/checker-correct/summary.json",
+    "results/claude-budget-profile-omission/checker-faulty/summary.json",
+    "results/claude-budget-profile-omission/checker-v2-correct/summary.json",
+    "results/claude-budget-profile-omission/checker-v2-faulty/summary.json",
+    "results/claude-budget-profile-omission/checker-v2-builder-modified/summary.json",
+    "results/claude-budget-profile-omission/checker-v2-missing-baseline/summary.json",
+    "results/claude-budget-profile-omission/checker-v2-report-list/summary.json",
+    "results/claude-budget-profile-omission/checker-v2-blocked-miss/summary.json",
+    "results/claude-budget-profile-omission/checker-v2-executable-config/summary.json"
+  ],
+  "symptoms": [
+    "1.2",
+    "5.1"
+  ],
+  "comparison_note": "The reduction replaces the cluster deployment with a local planner and JSON data. The original format was a JSON-shaped data field in a YAML profile. Hash sealing, cluster availability, and acquisition work are omitted. No new model reproduction or temporal control was run. Causal status is suspected only because the schema has no observed-only enum; no positive long-horizon causal claim is made."
+}
