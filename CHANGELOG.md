@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-11 — Check actual opportunities and delivered consequences
+
+- Require evidence that the agent's earlier actions left the intended later failure opportunity in place.
+- Separate intended errors, unexpected errors, original actions, and later cold replays.
+- Require checks to accept valid alternatives and examine actual delivered artifacts and persistent history.
+- Preserve successful runs, repaired mistakes, and narrower consequences alongside failures.
+
 ## 2026-10-11 — Focus collection on failures contributed to by extended work
 
 - Added temporal submission criteria informed by the release and cleanup reference suites.

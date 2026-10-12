@@ -99,6 +99,31 @@ what the later agent must reconcile, and which comparison tests that claim.
 
 Scripted correct and faulty controls check the environment and judge. Fresh blind agent attempts test whether the reduction elicits the behavior. Multiple attempts under a predeclared plan are needed to estimate error rates; keep every hit, miss, repair, and exclusion.
 
+For each attempt, also answer these questions before counting a hit:
+
+| Question | Evidence to collect |
+| --- | --- |
+| Did the intended opportunity actually occur? | The earlier state the agent really created, the later request it received, and the relevant state when it acted. If it completed a deliberately partial job early, the later partial-state opportunity may no longer exist. Record that early scope violation separately. |
+| Was the observed error the intended error? | Name both. A task designed to test forgotten journal state may instead reveal an omitted request or a broken CLI. Preserve the useful unexpected failure without claiming the intended mechanism occurred. |
+| Does the check accept valid alternatives? | Test another lawful implementation, extra fields where permitted, equivalent artifact layouts, honest blocked delivery, and a successful run. A reference implementation's private filenames or JSON layout are not requirements unless the task publishes them. |
+| What actually reached the next consumer? | Inspect the installed package, loaded implementation, downloaded report, committed files, or durable service effects. A correct working tree or an `active` filename does not establish that the delivered path used it. |
+| Did later success repair the earlier damage? | Compare identities and history, not only current totals. A compensating transaction can restore a balance while leaving the original transaction wrong; later authorization can make current state valid without repairing an earlier unauthorized action or historical snapshot. |
+
+Keep **actor actions** separate from **product capability**. A consumer that
+executes a missed operation on the delivered program can establish that the
+program supports it; it cannot establish that the original agent performed it.
+Likewise, a cold replay may expose a product bug in a valid state that the
+original trajectory never reached. Record both findings and their different
+contexts.
+
+Retain successful attempts and corrected mistakes as comparison evidence.
+Repeated checks, a large test suite, a temporary wrong thought followed by a
+correct action, and waiting for a teammate to finish are not failures by
+themselves. For unnecessary work, identify the violated priority, missed
+deadline, or demonstrated avoidable cost. State whether a report defect changes
+the answer, its interpretation, or only a label; do not imply a larger impact
+than the evidence shows.
+
 To test the role of extended work, compare natural intervening work with a shorter condition while keeping the final task, available evidence, tools, and final-task resources comparable. Distinguish this from experiments that change memory content, session reset, reminders, or environmental drift. Those can test useful mechanisms, but do not isolate duration.
 
 A fresh agent given the same accumulated workspace tests dependence on conversational history versus artifacts. Removing the workspace state tests a different question. A control that gives the correct answer changes task difficulty; it is not a clean history comparison. Name all material differences and limit the conclusion accordingly.

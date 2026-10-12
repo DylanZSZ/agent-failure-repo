@@ -49,7 +49,13 @@ Follow docs/LONG_HORIZON.md in the collection workspace.
 - Agent-visible facts and discoverable remedies; hidden evaluator material:
 - Actual behavior checked, independent observation source, and limits:
 - Separate task-success and intended-error conditions:
+- Intended failure versus the error actually observed:
+- Did the agent-created earlier state and later trigger really occur? If not, which opportunity was absent:
+- Valid alternatives checked, including another legal implementation and honest blocked delivery where allowed:
+- Actual delivered or executed artifact identity, distinct from the working tree or selected filename:
+- Original actor action versus a later consumer's replay of product capability:
 - First wrong action, repair, and delivered outcome recorded separately:
+- Historical or identity damage remaining after a current total or final test became correct:
 - Correct solution, unrelated-error control, and invalid-setup checks:
 - Missing implementation or evidence and exact next action:
 

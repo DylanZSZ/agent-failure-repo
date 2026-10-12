@@ -2,7 +2,7 @@
   "format_version": 1,
   "files": {
     ".gitignore": "17ada4adf1964fafdbd851df55fdfd5689c46a9efe4f51754044a72ae2987898",
-    "AGENTS.md": "6228a6f2c9c53b0b8ae44c85cc5673f48176ae81b6fc7d75198cbaebc869b09c",
+    "AGENTS.md": "7e2d2682c98f787f17538ed4ca0dd5f9e2a2d9450e607447e802d06b7072901d",
     "CONTRIBUTING.md": "32c22104cfb7f260e18e56a4148701531d1316ad2a32376175356af62510a31e",
     "commands/history.py": "efc6bee02b7a7129a0cba84732159469195bc0f715dac6d069e71b83e24cdaeb",
     "commands/new_problem.py": "b74b31891bad16e9a7ddd47c00bd9ea934a94213d0227fb02c8f6b961a55e242",
@@ -10,7 +10,7 @@
     "docs/EVIDENCE.md": "5c9cc797a16d5ae4de6e5a6b79352a3e9e36da597a8e8ddd69268f387240b773",
     "docs/FINDING_FAILURES.md": "246eff58a6ec191a242e1b6b50d121db3646aad893b3d2f0705f6bcb2fb6a781",
     "docs/HISTORY.md": "5c949f33bf3491ab29a48ed1f6ea80a9ddf19967e2076e7c057acb60c9328516",
-    "docs/LONG_HORIZON.md": "0f5b0eceb4e3f09fe6f7c74634e5b3d8cb0408526ba8766f3f59eb5585f2acd5",
+    "docs/LONG_HORIZON.md": "e056c0b4340f677fe4cef4de8996f7a2fe566d83c2226b8a152f27f9b3a3a317",
     "docs/REPRODUCING.md": "65969f635def9b38aa76c87f1eaa87c07de0877135572c6837a383ce5879d847",
     "docs/REVIEW.md": "d2f5f12e7a7e1b2a221838cef978c1e662059c9da25ce6c805e7c8910bc81799",
     "docs/SUBMITTING.md": "2755611dbe64397b7a6499783c2182ce38330baafb414aeb8143af561418f9bf",
@@ -28,6 +28,6 @@
     "templates/problem/reference/README.md": "8fcd3a872b927e647904e217bceef5abb92f4d88dc0a8cd3dc973d9bfd5a4ed7",
     "templates/problem/task/README.md": "6db54c7a96a0e5a476c2ad75cee7870ca99ecb69cd6033f67b7c7a02bb22e487",
     "templates/result.json": "5bafc8e915623e062f4e69f35898306eff33d05fac56f1c970d7bd647119f4da",
-    "templates/temporal-review.md": "aa8dd61cadb9dc6116a0411f0b40e4e9a2a78b54e222b1138fdd018e9b8fd058"
+    "templates/temporal-review.md": "1ad6066699ebe4773e195c10bc23f6686eb05db9acc1bf771151ab4836949bb7"
   }
 }
