@@ -92,6 +92,21 @@ For a causal claim, specify a comparison that removes the suspected historical i
 
 ## Sources
 
+### Follow-up review of retained results
+
+A subsequent read-only review inspected the [results-contract snapshot](https://github.com/memory-abstraction-collapse/agent-collapse/tree/5327cf033c54764357ddd0d67e8bbb737cf7e5fa) and [publication snapshot](https://github.com/memory-abstraction-collapse/coding-agent-bench/tree/9c066431c07a687b36d389f85a57494267d4ef4f). It covered all 180 pinned source candidates in that catalog and the available task/result reports. Historical report review does not certify missing executable evaluators or independently reproduce their results. These newer snapshots and imported historical versions are distinct from the two design snapshots above.
+
+The follow-up strengthened the collection criteria in six ways:
+
+- Require the earlier trigger to exist in the actual agent-created state. A planned stale test or missing handoff is not an observed opportunity.
+- Check lawful alternatives. A different filename, response representation or reuse of a valid snapshot must not fail an unstated private requirement.
+- Inspect the artifact actually committed, installed, loaded or delivered. A correct source tree does not establish a correct delivery.
+- Separate the agent's actions from later evaluator actions. A consumer demonstrating that a restore works does not establish that the agent performed that restore.
+- Distinguish repaired current output from preserved history. Correct totals or stable IDs can coexist with lost original timestamps, records or provenance.
+- Preserve successful, repaired, untriggered and invalid attempts. Test growth, repeated checking and an unfinished run are not failures caused by long-running work by themselves.
+
+Source: [the revised criteria](../../LONG_HORIZON.md#evaluation-evidence-and-limitations) and [the temporal review form](../../../templates/temporal-review.md). These additions do not create fresh model results or change the submitted-incident counts.
+
 Release commit: `201294fedc5d1fa7051dd857e6a6876697753fef`.
 
 Cleanup commit: `7dcd0243a991b23114cfbb7a1c6ba6b3397bbcb8`.

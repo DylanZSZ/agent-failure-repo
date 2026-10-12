@@ -91,7 +91,9 @@ Source: [verification record](criteria-checks.json). The [exact changed-file lis
 
 This pass used submitted public evidence, prior task inspections, and current reference-branch specifications. It did not reopen private raw histories, rerun reference benchmarks, or modify contributors' original packages and result records. Some original anchor labels point to requests or recovery rather than the exact first error; those limitations remain in every affected record.
 
-The reference comparison concerns design intent. Detailed cleanup results live in a separate repository that was unavailable here. Even a persuasive observed sequence does not isolate whether duration, changing state, conflicting requirements, local skill, or a context boundary caused the error. That needs a defensible comparison with actual agent attempts.
+The initial reference comparison concerned design intent; detailed cleanup results were unavailable during that pass. A subsequent read-only review of the results-contract collection and publication repository informed the additional evaluator and evidence requirements in [the submission criteria][criteria]. It did not reopen contributors' private histories or change the 101 incident classifications above. The [reference comparison][branches] records the follow-up scope and lessons.
+
+Even a persuasive observed sequence does not isolate whether duration, changing state, conflicting requirements, local skill, or a context boundary caused the error. That needs a defensible comparison with actual agent attempts.
 
 ## Sources
 
