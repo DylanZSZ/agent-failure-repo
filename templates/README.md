@@ -6,8 +6,10 @@ Null values mean unknown or not yet available. They are not measured zeros.
 
 The problem status is one of `incident`, `packaged`, `model_reproduced`, or
 `temporal_supported`. These mark progressively stronger evidence, not a score.
-The guides explain their meaning. A package does not need to reach the final
-status to be a useful contribution.
+The guides explain their meaning. `incident` is available for local drafts and
+legacy records. New submissions need the admission requirements in
+`docs/LONG_HORIZON.md`, including clean verification of a runnable task. A fresh
+model hit or the final status is not required for a packaged submission.
 
 `privacy_reviewed` starts false. Only change it after the owner reviews the
 exact files intended for sharing. The validator cannot perform that review.

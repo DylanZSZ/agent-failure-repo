@@ -1,8 +1,10 @@
 # Does earlier work contribute to this failure?
 
-Updated 2026-10-11. Complete this alongside the incident evidence record.
+Updated 2026-10-13. Complete this alongside the incident evidence record.
 Use source anchors or explicit unknowns. This form is a review, not an experiment.
 Follow docs/LONG_HORIZON.md in the collection workspace.
+Link completed evidence sections where possible; do not duplicate the full
+incident record. Apply the selection gate before proposing a submission.
 
 ## Original incident
 
@@ -19,6 +21,8 @@ Follow docs/LONG_HORIZON.md in the collection workspace.
 - Feasible correct action with the information, authority, and budget then available:
 - Strongest non-temporal explanation and evidence for it:
 - Observation that would weaken or overturn the temporal explanation:
+- Essential evidence chain is independently readable in sanitized sources: requirement, earlier state/interaction, intervening process, wrong action, and effect; links or missing items:
+- Reconstructed state versus original recorded state; assumptions and effect on attribution:
 
 ## Measured span
 
@@ -38,6 +42,7 @@ Follow docs/LONG_HORIZON.md in the collection workspace.
 - Existing contribution status: incident / packaged / model reproduced / temporal supported.
 - Causal claim currently supported and its limits:
 - Current task readiness: faithful enough for a pilot / needs redesign / short mechanism demonstration / not built.
+- Submission decision: selected / local draft only; extended-work, context-transition, or multi-agent contribution supported by sources; unmet gate and next action:
 
 ## Reproduction review
 
@@ -57,12 +62,14 @@ Follow docs/LONG_HORIZON.md in the collection workspace.
 - First wrong action, repair, and delivered outcome recorded separately:
 - Historical or identity damage remaining after a current total or final test became correct:
 - Correct solution, unrelated-error control, and invalid-setup checks:
+- Clean-copy setup, reference and faulty controls, reset, output artifacts, and tested revision; actual log links:
+- For multi-agent cases: schedule and visibility per actor, live / historical replay / scripted roles, shared state, actual ordering and receipts, compatibility of legitimate tasks:
 - Missing implementation or evidence and exact next action:
 
 ## Evaluation request or plan
 
 - Existing fresh-agent results: links to all attempts, or not run:
-- Proposed comparison and the exact history/state/context factor changed:
+- Proposed comparison and the exact history/state/context/coordination factor changed:
 - Final task, available facts, tools, and resources held comparable:
 - Other differences or confounds that remain:
 - Model/settings, task/judge version, attempt count or stopping rule:

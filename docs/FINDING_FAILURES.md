@@ -1,6 +1,6 @@
 # Find every supported failure within the authorized history
 
-Updated 2026-10-11.
+Updated 2026-10-13.
 
 ## Summary
 
@@ -11,7 +11,9 @@ earlier-to-later dependency, not just failure words near the end of long logs.
 Include previous mistakes that become later assumptions, incomplete repairs of
 older artifacts, and original goals displaced by successive tasks. Keep the
 complete inventory, with temporal candidates, evidence-needed leads, and short
-controls separately counted.
+controls separately counted in private. Apply the admission requirements before
+preparing any submission. Search breadth does not relax selection: a supported
+contribution from earlier work or actual agent interaction is required.
 
 ## Inspect only the agreed history
 
@@ -46,7 +48,7 @@ Add a candidate as soon as there is a concrete suspected event. Give it a stable
 
 Keep duplicate rows linked to the canonical incident, and keep rejected or uncertain candidates with reasons. Do not delete them to make the collection look cleaner. Unmatched modes should have a plain-language name and the same evidence review as known modes. The taxonomy guides discovery; it must not hide new failures or force an unsupported label.
 
-The final index must reconcile every candidate to a package, incident-only report, duplicate, rejection, or explicit deferral. Distinguish unique incident counts from symptom-label counts and fresh evaluation attempts. Several labels on one event are not several independent failures.
+The private index must reconcile every candidate to a selected package, local draft, duplicate, rejection, or explicit deferral. The shareable index contains only selected cases; summarize other dispositions as reviewed aggregate counts. Distinguish unique incidents from symptom labels and evaluation attempts.
 
 ## Capture detailed evidence, then summarize
 
@@ -76,15 +78,15 @@ Be cautious when the only evidence is â€œthe answer was wrong after many turns.â
 
 There is no universal turn count that makes a task long. Record both the total task length and the span between the earlier event and the later decision. A configured maximum is not an observed run length. A long real incident reduced to a short toy task must be described as a reduction, with the removed work made explicit.
 
-## Package all feasible incidents and report the rest
+## Apply the admission requirements before packaging
 
 Complete [the temporal review](../templates/temporal-review.md) before task
 construction. A reproduction that supplies the exact missing observation is a
 different task from the original. Record that loss explicitly; do not promote
 an easy final decision exercise because the original transcript was long.
 
-For every credible distinct incident, attempt a reduced task using [the reproduction guide](REPRODUCING.md) when the required material and tools are available. You may order the work by feasibility, but do not silently drop less convenient incidents after completing the easiest ones. Shared setup code is fine; distinct historical incidents still need separate evidence and accounting.
+For each relevant case with auditable evidence, attempt a faithful task using [the reproduction guide](REPRODUCING.md). A candidate must show an actual violation and how earlier work or coordination contributed. Record unknown critical links as needs evidence, and ordinary local bugs as out of scope. Multiple agents qualify only when an actual interaction contributed; a delegated syntax error does not suffice. Do not silently drop difficult candidates from the private ledger.
 
-If the environment cannot be shared, keep an incident-only report and explain that limitation. If a prerequisite, permission, tool, or model is missing, state what is needed and the next action. If time dependence is uncertain, keep it as a hypothesis and propose a control. End with coverage for every symptom plus unmatched modes, the complete candidate index, completed packages, and the exact remaining work.
+If a faithful environment cannot be built and verified from a clean copy, keep the draft local as needs reconstruction. State the missing prerequisite and next action. A fresh model evaluation may remain not run after setup and checker verification; never replace it with an invented result. End with private coverage and the full inventory, selected runnable packages, and exact remaining work. Zero selected cases is a valid result.
 
 Source: [Contribution levels](../CONTRIBUTING.md) and [agent scope rules](../AGENTS.md).

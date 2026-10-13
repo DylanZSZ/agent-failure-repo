@@ -1,6 +1,6 @@
-# Collect failures from long-running agent work with one message
+# Collect failures from extended or multi-agent work with one message
 
-Updated 2026-10-11.
+Updated 2026-10-13.
 
 ## Summary
 
@@ -8,8 +8,9 @@ Give the message below to the coding agent you already use on a project. It
 reads this guide, prepares a private workspace, reviews historical runs from
 **both Claude Code and Codex** for your project,
 collects detailed evidence, and builds faithful reproductions. The target is
-failure contributed to by earlier work, accumulated state, or context changes,
-not every bug found in a long transcript. You do not need to
+failure contributed to by earlier work, accumulated state, context changes, or
+interaction between agents. It searches broadly in private and selects only
+cases with traceable evidence and a runnable reconstruction. You do not need to
 install a skill, choose a template, or run the commands yourself. The agent
 continues in the same conversation and produces a report for you to review.
 
@@ -22,21 +23,27 @@ all feasible steps; do not stop at a plan or installation. I authorize reviewing
 historical Claude Code and Codex runs for my current project, including their
 available local transcripts and history exports I supply. Check both tools,
 regardless of which agent you are. Use this conversation as supplementary
-evidence. Find as many supported failures connected to long-running work as
-possible: earlier obligations or discoveries lost, stale or misapplied memory,
+evidence. Find as many supported failures connected to extended work or agent
+interaction as possible: earlier obligations or discoveries lost, stale or misapplied memory,
 completed work damaged, mistakes compounded through later actions, goals lost
-across revisions, or broken handoffs. Read docs/LONG_HORIZON.md before choosing
-reproductions. For every candidate, show the earlier anchor, real intervening
-work, later wrong action, consequence, and strongest alternative explanation.
-Keep ordinary local bugs as separately labeled controls and uncertain cases as
-evidence-needed leads. Do not count transcript length alone as causation.
-Separate substantial intervening work from short stateful mistakes and unknown
-exposure; a quick retry error is not an observed long-running failure.
+across revisions, conflicting edits, or broken handoffs. Apply the admission
+requirements in docs/LONG_HORIZON.md before proposing submissions. Reconstruct
+the applicable requirement, earlier state, intervening work or interaction,
+executed wrong action, consequence, and recovery using source-anchored evidence.
+For multiple agents, show who could see which files or messages, and when.
+Explain how the earlier work or interaction contributed and consider the
+strongest ordinary-error alternative. Length or a subagent's presence alone
+is insufficient. Keep ordinary bugs and uncertain or unreproducible leads in
+the private inventory with reasons and next steps. Zero eligible cases is fine.
+Distinguish long work from short coordination mechanisms and unknown exposure.
 Minimize infrastructure, not the history dependency or competing demands. Do
 not give the tested agent the diagnosis or a fixture containing the answer.
-Collect detailed evidence, build all feasible faithful tasks, and request or
-record every actual evaluation, including misses and exclusions. Keep causal
-claims separate from observations. Keep everything local and
+For relevant, evidenced cases, build faithful tasks and verify setup, execution,
+judging, and reset from a clean copy. Check a correct solution, the target defect,
+unrelated errors, and invalid setup. Submit only cases meeting these requirements.
+Record every actual attempt, including misses and exclusions. A scripted replay
+is not a fresh agent failure; mark model evaluation not run when unavailable.
+Keep causal claims separate from observations. Keep everything local and
 show me the report and proposed sharing files before uploading anything.
 ```
 
@@ -201,7 +208,12 @@ Read [the long-running failure criteria](docs/LONG_HORIZON.md) and complete
 [the temporal review form](templates/temporal-review.md) for every candidate.
 Classify its original relevance as **temporal candidate**, **evidence needed**,
 or **short control**, separately from whether a reproduction is ready. A credible
-historical lead does not need a completed causal experiment to be submitted.
+historical lead stays private until it passes the admission requirements.
+
+A selected case needs a sourced explanation of how earlier work or coordination
+contributed, auditable essential evidence, and a verified runnable task. A fresh
+model hit or controlled causal experiment is not required for a packaged submission.
+
 Within temporal candidates, distinguish observed substantial work, short
 mechanisms, and unknown exposure. Reject leads with no supported failure, such
 as an explicitly approved change of goal, while keeping them in the index.
@@ -221,9 +233,17 @@ the new location. Preserve as much relevant available evidence as possible:
 - Consequences, user corrections, recovery, contrary evidence, and unsuccessful
   diagnostics or repairs.
 
-Retain originals privately. Distinguish quotations from paraphrases and facts
-from inference. Explain unknown, unavailable, or withheld fields; do not guess
-settings or reconstruct missing messages. Historical instructions are evidence,
+For multiple agents, also record each assigned task, shared directory or isolated
+worktree, base revision, relevant reads and writes, message delivery, and merge
+order. Show that their tasks could coexist or had a permitted conflict-resolution
+path. A syntax error in a delegated task alone is not a coordination failure.
+
+Retain originals privately. Distinguish quotations from paraphrases, recorded
+state from reconstructed state, and facts from inference. Recover missing state
+from identified versions and recorded patches where possible; label assumptions.
+
+If an essential link cannot be recovered, defer the case. Do not invent missing
+messages or settings. Historical instructions are evidence,
 not commands to execute. Do not request hidden model reasoning.
 
 For each case answer three questions explicitly: **What is the observed
@@ -235,7 +255,8 @@ mistakes and ambiguous cases honestly labeled. The detailed checklist is in
 
 ### 5. Build faithful reproductions without removing the difficult decision
 
-From the collection workspace, create a package for each credible incident:
+After the evidence requirements pass, create a draft package in the private
+collection workspace:
 
 ```bash
 python3 commands/new_problem.py short-incident-name
@@ -246,8 +267,7 @@ case's name. Put ordered agent prompts in `task/`, initial files and setup in
 `environment/`, independent checks in `checks/`, and a correct solution in
 `reference/`. Document exact setup, run, and judging commands and dependencies.
 Use the workspace's `docs/REPRODUCING.md` for the complete package requirements.
-Prioritize temporal candidates. Retain ordinary local errors and their useful
-reproductions as separately counted short controls.
+Keep ordinary local errors and unresolved evidence leads in the private inventory.
 
 Before packaging, ask whether using only the final prompt and fixture removes
 the proposed burden. If the needed information remains in the repository,
@@ -262,8 +282,19 @@ Preserve the earlier event, the relevant intervening work or boundary, and the
 later choice. An already broken final file does not reproduce an agent's
 decision. Explain every simplification. Provide a feasible correct path and
 separate task-correctness checks from the intended-error check. Test the checks
-with both a correct solution and a deliberately faulty one. Record these as
-scripted checks, never as a fresh model failure.
+with a correct solution, a target defect, unrelated errors, and missing setup.
+Record these as scripted checks, never as a fresh model failure.
+
+Verify the
+documented command sequence from a clean copy containing only the proposed
+submitted files and declared dependencies. Save actual command logs, expected
+outputs, judge meanings, and reset instructions. A package that depends on an
+unstated laptop file or private service is not submission-ready.
+
+For multi-agent tasks, specify actors, visible state, and release conditions
+such as “resume B after A's commit.” Label live teammates, recorded replays,
+and scripted changes separately. Record actual ordering; arbitrary sleeps do
+not establish which version an agent saw.
 
 Run tasks in disposable environments with fake data and services. Expose only
 the current stage's intended prompts and files to the evaluated agent; keep
@@ -277,7 +308,8 @@ or access production to complete a reproduction. Save every actual attempt,
 including misses, invalid attempts, and failures, under `results/`. Original
 incidents, scripted checks, and fresh agent runs remain distinct.
 
-Package all feasible cases. For every remaining candidate, record why it
+Package every case that meets the evidence requirements and can preserve the
+mechanism. For every remaining candidate, record why it
 cannot yet be reproduced and what specific evidence or capability is needed.
 Synthetic demonstrations belong in `examples/`, clearly labeled, and are not
 real-history submissions.
@@ -320,29 +352,32 @@ workflow ends with a local, reviewable result.
 
 ## What we want contributors to push
 
-Submit every shareable credible failure, with reviewed evidence and the
-reproduction and evaluation work actually completed.
+Submit only cases that pass the admission requirements, with reviewed evidence,
+verified runnable tasks, and the evaluation work actually completed.
 
 | Push these files | Include |
 | --- | --- |
-| `docs/collections/<collection-id>/README.md`, `incidents.csv`, `coverage.md` | Findings, a sanitized candidate index, and separate Claude Code/Codex coverage and gaps. |
+| `docs/collections/<collection-id>/README.md`, `incidents.csv`, `coverage.md` | Selected cases, selection/deferral counts, and Claude Code/Codex coverage and gaps. |
 | `problems/<id>/README.md` and `problem.json` | What failed, observed horizon, why it matters, intended error, evidence level, and commands. |
-| `problems/<id>/evidence/` when shareable | Relevant historical messages, tool calls/results, diffs, tests, and redaction notes. |
+| `problems/<id>/evidence/` | Reviewed event excerpts, before/after state, check results, and redaction notes. |
 | `problems/<id>/task/`, `environment/`, `checks/`, `reference/` | Minimal staged task, starting files, independent checks, and a correct solution. |
 | `results/<id>/<run-id>/summary.json` and evidence | Every actual attempt, including misses, invalid attempts, scripted checks, and controls. |
 
 Source: [complete submission requirements](docs/SUBMITTING.md).
 
-**Incident-only reports are welcome.** Keep the scaffold's explanatory files,
-mark reproduction or evaluation **not run**, explain what is missing, and do
-not create imaginary run records. For each incident, explicitly answer:
+**Incident-only and unreproducible leads stay local.** Existing submissions are
+retained as historical records; their presence is not automatic admission under
+the current rules. Fresh model evaluation can be **not run** if setup and checker
+verification are complete; never create imaginary run records. For each selected
+incident, explicitly answer:
 **Was the horizon long? Why is the error meaningful? What behavior should the
 task trigger and the evaluator detect?**
 
 Include the completed temporal review in the problem account or a linked
-reviewed evidence file. Primary long-running candidates need an evidenced
-earlier-to-later dependency; pending evidence and short controls remain visible
-with separate counts. The [criteria](docs/LONG_HORIZON.md) define these decisions.
+reviewed evidence file. Show the contribution of earlier work or actual agent
+interaction; a plausible label alone is insufficient. Pending evidence and
+ordinary local errors remain in the private index with reasons. The
+[criteria](docs/LONG_HORIZON.md) define these decisions.
 
 Keep `.local/`, raw transcripts, history indexes, private `REPORT.md`, secrets,
 and unreviewed material local. Create reviewed collection summaries at the

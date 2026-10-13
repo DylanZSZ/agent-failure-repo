@@ -1,6 +1,6 @@
 # Search guide: 20 symptoms of agent failure
 
-Updated 2026-10-11.
+Updated 2026-10-13.
 
 ## Summary
 
@@ -9,10 +9,13 @@ Use this guide to inspect the histories the contributor authorized. Collect as m
 These 20 modes come from the failure catalog supplied for this project. They are search aids, not a claim that our new collection has reproduced them. They are also not instructions or traps to show the agent being evaluated. A contribution may identify another mode; label it `other` and explain it.
 
 **A symptom is not a temporal mechanism.** Apply [the long-running criteria](LONG_HORIZON.md)
-to every match. The primary collection needs a plausible dependency on earlier
-work or accumulated state. A local bug, secret disclosure, or false completion
+to every match. A submission needs a source-supported contribution from earlier
+work, accumulated state, a context transition, or actual agent interaction.
+A local bug, secret disclosure, or false completion
 can fit this catalog without being caused by extended running. Retain such
-cases as short controls or evidence-needed leads. Also search for compounding
+cases as short controls or evidence-needed leads in the private inventory;
+they do not automatically become submissions. Multiple agents qualify only
+when their interaction contributed, even if brief. Also search for compounding
 mistakes, stale prior outputs after a repair, self-written rules that outlive
 their scope, and goals displaced by ongoing work; use `other` when needed.
 

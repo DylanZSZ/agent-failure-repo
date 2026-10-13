@@ -1,10 +1,10 @@
-# Collect failures that depend on earlier work
+# Submit failures that depend on earlier work or agent interaction
 
-Updated 2026-10-11.
+Updated 2026-10-13.
 
 ## Summary
 
-Our goal is to find failures caused or made more likely by extended agent work: accumulated obligations, changing artifacts, competing task context, repeated repairs, and transitions between sessions or collaborators. A bug appearing late in a transcript is not enough. Collect every credible lead, but distinguish a plausible connection to earlier work from an ordinary short-task error and from demonstrated causation.
+Our goal is to find failures to which extended work, context transitions, or multi-agent interaction materially contributed. Search the full authorized history and keep a private inventory of leads, but submit only cases that pass all four gates below. A bug appearing late in a transcript, or in a task delegated to a subagent, is not enough. Zero qualifying submissions is a valid outcome.
 
 Read this guide before choosing which incidents to reproduce. Use the [symptom catalog](SYMPTOMS.md) to find observable errors; use the criteria here to decide whether they fit the research question. A symptom label, a large token count, a runnable task, or a checker rejecting a planted defect cannot establish a long-running failure.
 
@@ -19,7 +19,35 @@ A useful candidate has a traceable sequence:
 
 Explain the dependency in one sentence: “After doing ___, the agent encountered ___; it needed to carry forward or revise ___, but instead ___.” Fill this from evidence. If the missing part is only a guess, keep it as an evidence-needed lead.
 
-There is no universal minimum turn count. A short reproduction can preserve a temporal mechanism without measuring extended exposure. Label it accordingly. Long idle waits, simulator ticks, repeated “continue” messages, and difficult debugging after the error do not by themselves establish a long-running cause.
+There is no universal minimum turn count. A brief coordination failure can qualify when actual interaction between actors contributed; do not call it a duration effect. A short reproduction can preserve a mechanism supported by an extended historical sequence, but does not measure extended exposure. Long idle waits, simulator ticks, repeated “continue” messages, and difficult debugging after the error do not by themselves establish a long-running cause.
+
+## Four gates for new submissions
+
+All four gates must pass before a new case belongs in the public submission. After the first three evidence gates pass, build and verify the reconstruction privately to satisfy gate 4. Record the decision and evidence in the [temporal review](../templates/temporal-review.md); no new manifest fields are needed.
+
+1. **An actual violation.** Identify a still-applicable requirement, an executed action or delivered state, and an observed violation with a concrete consequence or explicit failure predicate. Include contrary evidence and later repair.
+
+   Keep an ambiguous case local as **needs evidence**; reject a demonstrated non-failure.
+
+2. **A material contribution from extended work, a context transition, or agent interaction.** Anchor the earlier and later events, identify the state or information connecting them, and explain how the work or interaction contributed. Address the strongest local-error alternative and identify a feasible comparison.
+
+   Keep a missing dependency local as **needs evidence**. An ordinary local bug is **out of scope**, even in a long or multi-agent run.
+
+3. **An auditable evidence chain.** Provide sanitized source excerpts, relevant instructions, tool results, before/after state, event order, and actor visibility sufficient for another person to check gates 1 and 2. Label reconstruction, inference, omissions, and recovery.
+
+   Keep the case local as **needs evidence** if essential links are missing or cannot be shared. A polished narrative cannot replace them.
+
+4. **A faithful runnable reconstruction.** Provide clean setup, staged tasks, exact commands, dependencies, independent task and failure checks, and a feasible correct path. Run the documented commands in a fresh disposable environment. Record a passing correct control and a deliberately faulty control detected by the checker. Check valid alternatives and preserve the mechanism.
+
+   Keep the case local as **needs reconstruction** until the task and checks work. A plan or already broken final fixture is insufficient.
+
+Gate 2 requires a narrow, source-supported mechanism, not a claim about an agent's hidden reasoning. For example, a colleague's compatible addition was present before another agent rewrote the file, and the rewrite removed it. That can support a lost-work interaction without establishing that multiple agents generally raise error rates. Mere sequence—“a long run, then a bug”—does not establish material contribution. Missing model revision or exact token count can remain unknown; missing essential instruction, action, state, or interaction evidence cannot pass the relevant gate.
+
+Fresh blind model attempts and controlled comparisons are valuable but are **not mandatory for packaged submission**. The checker controls establish that the task is runnable and its checker distinguishes the declared outcomes. They do not demonstrate a fresh model failure or establish a causal effect. State which stronger tests have not run, what comparison would distinguish the proposed mechanism from alternatives, and what that comparison could actually establish.
+
+For multi-agent cases, reconstruct each actor's assignment, session, base revision, shared or isolated workspace, messages, relevant reads and writes, commits or merges, and the resulting delivered state. Identify what each actor could see at the decision and what it actually read. Preserve observed order; do not infer concurrency from unordered timestamps or assume isolated worktrees share uncommitted changes. Show a permitted way to satisfy the compatible assignments. A delegated syntax error does not qualify without evidence that coordination contributed.
+
+The complete lead inventory stays private. Preserve ordinary errors, duplicates, rejected cases, and missing-evidence leads there with reasons and next actions; do not package them for public submission by default. The public index contains only admitted cases and their actual attempts. Existing incident-only records remain valid historical records; apply a dated review rather than deleting or rewriting them.
 
 ## Behaviors worth looking for
 
@@ -37,7 +65,7 @@ There is no universal minimum turn count. A short reproduction can preserve a te
 
 Source: the project's [20 symptom classes](SYMPTOMS.md) and the maintainer's review of the release and cleanup reference suites. These are search directions, not a claim that every example is caused by duration.
 
-## Decide relevance separately from evidence level
+## Record relevance, admission, and evidence separately
 
 First confirm an observable failure against a still-applicable requirement.
 Legitimate reprioritization, a justified revised conclusion, and an honest
@@ -45,27 +73,28 @@ blocked report are not failures by themselves. Keep such leads as rejected
 with the reason; mark temporal relevance not applicable rather than forcing
 them into a failure category.
 
-Record one of these relevance decisions in each incident account and the collection report:
+Retain the following relevance labels for the private inventory and legacy records. A relevance label alone does not pass the submission gates:
 
 - **Temporal candidate:** the available sequence supports a plausible dependency on earlier work or state. Identify the anchors, competing explanation, and what remains untested. This does not mean causation is established.
 - **Evidence needed:** the earlier obligation, later action, scope, or consequence is too incomplete or ambiguous to establish that dependency. Name the missing evidence and a specific next step.
-- **Short control:** the supported error is mainly local, or the current record shows no relevant earlier-work dependency. Retain it in the inventory and, when useful, as a separately reported reliability test.
+- **Short control:** the supported error is mainly local, or the current record shows no relevant earlier-work dependency. Retain it privately as out of scope for this collection. Do not submit it as an independent problem merely because its checker is useful.
 
 For a temporal candidate, also state whether the original evidence shows
 substantial intervening work, only a short mechanism, or unknown exposure.
 Describe the work; do not infer it from elapsed time. A two-turn retry after
 partial submission can demonstrate compounding state, but it is not an
-observed long-running failure. Report such short temporal candidates
-separately and prioritize those with documented extended work. Do not add
-filler stages to promote them.
+observed long-running failure. Without a supported context-transition or actual
+multi-agent mechanism, it remains a local lead outside the submission target.
+Do not add filler stages to promote it. A qualifying coordination case can be
+brief; identify that mechanism explicitly and make no duration claim.
 
 Also assess the **current reproduction** independently: faithful enough for a pilot, needs redesign, short mechanism demonstration, or not built. A strong historical candidate may have a poor task. A short task can have a good behavioral checker. Neither should change the original incident's classification automatically.
 
-Keep these judgments separate from the existing contribution statuses: incident, packaged, model reproduced, and temporal evidence supported. Do not relabel a packaged case as causally supported because its checker works. Do not require a contributor to run a controlled experiment before submitting a credible historical lead.
+Keep these judgments separate from the existing contribution statuses: incident, packaged, model reproduced, and temporal evidence supported. The incident status remains available for local drafts and legacy records; new submissions must satisfy the runnable reconstruction gate. Do not relabel a packaged case as causally supported because its checker works. A controlled model experiment is not required to submit a case that passes all four gates.
 
 ## Minimum account for a primary candidate
 
-Complete [the temporal review form](../templates/temporal-review.md) in the private incident record. Put a reviewed version in the problem account or a linked evidence document before submission. Every answer needs an anchor or an explicit unknown; unknown fields are acceptable in an evidence-needed report.
+Complete [the temporal review form](../templates/temporal-review.md) in the private incident record. Put a reviewed version in the problem account or a linked evidence document for each admitted submission. Every answer needs an anchor or an explicit unknown. Unknown essential links keep a case in the private evidence-needed inventory; optional metadata may remain unknown in a submitted case.
 
 1. **Original goal and consequence:** what still-applicable requirement failed, why it mattered, and whether the damage persisted after correction.
 2. **Earlier anchor and later action:** the actual instruction, artifact, discovery, or action that connects them. Distinguish a correct baseline from an earlier mistake being propagated.
@@ -73,9 +102,9 @@ Complete [the temporal review form](../templates/temporal-review.md) in the priv
 4. **Information at the decision:** what was in context, automatically loaded, discoverable, unavailable, or actually read. Do not invent forgetting or a reset from a wrong answer alone.
 5. **Natural pressure toward the mistake:** a nearby conflicting example, stale successful artifact, similar task with different scope, compatible teammate change, accumulated partial action, or another evidenced demand. Do not invent a trap absent from the history.
 6. **Alternative explanation:** local skill gap, ambiguity, bad setup, external change, missing authority, or insufficient budget. State what would distinguish it from the proposed temporal mechanism.
-7. **Reduction and comparison:** what must survive minimization, what is removed, and a feasible comparison that would change the inference. If no reproduction or evaluation exists, say so.
+7. **Reduction and comparison:** what must survive minimization, what is removed, the clean reconstruction and checker-control results, and a feasible comparison that would change the inference. If fresh model evaluation or a comparison has not run, say so.
 
-Missing causal results limit the claim; they do not justify inventing results or rejecting the entire lead. A consequential error with no temporal connection belongs in the short-control inventory rather than the primary long-running count.
+Missing controlled causal results limit the claim; they do not justify inventing results. Missing essential historical evidence or a working reconstruction prevents admission, while the lead remains private. A consequential local error without an eligible dependency is out of scope.
 
 ## Reject reductions that remove the decision we want to study
 
@@ -88,7 +117,7 @@ Before calling a task ready for a pilot, ask:
 - **Is the later request natural?** Preserve ordinary feature work, continuation, refactoring, reporting, or handoff. “Find and fix this exact failure” tests diagnosis after disclosure, not the original temptation to make it.
 - **Is a correct path feasible and permitted?** No secret requirement, forced permission violation, incompatible teammate edit, impossible deadline, or manufactured ambiguity. Honest blocked delivery is acceptable where it was acceptable originally.
 
-Minimize infrastructure and sensitive data, not the dependency or competing demands. If those demands cannot be reconstructed faithfully, retain the historical account and mark the task as a limited mechanism demonstration. Do not keep making prompts more misleading until an agent fails.
+Minimize infrastructure and sensitive data, not the dependency or competing demands. If those demands cannot be reconstructed faithfully, retain the historical account privately as needs reconstruction. Do not keep making prompts more misleading until an agent fails.
 
 Discoverable repository evidence is desirable. Its availability does not
 disqualify a task: some failures concern accumulated artifact state rather
@@ -101,13 +130,15 @@ Scripted correct and faulty controls check the environment and judge. Fresh blin
 
 For each attempt, also answer these questions before counting a hit:
 
-| Question | Evidence to collect |
-| --- | --- |
-| Did the intended opportunity actually occur? | The earlier state the agent really created, the later request it received, and the relevant state when it acted. If it completed a deliberately partial job early, the later partial-state opportunity may no longer exist. Record that early scope violation separately. |
-| Was the observed error the intended error? | Name both. A task designed to test forgotten journal state may instead reveal an omitted request or a broken CLI. Preserve the useful unexpected failure without claiming the intended mechanism occurred. |
-| Does the check accept valid alternatives? | Test another lawful implementation, extra fields where permitted, equivalent artifact layouts, honest blocked delivery, and a successful run. A reference implementation's private filenames or JSON layout are not requirements unless the task publishes them. |
-| What actually reached the next consumer? | Inspect the installed package, loaded implementation, downloaded report, committed files, or durable service effects. A correct working tree or an `active` filename does not establish that the delivered path used it. |
-| Did later success repair the earlier damage? | Compare identities and history, not only current totals. A compensating transaction can restore a balance while leaving the original transaction wrong; later authorization can make current state valid without repairing an earlier unauthorized action or historical snapshot. |
+- **Did the intended opportunity actually occur?** Record the earlier state the agent really created, the later request it received, and the relevant state when it acted. If it completed a deliberately partial job early, the later partial-state opportunity may no longer exist. Record that early scope violation separately.
+
+- **Was the observed error the intended error?** Name both. A task designed to test forgotten journal state may instead reveal an omitted request or a broken CLI. Preserve the useful unexpected failure without claiming the intended mechanism occurred.
+
+- **Does the check accept valid alternatives?** Test another lawful implementation, extra fields where permitted, equivalent artifact layouts, honest blocked delivery, and a successful run. A reference implementation's private filenames or JSON layout are not requirements unless the task publishes them.
+
+- **What actually reached the next consumer?** Inspect the installed package, loaded implementation, downloaded report, committed files, or durable service effects. A correct working tree or an `active` filename does not establish that the delivered path used it.
+
+- **Did later success repair the earlier damage?** Compare identities and history, not only current totals. A compensating transaction can restore a balance while leaving the original transaction wrong; later authorization can make current state valid without repairing an earlier unauthorized action or historical snapshot.
 
 Keep **actor actions** separate from **product capability**. A consumer that
 executes a missed operation on the delivered program can establish that the
@@ -134,7 +165,7 @@ Request existing evaluation artifacts when a contributor claims reproduction: al
 
 ## Next steps for collectors and reviewers
 
-Search the whole authorized history and retain all candidates. Prioritize faithful reproductions of temporal candidates; preserve short controls and uncertain leads with separate counts. Report both original relevance and task readiness. Use the [submission guide](SUBMITTING.md) for the exact file contract and [reproduction guide](REPRODUCING.md) for execution details.
+Search the whole authorized history and retain all candidates privately. Submit only cases passing the four gates, with their evidence and every actual attempt. Report admitted cases separately from local deferrals and out-of-scope findings; zero admitted cases is valid. Use the [submission guide](SUBMITTING.md) for the exact file contract and [reproduction guide](REPRODUCING.md) for execution details.
 
 ## Sources
 

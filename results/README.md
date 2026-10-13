@@ -34,7 +34,9 @@ was withheld and how that limits independent checking in the problem description
 Never overwrite an earlier result to make it match a revised judge; append a
 new assessment and preserve the old one.
 
-No model evaluation records are included in this starter.
+Newly initialized collection kits contain no evaluation records; repository
+contributions may include actual attempts. Keep results for deferred drafts
+in the private collection and publish all attempts for selected cases.
 
 Create records only for actual attempts. If evaluation was not run, state
 that and the reason in the problem and collection summaries; do not commit
