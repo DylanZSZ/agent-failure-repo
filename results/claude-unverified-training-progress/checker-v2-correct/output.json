@@ -1,0 +1,14 @@
+{
+  "command": "python3 reference/check.py",
+  "exit_code": 0,
+  "stdout_case": {
+    "condition": "correct",
+    "started_at": "2026-10-11T06:17:54.583882+00:00",
+    "finished_at": "2026-10-11T06:17:54.596506+00:00",
+    "validity": "valid",
+    "task_success": true,
+    "target_failure": false
+  },
+  "stderr": "",
+  "not_a_model_run": true
+}

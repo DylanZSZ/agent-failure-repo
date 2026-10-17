@@ -1,12 +1,26 @@
 # Capture the evidence before reducing the task
 
-Updated 2026-10-10.
+Updated 2026-10-13.
 
 ## Summary
 
 Collect enough information for another investigator to reconstruct what happened, check competing explanations, and build a faithful reproduction. Search every authorized source against [all 20 symptoms](SYMPTOMS.md), retain other symptoms, and record every distinct candidate. There is no maximum number of incidents, no quota per symptom, and no requirement to fill every category.
 
 Use one private copy of the [incident evidence form](../templates/incident-evidence.md) for each incident. Link it from the incident index. Capture relevant evidence first; write the short account and choose a minimal task afterward. The richer incident record and the smaller runnable task serve different purposes.
+
+Complete the accompanying [temporal review](../templates/temporal-review.md)
+using [the long-running criteria](LONG_HORIZON.md). Identify the information or
+artifact that carries the earlier work into the later decision. Record original
+relevance separately from reproduction readiness. A known earlier mistake may
+be the starting point of a propagation study; do not describe it as an earlier
+correct baseline or attribute its creation to later running.
+
+The private inventory may contain weak leads. A new submission must pass the
+[selection gate](LONG_HORIZON.md): a source-supported contribution from extended
+work, a context transition, or real interaction between agents; auditable
+essential evidence; and a faithful task verified from a clean environment.
+Keep incomplete or unrunnable cases as local drafts with the missing evidence
+and next action. More complete storytelling does not make a weak case eligible.
 
 ## Start with scope and access
 
@@ -25,12 +39,19 @@ Every requested field must contain a supported value or one of the following sta
 | Observed | The available record directly supports the value | Source and event or artifact anchor |
 | Contributor-reported | The owner recalls or supplies the information, without a confirming record | Who supplied it and when, using a shareable alias |
 | Inferred | A conclusion drawn from identified observations | Supporting evidence, alternatives, and uncertainty |
+| Reconstructed | A state or effect recreated later from identified source material | Base state, recorded changes applied, substitutions, commands, and differences from the original |
 | Unknown | Available evidence does not determine the value | What is missing or contradictory |
 | Unavailable | A relevant source exists or is expected but cannot be accessed | Access or retention limit and any next step |
 | Not applicable | The field does not apply to this incident | A short reason |
 | Withheld | Information exists but is intentionally excluded | The type of omission and its effect on interpretation; do not reveal the omitted value |
 
 Use these states field by field. A report may know the model name but not its revision, and have a complete final diff but an incomplete earlier transcript. For numeric fields, unknown is not zero. Label estimates and state how they were calculated. Do not downgrade a withheld field to an apparently observed sanitized value without explaining the substitution.
+
+Missing optional metadata, such as an unexposed model revision, need not prevent
+selection. Missing the applicable requirement, relevant earlier state or
+interaction, wrong action, or evidence of its effect does: those are essential
+to the claim. A contributor's recollection can guide recovery of sources, but
+cannot substitute for that essential chain in a selected submission.
 
 ## Recover the complete sequence
 
@@ -45,6 +66,37 @@ For each incident, capture the following before explaining its cause:
 
 Capture supporting and contradictory evidence with equal care. Keep a failed diagnostic attempt, an earlier correct decision, a successful recovery, an unread reminder, and evidence that a teammate or environment caused the result. Do not select only the lines that make the failure look obvious.
 
+For a selected submission, another reader must be able to follow this chain
+through the shared, sanitized evidence, not only a narrative or private links.
+Anchor the requirement, earlier state, intervening process, executed action,
+and consequence. Identify the last inspected event and preserve later recovery;
+do not call damage permanent if the ending is unavailable. If sharing restrictions
+break an essential link, keep the case local or narrow the claim before selection.
+
+### Reconstruct missing state without inventing history
+
+When original snapshots are missing, start from an identified base and apply
+the recorded edits in order in a disposable copy. Include relevant untracked,
+ignored, generated, and service state. Save the source-to-state mapping, commands,
+resulting diff, and independent checks. Label any assumed or substituted part;
+never fabricate a missing tool result, message, timestamp, or teammate action.
+If the sources do not determine the state needed for the claim, record that
+gap rather than silently choosing the version that produces a failure.
+
+Distinguish an original recorded check from a check run now on reconstructed
+state. The latter can corroborate the effect of a recorded edit; it does not
+show that the original agent ran that command, saw that output, or used the
+same dependency versions. A reconstruction may establish the consequence
+without resolving whether prolonged work caused it.
+
+For multi-agent cases, join the actors' records by message, tool, commit, or
+artifact IDs. Recover who wrote or read which version, which workspace was
+shared, what was delivered rather than merely sent, and the known event order.
+Concurrent timestamps alone do not establish a read-after-write relationship.
+Record uncertain ordering and whether the actors' legitimate tasks could
+coexist. The [reproduction schedule](REPRODUCING.md#specify-multi-agent-order-and-visibility)
+must preserve these relationships.
+
 ## Make every important claim traceable
 
 Give source files stable local IDs, then give relevant events stable anchors such as `history-03/message-147` or `run-02/tool-18/result`. Prefer exported message IDs and tool-call IDs when available; otherwise record the file, line or byte range, and extraction method. Preserve timestamps, timezone or offset, and whether a timestamp describes the event, export, or collection. If timestamps are missing, preserve order and state that elapsed time is unknown.
@@ -57,7 +109,8 @@ Use observable messages, tool calls, tool results, and artifacts. Do not request
 
 ## Capture the environment and effective state
 
-Collect the details that are available and relevant; mark the rest explicitly rather than blocking the entire contribution:
+Collect the details that are available and relevant; mark optional unknowns
+explicitly. Essential gaps remain a reason to defer submission:
 
 - **Agent and model:** product or agent name and version; configured model and provider; served model revision if exposed; dates; routing and fallback notices; sampling and reasoning settings only if available.
 - **Runtime:** operating system, architecture, language and dependency versions; container or image identity; repository commit, branch, dirty state, and working directory alias; installed extensions or hooks affecting behavior.
@@ -83,7 +136,7 @@ Record the earliest relevant event, the later decision, and the failure or disco
 - Tokens and context utilization when actually logged. Separate input, output, cached, and cumulative usage; cumulative tokens are not the context present at one decision.
 - The information that had to survive and its distance from the later decision. Record whether it was in the current context, an automatically loaded note, a discoverable file, or unavailable after a reset.
 
-Do not set a universal number of turns that makes an incident “long horizon.” Explain why the intervening work or boundary might matter for this case. Classify the temporal claim honestly: an observed sequence, a suspected contribution of extended work, or support from a comparison. A long session containing an ordinary local mistake remains useful if documented as such.
+Do not set a universal number of turns that makes an incident “long horizon.” Explain why the intervening work or boundary might matter for this case. Classify the temporal claim honestly: an observed sequence, a suspected contribution of extended work, or support from a comparison. Keep an ordinary local mistake in the private inventory; a long session does not make it eligible for submission. A short but evidenced coordination failure can fit the multi-agent target without being called long-running.
 
 ## Separate symptom, significance, and explanation
 
@@ -101,7 +154,13 @@ Follow [REPRODUCING.md](REPRODUCING.md) to build a minimal task. Keep a mapping 
 
 Record every attempted setup, checker test, replay, fresh model attempt, and control, including failures, misses, aborts, and infrastructure errors. Give each attempt an ID, its inputs and versions, commands, outcome, evidence path, and any exclusion reason. Keep a failed prototype when it explains why the next version changed. Do not count a scripted defect or a checker test as the model reproducing the error.
 
-If evaluation is not possible, finish the evidence record with the missing requirement and next action. Ask for existing evaluation artifacts when available: complete attempt lists, raw observable trajectories, exact task and judge versions, model settings, negative results, controls, eligibility decisions, and later reviews. Do not ask only for successful reproductions or headline rates.
+If fresh model evaluation is not possible, state “not run” and the reason. A
+selected packaged task still needs the clean-environment and checker controls
+in the reproduction guide. If those cannot run, keep a local draft. Ask for
+existing evaluation artifacts when available: complete attempt lists, observable
+trajectories, exact task and judge versions, model settings, negative results,
+controls, eligibility decisions, and later reviews. Do not ask only for successful
+reproductions or headline rates.
 
 ## Limitations
 

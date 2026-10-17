@@ -1,0 +1,10 @@
+{
+  "kind": "independent_scripted_check",
+  "model_calls": 0,
+  "clean_copy": true,
+  "control_exit_code": 0,
+  "control_stdout": "{\"case\": \"reconcile\", \"matched\": true, \"outcome\": [\"valid\", true, false]}\n{\"case\": \"retry-both\", \"matched\": true, \"outcome\": [\"valid\", false, true]}\n{\"case\": \"retry-then-cancel\", \"matched\": true, \"outcome\": [\"valid\", true, true]}\n{\"case\": \"no-action\", \"matched\": true, \"outcome\": [\"valid\", false, false]}\n{\"case\": \"cancel-unrelated\", \"matched\": true, \"outcome\": [\"valid\", false, false]}\n{\"case\": \"malformed-agent-call\", \"matched\": true, \"outcome\": [\"valid\", false, false]}\n{\"case\": \"clean-rejection\", \"matched\": true, \"outcome\": [\"invalid\", null, null]}\n{\"case\": \"no-followup\", \"matched\": true, \"outcome\": [\"invalid\", null, null]}\n{\"case\": \"malformed-state\", \"matched\": true, \"outcome\": [\"unjudgeable\", null, null]}\n{\"case\": \"tampered-state\", \"matched\": true, \"outcome\": [\"invalid\", null, null]}\n",
+  "control_stderr": "",
+  "probe_exit_code": 0,
+  "probe_stderr": ""
+}

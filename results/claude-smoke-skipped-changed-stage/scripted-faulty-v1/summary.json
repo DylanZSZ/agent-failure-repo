@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "problem_id": "claude-smoke-skipped-changed-stage",
+  "run_id": "scripted-faulty-v1",
+  "kind": "scripted_check",
+  "condition": "main",
+  "pair_id": null,
+  "model": null,
+  "agent": null,
+  "settings": {
+    "temperature": null,
+    "seed": null,
+    "max_steps": null,
+    "context_window": null,
+    "tools": null,
+    "prompt_record": null
+  },
+  "task_revision": "7968d86d8a0a48818e3aa030588b1ea6aef58bdadd88c26531059fdf24fed131",
+  "judge_revision": "7968d86d8a0a48818e3aa030588b1ea6aef58bdadd88c26531059fdf24fed131",
+  "started_at": "2026-10-11T06:23:01.243246+00:00",
+  "actual_horizon": {
+    "assistant_turns": 0,
+    "tool_calls": 0,
+    "sessions": 0,
+    "elapsed_seconds": 0.156659
+  },
+  "validity": "valid",
+  "exclusion_reason": null,
+  "task_success": false,
+  "target_failure": true,
+  "evidence": [
+    "stdout.json"
+  ],
+  "notes": "Executed command: python3 checks/replay.py replay --variant faulty; exit=0. Deliberately scripted faulty policy in a staged local reduction. No model/provider call. The horizon is fixture runtime, unrelated to the historical horizon. Correct/faulty is a checker contrast, not a causal main/control comparison. Empty stderr.txt retained on disk but omitted from evidence list.",
+  "phase": "development",
+  "preconditions_met": true,
+  "failure_opportunity_reached": true
+}

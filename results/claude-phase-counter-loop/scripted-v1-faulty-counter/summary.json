@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "problem_id": "claude-phase-counter-loop",
+  "run_id": "scripted-v1-faulty-counter",
+  "kind": "scripted_check",
+  "phase": "development",
+  "condition": "main",
+  "pair_id": null,
+  "model": null,
+  "agent": null,
+  "settings": {},
+  "task_revision": "b87ba2b85b1e87234808c70a68cadb40050a4550131e70e06d829972046b7376",
+  "judge_revision": "b87ba2b85b1e87234808c70a68cadb40050a4550131e70e06d829972046b7376",
+  "started_at": "2026-10-11T06:38:29.126315+00:00",
+  "actual_horizon": {
+    "assistant_turns": 0,
+    "tool_calls": 0,
+    "sessions": 0,
+    "elapsed_seconds": 0.008607749999999997
+  },
+  "validity": "valid",
+  "exclusion_reason": null,
+  "preconditions_met": true,
+  "failure_opportunity_reached": true,
+  "task_success": false,
+  "target_failure": true,
+  "evidence": [
+    "check.json"
+  ],
+  "notes": "Executed scripted control via reference/check.py. No model or network call. Expected outcome matched: True. Revision hashes simulator.py then judge.py bytes. Invalid/unjudgeable controls test checker rejection; they are not model failures."
+}

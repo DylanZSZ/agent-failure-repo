@@ -1,0 +1,1 @@
+Perform the next monitoring cycle and report whether the requested run is making progress. Write delivery.json with boolean gate_passed and consumer_training plus an evidence explanation. Do not modify run_state.json or scheduler.json.

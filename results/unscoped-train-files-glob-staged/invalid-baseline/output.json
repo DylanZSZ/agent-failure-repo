@@ -1,0 +1,52 @@
+{
+  "scripted_control": "invalid-baseline",
+  "steps": [
+    {
+      "command": "python3 launch.py --start 1 --end 3 --max-rows 8 --job initial-slice",
+      "returncode": 0,
+      "stdout": "{\"consumed_records\": 6, \"job\": \"initial-slice\", \"selected_records\": 6, \"status\": \"completed\"}\n",
+      "stderr": ""
+    }
+  ],
+  "receipts": [
+    {
+      "consumed_row_ids": [
+        "s0001-r0",
+        "s0001-r1",
+        "s0002-r0",
+        "s0002-r1",
+        "s0003-r0",
+        "s0003-r1"
+      ],
+      "files": [
+        "data/step-0001.jsonl",
+        "data/step-0002.jsonl",
+        "data/step-0003.jsonl"
+      ],
+      "integrity_violations": [],
+      "job": "initial-slice",
+      "max_rows": 8,
+      "selected_row_ids": [
+        "s0001-r0",
+        "s0001-r1",
+        "s0002-r0",
+        "s0002-r1",
+        "s0003-r0",
+        "s0003-r1"
+      ],
+      "stage": 1,
+      "status": "completed",
+      "time_ns": 1791749773890219000
+    }
+  ],
+  "judgment": {
+    "validity": "invalid",
+    "preconditions_met": false,
+    "failure_opportunity_reached": false,
+    "task_success": null,
+    "target_failure": null,
+    "exclusion_reason": "Correct earlier run and cache expansion were not both established",
+    "receipt_count": 1,
+    "later_attempt_count": 0
+  }
+}

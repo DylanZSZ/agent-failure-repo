@@ -1,6 +1,9 @@
 # Describe the failure in one sentence
 
-Status: incident report; reproduction not yet attempted.
+Template updated 2026-10-13.
+
+Status: incident; local draft, reproduction not yet attempted.
+Submission decision: selected / local draft only; selection evidence or missing prerequisite.
 
 Symptom labels: choose all that fit from docs/SYMPTOMS.md, or use other.
 One incident may have multiple labels; do not count it as multiple incidents.
@@ -19,12 +22,31 @@ storage for this candidate. Use its checklist to capture relevant detail before
 writing this public-facing summary. Include a sanitized evidence attachment
 only after owner review; do not copy private originals here.
 
-Record the agent/model if known and the date. Quote only reviewed, short excerpts
-with stable event or turn references. Label paraphrases. Include the earlier
-instruction or correct state, the later action, and the observed consequence.
-State which source material is unavailable or withheld. Never paste raw secrets.
+Record the agent/model if known and the date. Link reviewed evidence with stable
+event or artifact anchors for the complete chain: applicable requirement,
+earlier state or interaction, substantive intervening process, wrong action
+(with its matching tool result when applicable), and consequence. Include contrary evidence,
+later recovery, and the last inspected event. A narrative alone is insufficient.
+Label paraphrases, source gaps, and redactions. Never paste raw secrets.
+
+Distinguish original recorded state from later reconstruction and inference.
+For reconstructed state, identify the base, source-anchored edits, substitutions,
+and checks run later; do not present them as original agent actions. An unknown
+model revision can be acceptable; a missing essential link keeps this a local draft.
 
 ## Why the earlier work matters
+
+Original relevance: temporal candidate / evidence needed / short control.
+Original work exposure: substantial intervening work observed / short mechanism only / unknown; evidence:
+Current task readiness: faithful enough for a pilot / needs redesign /
+short mechanism demonstration / not built. Explain these separately from status.
+
+Complete the collection's templates/temporal-review.md in the private evidence
+record. Include its reviewed answers here or link a sanitized evidence document.
+Apply docs/LONG_HORIZON.md; a symptom or a long log alone does not establish fit.
+Select only a source-supported contribution from extended work, a context
+transition, or real interaction between agents. Name the mechanism; a brief
+coordination failure is not automatically a long-running failure.
 
 Describe the earlier event, intervening work, and later decision. What needed
 to persist: a rule, a fact, a file change, a boundary, or a status? Could the
@@ -34,6 +56,11 @@ Record observed turns, tool calls, session changes, and elapsed time when known.
 Define the counting unit and endpoints. Distinguish configured budgets from
 actual execution. Explain plausible alternative causes; a long session alone
 does not establish causation.
+
+Distinguish a correct earlier state from a provisional mistake whose later
+propagation is the target. Identify the natural competing demand and what
+observation would weaken the temporal explanation. Separate the pre-error span
+from idle time and recovery; measure a propagation interval separately.
 
 ## Intended failure and how to identify it
 
@@ -49,10 +76,30 @@ and what simulates a teammate or environment change. Keep judge, reference, and
 incident narrative outside the evaluated workspace. List changes from the real
 incident, what mechanism each preserves, and what the reduction loses.
 
-Describe dependencies, supported operating systems, installation, network use,
-expected cost, and safe disposable execution. Use fake data and local services.
-Give copyable setup, agent-run, judge, reference-check, and control commands with
-working directories and expected outputs. If unavailable, say not implemented.
+For multi-agent cases, include the schedule from docs/REPRODUCING.md: each actor's
+session and live/replay/scripted role, shared or isolated workspace, visible
+messages and file versions, release condition, actual action, and receipt by
+the next actor. Record uncertain ordering and demonstrate that the legitimate
+tasks were compatible or had an allowed conflict-resolution path.
+
+Explain whether the final prompt and fixture can solve the task without the
+earlier stages. Preserve the agent's actual earlier state. Identify any diagnosis,
+resolved observation, correct path, or answer inadvertently supplied during
+reduction. Describe the actual behavior checked and why an agent-written action
+flag alone would be insufficient. Label a short mechanism demonstration honestly.
+
+Describe pinned dependencies or image identity, supported operating systems,
+installation, network use, expected cost, and safe disposable execution. Use fake
+data and local services. Give copyable setup, staged agent-run, judge,
+reference-check, reset, and cleanup commands with working directories, expected
+output artifacts, and exit-code meaning. Describe any causal-control command or
+mark it not implemented. Nothing required may exist only on the author's laptop.
+
+Link the actual clean-copy command log and tested revision: setup, reference and
+checker controls, and reset must work from the proposed submitted files alone.
+Follow docs/REPRODUCING.md's clean-environment contract. If it is unverified,
+keep this as a local draft. A fresh model attempt is optional for a packaged
+submission; an executable procedure for attempting it is required.
 
 ## Correct solution and judge checks
 
@@ -68,10 +115,13 @@ model/settings and task/judge revision. Report hits over eligible attempts,
 total attempts, and reasons for exclusions. Report development trials separately
 from any evaluation after the task and judge were frozen.
 
-Compare with a condition that changes only the relevant history or reminder,
+Compare with a condition that changes the relevant history, context, or coordination factor,
 while preserving the final task, environment, model settings, and budget as far
-as possible. Specify the comparison before running it. Describe uncertainty;
-one pair is not a reliable frequency estimate. If not run, say not run.
+as possible. Name all other changes, including edit order, handoff visibility,
+and shared state. Specify the comparison before running it. Describe uncertainty;
+one pair is not a reliable frequency estimate. If not run, say not run. Keep
+historical reconstruction, scripted checker tests, fresh model attempts, and
+causal comparisons separate; none substitutes for the others.
 
 ## Limits and review
 

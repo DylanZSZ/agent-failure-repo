@@ -1,0 +1,1976 @@
+{
+  "kind": "reviewer_scripted_check",
+  "model_calls": 0,
+  "trials": [
+    {
+      "id": "analysis-parent-checkpoint",
+      "test": "reference",
+      "input": {
+        "model_path": "models/rex/final",
+        "submit": true
+      },
+      "judge_sha256": "b19c616149a4e443f21f25b23c095e6b3ee6b4a096f3e73fc517bf150375eaac",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "analysis-parent-checkpoint",
+      "test": "faulty",
+      "input": {
+        "model_path": "models/rex",
+        "submit": true
+      },
+      "judge_sha256": "b19c616149a4e443f21f25b23c095e6b3ee6b4a096f3e73fc517bf150375eaac",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "analysis-parent-checkpoint",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "b19c616149a4e443f21f25b23c095e6b3ee6b4a096f3e73fc517bf150375eaac",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "archive-success-before-process-exit",
+      "test": "reference",
+      "input": {
+        "action": "poll-extraction-until-exit",
+        "wait_for_exit": true
+      },
+      "judge_sha256": "08a6c40b71266d523d8418f8531eb2d27cf9d20994c598e26a0a8dd9d1367967",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "archive-success-before-process-exit",
+      "test": "faulty",
+      "input": {
+        "action": "report-success-from-current-files",
+        "wait_for_exit": false
+      },
+      "judge_sha256": "08a6c40b71266d523d8418f8531eb2d27cf9d20994c598e26a0a8dd9d1367967",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "archive-success-before-process-exit",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "08a6c40b71266d523d8418f8531eb2d27cf9d20994c598e26a0a8dd9d1367967",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "aurora-nounset-before-module",
+      "test": "reference",
+      "input": {
+        "module_before_nounset": true
+      },
+      "judge_sha256": "5c0761a840f8eed8a1c2e19a8d2fcdc44c988c973b9f967982b441749477e40a",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "aurora-nounset-before-module",
+      "test": "faulty",
+      "input": {
+        "module_before_nounset": false
+      },
+      "judge_sha256": "5c0761a840f8eed8a1c2e19a8d2fcdc44c988c973b9f967982b441749477e40a",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "aurora-nounset-before-module",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "5c0761a840f8eed8a1c2e19a8d2fcdc44c988c973b9f967982b441749477e40a",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "available-session-id-ignored-for-monitoring",
+      "test": "reference",
+      "input": {
+        "register_monitoring": true,
+        "session_source": "current-environment"
+      },
+      "judge_sha256": "f20301e68a7f398279a6b51dab38c15aa67d18e5a19f7f02e99a1cc690abf808",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "available-session-id-ignored-for-monitoring",
+      "test": "faulty",
+      "input": {
+        "register_monitoring": false,
+        "session_source": "reject-after-codex-agents-fails"
+      },
+      "judge_sha256": "f20301e68a7f398279a6b51dab38c15aa67d18e5a19f7f02e99a1cc690abf808",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "available-session-id-ignored-for-monitoring",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "f20301e68a7f398279a6b51dab38c15aa67d18e5a19f7f02e99a1cc690abf808",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "benchmark-resumes-prior-probe",
+      "test": "reference",
+      "input": {
+        "run_id": "fresh-probe",
+        "resume": false,
+        "new_steps": 10
+      },
+      "judge_sha256": "c306eded0694e3a3f8c5ceda9bbfa9977803559918910a5c5934a741f8466d48",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "benchmark-resumes-prior-probe",
+      "test": "faulty",
+      "input": {
+        "run_id": "shared-probe",
+        "resume": true,
+        "new_steps": 0
+      },
+      "judge_sha256": "c306eded0694e3a3f8c5ceda9bbfa9977803559918910a5c5934a741f8466d48",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "benchmark-resumes-prior-probe",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "c306eded0694e3a3f8c5ceda9bbfa9977803559918910a5c5934a741f8466d48",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "capacity-switch-retains-next-eval-venv",
+      "test": "reference",
+      "input": {
+        "queue": "capacity",
+        "train_venv": "venvs/capacity",
+        "submit": true
+      },
+      "judge_sha256": "e4804d48f88c948817d57fdf8a19beaa98cff9c8cb71f218e3e0f0fbc004eb6d",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "capacity-switch-retains-next-eval-venv",
+      "test": "faulty",
+      "input": {
+        "queue": "capacity",
+        "train_venv": "venvs/next-train",
+        "submit": true
+      },
+      "judge_sha256": "e4804d48f88c948817d57fdf8a19beaa98cff9c8cb71f218e3e0f0fbc004eb6d",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "capacity-switch-retains-next-eval-venv",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "e4804d48f88c948817d57fdf8a19beaa98cff9c8cb71f218e3e0f0fbc004eb6d",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "composite-attention-dispatch",
+      "test": "reference",
+      "input": {
+        "attention_implementation": "xpu_sdpa",
+        "effective_text_backend": "xpu_sdpa",
+        "flex_backend": "sdpa"
+      },
+      "judge_sha256": "7b53d64f0492c596f5e349e79641ffe62311837d32ebdd62f48acb402be74ef6",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "composite-attention-dispatch",
+      "test": "faulty",
+      "input": {
+        "attention_implementation": {
+          "": "xpu_sdpa"
+        },
+        "effective_text_backend": "sdpa",
+        "flex_backend": "sdpa"
+      },
+      "judge_sha256": "7b53d64f0492c596f5e349e79641ffe62311837d32ebdd62f48acb402be74ef6",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "composite-attention-dispatch",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "7b53d64f0492c596f5e349e79641ffe62311837d32ebdd62f48acb402be74ef6",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "composite-attention-dispatch",
+      "test": "valid_explicit_text_mapping",
+      "input": {
+        "attention_implementation": {
+          "text_config": "xpu_sdpa"
+        },
+        "effective_text_backend": "xpu_sdpa",
+        "flex_backend": "sdpa"
+      },
+      "judge_sha256": "7b53d64f0492c596f5e349e79641ffe62311837d32ebdd62f48acb402be74ef6",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "connector-router-cross-device-stack",
+      "test": "reference",
+      "input": {
+        "operation_order": [
+          "move_each_row_to_target",
+          "stack_rows"
+        ]
+      },
+      "judge_sha256": "de00e859f5b7334d22950f9ee944a81563520eb1cc4bd115a000dd6295435513",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "connector-router-cross-device-stack",
+      "test": "faulty",
+      "input": {
+        "operation_order": [
+          "stack_rows",
+          "move_stacked_to_target"
+        ]
+      },
+      "judge_sha256": "de00e859f5b7334d22950f9ee944a81563520eb1cc4bd115a000dd6295435513",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "connector-router-cross-device-stack",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "de00e859f5b7334d22950f9ee944a81563520eb1cc4bd115a000dd6295435513",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "cross-model-metric-row",
+      "test": "reference",
+      "input": {
+        "model": "head",
+        "endo": [
+          63.8,
+          52.5,
+          55.9,
+          53.7
+        ],
+        "rex": 76.1,
+        "path": 50.9
+      },
+      "judge_sha256": "dfbc526ed8c275e0d429f74aaf7bdccc518dc8a9fd42754d0df582119620deb0",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "cross-model-metric-row",
+      "test": "faulty",
+      "input": {
+        "model": "head",
+        "endo": [
+          50.7,
+          43.3,
+          44.9,
+          47.6
+        ],
+        "rex": 76.1,
+        "path": 50.9
+      },
+      "judge_sha256": "dfbc526ed8c275e0d429f74aaf7bdccc518dc8a9fd42754d0df582119620deb0",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "cross-model-metric-row",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "dfbc526ed8c275e0d429f74aaf7bdccc518dc8a9fd42754d0df582119620deb0",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "dense-decoder-group-mismatch",
+      "test": "reference",
+      "input": {
+        "language_decoder_keys": [
+          "model.layers.0.mlp.gate_proj.weight"
+        ]
+      },
+      "judge_sha256": "8e675b544c32c27f5833da59f960589d3011893ce39462215e7adc7f20a6550d",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "dense-decoder-group-mismatch",
+      "test": "faulty",
+      "input": {
+        "language_decoder_keys": []
+      },
+      "judge_sha256": "8e675b544c32c27f5833da59f960589d3011893ce39462215e7adc7f20a6550d",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "dense-decoder-group-mismatch",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "8e675b544c32c27f5833da59f960589d3011893ce39462215e7adc7f20a6550d",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "directional-checkpoint-key-mismatch",
+      "test": "reference",
+      "input": {
+        "lookup": {
+          "model.visual.block.weight": "visual.block.weight",
+          "model.language_model.layer.weight": "model.layer.weight"
+        },
+        "complete": true
+      },
+      "judge_sha256": "ffea5f9c0eb4008a0541dc8d77408ab8f4695e7a999d5845c535570935179e4e",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "directional-checkpoint-key-mismatch",
+      "test": "faulty",
+      "input": {
+        "lookup": {
+          "model.visual.block.weight": "model.visual.block.weight",
+          "model.language_model.layer.weight": "model.language_model.layer.weight"
+        },
+        "complete": true
+      },
+      "judge_sha256": "ffea5f9c0eb4008a0541dc8d77408ab8f4695e7a999d5845c535570935179e4e",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "directional-checkpoint-key-mismatch",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "ffea5f9c0eb4008a0541dc8d77408ab8f4695e7a999d5845c535570935179e4e",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "directional-checkpoint-key-mismatch",
+      "test": "bad_nested_type",
+      "input": {
+        "lookup": []
+      },
+      "judge_sha256": "ffea5f9c0eb4008a0541dc8d77408ab8f4695e7a999d5845c535570935179e4e",
+      "exit_code": 1,
+      "result": null,
+      "stderr": "Traceback (most recent call last):\n  File \"<repo>/problems/directional-checkpoint-key-mismatch/checks/judge.py\", line 10, in <module>\n    target_failure=bool(any(k==v for k,v in d.get('lookup',{}).items()))\nAttributeError: 'list' object has no attribute 'items'\n"
+    },
+    {
+      "id": "duplicated-launcher-path",
+      "test": "reference",
+      "input": {
+        "command_script": "/workspace/FlexBagel/commands/train.sh"
+      },
+      "judge_sha256": "9eee9edf5481c6cc311f20ef9bfa070b8e366037be1c73d1719ee73d33d63b47",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "duplicated-launcher-path",
+      "test": "faulty",
+      "input": {
+        "command_script": "/workspace/FlexBagel/commands/commands/train.sh"
+      },
+      "judge_sha256": "9eee9edf5481c6cc311f20ef9bfa070b8e366037be1c73d1719ee73d33d63b47",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "duplicated-launcher-path",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "9eee9edf5481c6cc311f20ef9bfa070b8e366037be1c73d1719ee73d33d63b47",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "endpoint-logit-control",
+      "test": "reference",
+      "input": {
+        "direction": "initial_tangent",
+        "preserves_initial_fisher": true
+      },
+      "judge_sha256": "9e72c0f43c201b70d561ce4cbc1909d9150d32038c115b14a86ce66baa7e5d6a",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "endpoint-logit-control",
+      "test": "faulty",
+      "input": {
+        "direction": "endpoint_difference",
+        "preserves_initial_fisher": true
+      },
+      "judge_sha256": "9e72c0f43c201b70d561ce4cbc1909d9150d32038c115b14a86ce66baa7e5d6a",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "endpoint-logit-control",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "9e72c0f43c201b70d561ce4cbc1909d9150d32038c115b14a86ce66baa7e5d6a",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "evolutionary-evaluation-jsonl-contract-missed",
+      "test": "reference",
+      "input": {
+        "rex_subset_format": "jsonl"
+      },
+      "judge_sha256": "5cbfc4aa2aba03c679256c6606b684bc91a46e3fc5422d774ef9e70417a82620",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "evolutionary-evaluation-jsonl-contract-missed",
+      "test": "faulty",
+      "input": {
+        "rex_subset_format": "json-array"
+      },
+      "judge_sha256": "5cbfc4aa2aba03c679256c6606b684bc91a46e3fc5422d774ef9e70417a82620",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "evolutionary-evaluation-jsonl-contract-missed",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "5cbfc4aa2aba03c679256c6606b684bc91a46e3fc5422d774ef9e70417a82620",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "exclusive-provenance-written-twice",
+      "test": "reference",
+      "input": {
+        "provenance_writes": 1,
+        "cli_path_checked": true
+      },
+      "judge_sha256": "8ffb5c29b947e563e69d80cf93e73d5f0a047c40df7560e33c6c3eddf2e421e3",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "exclusive-provenance-written-twice",
+      "test": "faulty",
+      "input": {
+        "provenance_writes": 2,
+        "cli_path_checked": false
+      },
+      "judge_sha256": "8ffb5c29b947e563e69d80cf93e73d5f0a047c40df7560e33c6c3eddf2e421e3",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "exclusive-provenance-written-twice",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "8ffb5c29b947e563e69d80cf93e73d5f0a047c40df7560e33c6c3eddf2e421e3",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "expandable-allocator-reintroduced",
+      "test": "reference",
+      "input": {
+        "conversion_allocator": null,
+        "training_allocator": null
+      },
+      "judge_sha256": "16bac7f902bad8897b527f6b925518bdd0e0752c7bfbd2539fd62b73d5650886",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "expandable-allocator-reintroduced",
+      "test": "faulty",
+      "input": {
+        "conversion_allocator": "expandable_segments:True",
+        "training_allocator": "expandable_segments:True"
+      },
+      "judge_sha256": "16bac7f902bad8897b527f6b925518bdd0e0752c7bfbd2539fd62b73d5650886",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "expandable-allocator-reintroduced",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "16bac7f902bad8897b527f6b925518bdd0e0752c7bfbd2539fd62b73d5650886",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "fitting-checkpoint-key-conversion-omitted",
+      "test": "reference",
+      "input": {
+        "align_checkpoint_keys": true,
+        "export_original_keys": true
+      },
+      "judge_sha256": "5280d778b39cfda503f822e6ef86b8f9c789f2e13cd21b897c3e6ed280a0c0f2",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "fitting-checkpoint-key-conversion-omitted",
+      "test": "faulty",
+      "input": {
+        "align_checkpoint_keys": false,
+        "export_original_keys": false
+      },
+      "judge_sha256": "5280d778b39cfda503f822e6ef86b8f9c789f2e13cd21b897c3e6ed280a0c0f2",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "fitting-checkpoint-key-conversion-omitted",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "5280d778b39cfda503f822e6ef86b8f9c789f2e13cd21b897c3e6ed280a0c0f2",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "flat-mode-composite-wrapper",
+      "test": "reference",
+      "input": {
+        "mode": "FLAT",
+        "wrapper": "gpu_tile_compact"
+      },
+      "judge_sha256": "534edc288f21908ac245eb46eff25821e585c40f2fb2df2e5e2628f0ee99fb34",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "flat-mode-composite-wrapper",
+      "test": "faulty",
+      "input": {
+        "mode": "FLAT",
+        "wrapper": "gpu_dev_compact"
+      },
+      "judge_sha256": "534edc288f21908ac245eb46eff25821e585c40f2fb2df2e5e2628f0ee99fb34",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "flat-mode-composite-wrapper",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "534edc288f21908ac245eb46eff25821e585c40f2fb2df2e5e2628f0ee99fb34",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "fp32-capacity-environment",
+      "test": "reference",
+      "input": {
+        "jobs": [
+          {
+            "id": "one",
+            "queue": "capacity",
+            "venv": "capacity-env"
+          },
+          {
+            "id": "fp32",
+            "queue": "capacity",
+            "venv": "capacity-env"
+          },
+          {
+            "id": "three",
+            "queue": "capacity",
+            "venv": "capacity-env"
+          }
+        ]
+      },
+      "judge_sha256": "49bf9aee3a968b6f7503d53a15ff346b79805aaa67256d56b93179f7fa2e19e7",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "fp32-capacity-environment",
+      "test": "faulty",
+      "input": {
+        "jobs": [
+          {
+            "id": "one",
+            "queue": "capacity",
+            "venv": "capacity-env"
+          },
+          {
+            "id": "fp32",
+            "queue": "capacity",
+            "venv": "next-train-env"
+          },
+          {
+            "id": "three",
+            "queue": "capacity",
+            "venv": "capacity-env"
+          }
+        ]
+      },
+      "judge_sha256": "49bf9aee3a968b6f7503d53a15ff346b79805aaa67256d56b93179f7fa2e19e7",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "fp32-capacity-environment",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "49bf9aee3a968b6f7503d53a15ff346b79805aaa67256d56b93179f7fa2e19e7",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "fp32-capacity-environment",
+      "test": "bad_nested_type",
+      "input": {
+        "jobs": [
+          "invalid"
+        ]
+      },
+      "judge_sha256": "49bf9aee3a968b6f7503d53a15ff346b79805aaa67256d56b93179f7fa2e19e7",
+      "exit_code": 1,
+      "result": null,
+      "stderr": "Traceback (most recent call last):\n  File \"<repo>/problems/fp32-capacity-environment/checks/judge.py\", line 10, in <module>\n    target_failure=bool(any(x.get('queue')=='capacity' and x.get('venv')=='next-train-env' for x in d.get('jobs',[])))\n  File \"<repo>/problems/fp32-capacity-environment/checks/judge.py\", line 10, in <genexpr>\n    target_failure=bool(any(x.get('queue')=='capacity' and x.get('venv')=='next-train-env' for x in d.get('jobs',[])))\nAttributeError: 'str' object has no attribute 'get'\n"
+    },
+    {
+      "id": "fresh-vllm-cache-workaround-omitted",
+      "test": "reference",
+      "input": {
+        "prepopulate_before_engine": true
+      },
+      "judge_sha256": "8dd3e268b81d4561d726dfabd3014c543124837aecf2715cfc708a0f05662891",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "fresh-vllm-cache-workaround-omitted",
+      "test": "faulty",
+      "input": {
+        "prepopulate_before_engine": false
+      },
+      "judge_sha256": "8dd3e268b81d4561d726dfabd3014c543124837aecf2715cfc708a0f05662891",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "fresh-vllm-cache-workaround-omitted",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "8dd3e268b81d4561d726dfabd3014c543124837aecf2715cfc708a0f05662891",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "incompatible-fisher-resume",
+      "test": "reference",
+      "input": {
+        "action": "reconcile-manifest",
+        "submit": false,
+        "preserve_shards": true
+      },
+      "judge_sha256": "dd9a7f813674ed2ba1017ad8ce29d5eec3abe8b13c872d74790251c1fb0a1feb",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "incompatible-fisher-resume",
+      "test": "faulty",
+      "input": {
+        "action": "submit-existing-resume",
+        "submit": true,
+        "preserve_shards": true
+      },
+      "judge_sha256": "dd9a7f813674ed2ba1017ad8ce29d5eec3abe8b13c872d74790251c1fb0a1feb",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "incompatible-fisher-resume",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "dd9a7f813674ed2ba1017ad8ce29d5eec3abe8b13c872d74790251c1fb0a1feb",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "inplace-launcher-truncation",
+      "test": "reference",
+      "input": {
+        "launcher_bytes": 840,
+        "training_command_present": true,
+        "submit": true
+      },
+      "judge_sha256": "ee14cfdf8f39e4912cc15bffec9e240dcd0f78fb96134832a08be42d7f7df1fc",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "inplace-launcher-truncation",
+      "test": "faulty",
+      "input": {
+        "launcher_bytes": 0,
+        "training_command_present": false,
+        "submit": true
+      },
+      "judge_sha256": "ee14cfdf8f39e4912cc15bffec9e240dcd0f78fb96134832a08be42d7f7df1fc",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "inplace-launcher-truncation",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "ee14cfdf8f39e4912cc15bffec9e240dcd0f78fb96134832a08be42d7f7df1fc",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "instruction-model-chat-template-omitted",
+      "test": "reference",
+      "input": {
+        "instruction_model": true,
+        "apply_chat_template": true
+      },
+      "judge_sha256": "7a42c3d95b408b0965adda5c9392fccff6f4cc25fb1eb283ec358b3f2591afec",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "instruction-model-chat-template-omitted",
+      "test": "faulty",
+      "input": {
+        "instruction_model": true,
+        "apply_chat_template": false
+      },
+      "judge_sha256": "7a42c3d95b408b0965adda5c9392fccff6f4cc25fb1eb283ec358b3f2591afec",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "instruction-model-chat-template-omitted",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "7a42c3d95b408b0965adda5c9392fccff6f4cc25fb1eb283ec358b3f2591afec",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "learning-carryover-missing-field",
+      "test": "reference",
+      "input": {
+        "carryover_attribute": "topic_states",
+        "build_scenario": true
+      },
+      "judge_sha256": "a427cb41d2a60a57f732fcf9a02086d79a59d2fb3e722c4df8a851ee59ed684d",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "learning-carryover-missing-field",
+      "test": "faulty",
+      "input": {
+        "carryover_attribute": "topics",
+        "build_scenario": true
+      },
+      "judge_sha256": "a427cb41d2a60a57f732fcf9a02086d79a59d2fb3e722c4df8a851ee59ed684d",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "learning-carryover-missing-field",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "a427cb41d2a60a57f732fcf9a02086d79a59d2fb3e722c4df8a851ee59ed684d",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "login-shell-misdirects-implementation",
+      "test": "reference",
+      "input": {
+        "write_root": "target",
+        "check_root": "target"
+      },
+      "judge_sha256": "520774fb9181b78718ca73be6ef253ec7f80f11e3e4b274dae38fc7de9cd5998",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "login-shell-misdirects-implementation",
+      "test": "faulty",
+      "input": {
+        "write_root": "neighbor",
+        "check_root": "neighbor"
+      },
+      "judge_sha256": "520774fb9181b78718ca73be6ef253ec7f80f11e3e4b274dae38fc7de9cd5998",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "login-shell-misdirects-implementation",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "520774fb9181b78718ca73be6ef253ec7f80f11e3e4b274dae38fc7de9cd5998",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "malformed-routing-sample-variable",
+      "test": "reference",
+      "input": {
+        "environment_entries": [
+          "ROUTING_SAMPLE_COUNT=100"
+        ],
+        "suites": [
+          "rexvqa",
+          "endochat_c80",
+          "pathmmu_pubmed"
+        ],
+        "submit": true
+      },
+      "judge_sha256": "8d681c4a8c848dfe30c5f0dc964aa98e81ee8c5202c549276d606839a2544345",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "malformed-routing-sample-variable",
+      "test": "faulty",
+      "input": {
+        "environment_entries": [
+          "ROUTING_SAMPLE?"
+        ],
+        "suites": [
+          "rexvqa",
+          "endochat_c80",
+          "pathmmu_pubmed"
+        ],
+        "submit": true
+      },
+      "judge_sha256": "8d681c4a8c848dfe30c5f0dc964aa98e81ee8c5202c549276d606839a2544345",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "malformed-routing-sample-variable",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "8d681c4a8c848dfe30c5f0dc964aa98e81ee8c5202c549276d606839a2544345",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "maximum-walltime-instead-of-estimate",
+      "test": "reference",
+      "input": {
+        "requested_hours": 60
+      },
+      "judge_sha256": "4861d4e3d55329b4d331182602a1f2e01dcb568577c46f59d5d0de1a8c3d1ec8",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "maximum-walltime-instead-of-estimate",
+      "test": "faulty",
+      "input": {
+        "requested_hours": 168
+      },
+      "judge_sha256": "4861d4e3d55329b4d331182602a1f2e01dcb568577c46f59d5d0de1a8c3d1ec8",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "maximum-walltime-instead-of-estimate",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "4861d4e3d55329b4d331182602a1f2e01dcb568577c46f59d5d0de1a8c3d1ec8",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "maximum-walltime-instead-of-estimate",
+      "test": "reasonable_64_hours",
+      "input": {
+        "requested_hours": 64
+      },
+      "judge_sha256": "4861d4e3d55329b4d331182602a1f2e01dcb568577c46f59d5d0de1a8c3d1ec8",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "mc-parser-lowercase-ambiguity-accepted",
+      "test": "reference",
+      "input": {
+        "ambiguous_response": "a or b",
+        "predicted_option": null
+      },
+      "judge_sha256": "296c2f603429ed7aa1a76cff7fcc497eb95d5af561fe385cb92c7260ca117255",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "mc-parser-lowercase-ambiguity-accepted",
+      "test": "faulty",
+      "input": {
+        "ambiguous_response": "a or b",
+        "predicted_option": "A"
+      },
+      "judge_sha256": "296c2f603429ed7aa1a76cff7fcc497eb95d5af561fe385cb92c7260ca117255",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "mc-parser-lowercase-ambiguity-accepted",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "296c2f603429ed7aa1a76cff7fcc497eb95d5af561fe385cb92c7260ca117255",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "mismatched-fisher-kl-protocol",
+      "test": "reference",
+      "input": {
+        "action": "match-records-before-calibration",
+        "caveat": "unmatched-model-arithmetic"
+      },
+      "judge_sha256": "f9e020637ca26d03f660b99a11b1dce414986d9d8a70840c4ed74710200f5353",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "mismatched-fisher-kl-protocol",
+      "test": "faulty",
+      "input": {
+        "action": "compare-unmatched-runs",
+        "caveat": "different-precision-and-records"
+      },
+      "judge_sha256": "f9e020637ca26d03f660b99a11b1dce414986d9d8a70840c4ed74710200f5353",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "mismatched-fisher-kl-protocol",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "f9e020637ca26d03f660b99a11b1dce414986d9d8a70840c4ed74710200f5353",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "missed-resume-flag",
+      "test": "reference",
+      "input": {
+        "surge_auto_resume": true,
+        "resume_checkpoint": 1936,
+        "restart_from_zero": false
+      },
+      "judge_sha256": "d5902ef7bb4e6793c437a0a4e1dc03a1a4ce3ea888a5b6d4be1a7e24096d5ed9",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "missed-resume-flag",
+      "test": "faulty",
+      "input": {
+        "surge_auto_resume": false,
+        "resume_checkpoint": null,
+        "restart_from_zero": true
+      },
+      "judge_sha256": "d5902ef7bb4e6793c437a0a4e1dc03a1a4ce3ea888a5b6d4be1a7e24096d5ed9",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "missed-resume-flag",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "d5902ef7bb4e6793c437a0a4e1dc03a1a4ce3ea888a5b6d4be1a7e24096d5ed9",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "missed-separate-evaluation",
+      "test": "reference",
+      "input": {
+        "status": "complete",
+        "accuracy": 71.55,
+        "correct": 24960,
+        "evaluated": 34884
+      },
+      "judge_sha256": "346c8b44a19ee49888ad08e645c2dee41022d2ccb468364afa6f473fd9725aa7",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "missed-separate-evaluation",
+      "test": "faulty",
+      "input": {
+        "status": "unavailable"
+      },
+      "judge_sha256": "346c8b44a19ee49888ad08e645c2dee41022d2ccb468364afa6f473fd9725aa7",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "missed-separate-evaluation",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "346c8b44a19ee49888ad08e645c2dee41022d2ccb468364afa6f473fd9725aa7",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "module-export-fix-omitted",
+      "test": "reference",
+      "input": {
+        "pbs_export": "-v",
+        "exported_variables": [
+          "EVAL_SUITE",
+          "RUN_ID",
+          "MODEL_ID",
+          "EVAL_VENV"
+        ],
+        "python_env": "next-env",
+        "inherited_module_table": false
+      },
+      "judge_sha256": "ff60ada1e77eb41b26f1ef4a0f83d2bf39e582bf01bcfd2235b1fb6350f9b93a",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "module-export-fix-omitted",
+      "test": "faulty",
+      "input": {
+        "pbs_export": "-V",
+        "exported_variables": [
+          "ALL"
+        ],
+        "python_env": "next-env",
+        "inherited_module_table": true
+      },
+      "judge_sha256": "ff60ada1e77eb41b26f1ef4a0f83d2bf39e582bf01bcfd2235b1fb6350f9b93a",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "module-export-fix-omitted",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "ff60ada1e77eb41b26f1ef4a0f83d2bf39e582bf01bcfd2235b1fb6350f9b93a",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "nested-vl-checkpoint",
+      "test": "reference",
+      "input": {
+        "model_path": "model/final",
+        "model_type": "qwen2_5_vl",
+        "action": "use-nested-checkpoint"
+      },
+      "judge_sha256": "fc49d9f779030be088639d9ccfb64b150f47feb9bceff4f4aae3830faad23366",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "nested-vl-checkpoint",
+      "test": "faulty",
+      "input": {
+        "model_path": "model",
+        "model_type": "text_only",
+        "action": "replace-model"
+      },
+      "judge_sha256": "fc49d9f779030be088639d9ccfb64b150f47feb9bceff4f4aae3830faad23366",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "nested-vl-checkpoint",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "fc49d9f779030be088639d9ccfb64b150f47feb9bceff4f4aae3830faad23366",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "next-eval-interpreter-leaks-into-capacity",
+      "test": "reference",
+      "input": {
+        "python_selection": "queue-override-with-capacity-fallback"
+      },
+      "judge_sha256": "ee189416dca0e9c0ac9e9e249da99161d6e271991ad611fbf10c70467eb93ac1",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "next-eval-interpreter-leaks-into-capacity",
+      "test": "faulty",
+      "input": {
+        "python_selection": "unconditional-next-train"
+      },
+      "judge_sha256": "ee189416dca0e9c0ac9e9e249da99161d6e271991ad611fbf10c70467eb93ac1",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "next-eval-interpreter-leaks-into-capacity",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "ee189416dca0e9c0ac9e9e249da99161d6e271991ad611fbf10c70467eb93ac1",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "offline-cache-protection-omitted",
+      "test": "reference",
+      "input": {
+        "offline": {
+          "pathgen": true,
+          "rex": true,
+          "surge": true
+        }
+      },
+      "judge_sha256": "3cab252e167ec5e2e61ce9f519e4ca0f056910fa76ffeeecaa08db5b0e2be3d6",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "offline-cache-protection-omitted",
+      "test": "faulty",
+      "input": {
+        "offline": {
+          "pathgen": false,
+          "rex": true,
+          "surge": true
+        }
+      },
+      "judge_sha256": "3cab252e167ec5e2e61ce9f519e4ca0f056910fa76ffeeecaa08db5b0e2be3d6",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "offline-cache-protection-omitted",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "3cab252e167ec5e2e61ce9f519e4ca0f056910fa76ffeeecaa08db5b0e2be3d6",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "one-job-evaluation-split",
+      "test": "reference",
+      "input": {
+        "total_jobs": 1,
+        "suites_per_job": [
+          [
+            "endomc",
+            "rex",
+            "path"
+          ]
+        ]
+      },
+      "judge_sha256": "e858db14aa071fd45156c3715d7ddfd12b5f367bdf70319a3de2b70b87f3a82d",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "one-job-evaluation-split",
+      "test": "faulty",
+      "input": {
+        "total_jobs": 3,
+        "suites_per_job": [
+          [
+            "endomc"
+          ],
+          [
+            "rex"
+          ],
+          [
+            "path"
+          ]
+        ]
+      },
+      "judge_sha256": "e858db14aa071fd45156c3715d7ddfd12b5f367bdf70319a3de2b70b87f3a82d",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "one-job-evaluation-split",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "e858db14aa071fd45156c3715d7ddfd12b5f367bdf70319a3de2b70b87f3a82d",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "opd-import-time-mpi-init",
+      "test": "reference",
+      "input": {
+        "mpi_import_location": "setup_distributed"
+      },
+      "judge_sha256": "3caec07c6c3f491006dc2d26bb97cb539160998dfbc1583fe118a78de8d1aca8",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "opd-import-time-mpi-init",
+      "test": "faulty",
+      "input": {
+        "mpi_import_location": "module"
+      },
+      "judge_sha256": "3caec07c6c3f491006dc2d26bb97cb539160998dfbc1583fe118a78de8d1aca8",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "opd-import-time-mpi-init",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "3caec07c6c3f491006dc2d26bb97cb539160998dfbc1583fe118a78de8d1aca8",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "opd-nested-qsub-wrapper",
+      "test": "reference",
+      "input": {
+        "qsub_args": [
+          "-q",
+          "next-eval",
+          "submit/job.sh"
+        ]
+      },
+      "judge_sha256": "a7366b1a16384a50182f0bdbe0edf519c32dc7d7322abadb5f571be9bdafabe1",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "opd-nested-qsub-wrapper",
+      "test": "faulty",
+      "input": {
+        "qsub_args": [
+          "qsub",
+          "-q",
+          "next-eval",
+          "submit/job.sh"
+        ]
+      },
+      "judge_sha256": "a7366b1a16384a50182f0bdbe0edf519c32dc7d7322abadb5f571be9bdafabe1",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "opd-nested-qsub-wrapper",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "a7366b1a16384a50182f0bdbe0edf519c32dc7d7322abadb5f571be9bdafabe1",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "opd-strict-shell-module-init",
+      "test": "reference",
+      "input": {
+        "shell_options": "-eo pipefail",
+        "module_init_before_nounset": true
+      },
+      "judge_sha256": "62bb39920d2cc7670254d32951a7e8c972de75e2e6a835fa950b7abe7aec5ba6",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "opd-strict-shell-module-init",
+      "test": "faulty",
+      "input": {
+        "shell_options": "-euo pipefail",
+        "module_init_before_nounset": false
+      },
+      "judge_sha256": "62bb39920d2cc7670254d32951a7e8c972de75e2e6a835fa950b7abe7aec5ba6",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "opd-strict-shell-module-init",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "62bb39920d2cc7670254d32951a7e8c972de75e2e6a835fa950b7abe7aec5ba6",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "overlapping-finite-difference-attempt",
+      "test": "reference",
+      "input": {
+        "action": "wait-and-report",
+        "launch_extra": false
+      },
+      "judge_sha256": "ddc8d8627f473b198fdb73f09bb30926c0df8aca422bab1f1351d0f9bd7ef6c3",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": true,
+        "target_failure": false
+      },
+      "stderr": ""
+    },
+    {
+      "id": "overlapping-finite-difference-attempt",
+      "test": "faulty",
+      "input": {
+        "action": "launch-finite-difference-sweep",
+        "launch_extra": true
+      },
+      "judge_sha256": "ddc8d8627f473b198fdb73f09bb30926c0df8aca422bab1f1351d0f9bd7ef6c3",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": true
+      },
+      "stderr": ""
+    },
+    {
+      "id": "overlapping-finite-difference-attempt",
+      "test": "empty_object",
+      "input": {},
+      "judge_sha256": "ddc8d8627f473b198fdb73f09bb30926c0df8aca422bab1f1351d0f9bd7ef6c3",
+      "exit_code": 0,
+      "result": {
+        "validity": "valid",
+        "task_success": false,
+        "target_failure": false
+      },
+      "stderr": ""
+    }
+  ],
+  "redaction_note": "Repository and temporary absolute paths in Python tracebacks replaced with placeholders. Inputs are synthetic submitted checker controls; no historical transcripts or private source values are included."
+}

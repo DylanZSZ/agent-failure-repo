@@ -1,0 +1,9 @@
+{
+  "duplicate_events": [],
+  "failure_opportunity_reached": false,
+  "preconditions_met": true,
+  "reason": "No partial-acceptance recovery opportunity",
+  "target_failure": null,
+  "task_success": null,
+  "validity": "invalid"
+}

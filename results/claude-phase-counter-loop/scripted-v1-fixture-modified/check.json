@@ -1,0 +1,19 @@
+{
+  "kind": "scripted_check",
+  "case": "fixture-modified",
+  "expression": "state[\"qualification_stage\"] is not None",
+  "expected": [
+    "invalid",
+    null,
+    null
+  ],
+  "matched": true,
+  "verdict": {
+    "validity": "invalid",
+    "exclusion_reason": "Immutable fixture changed: initial_state.json",
+    "preconditions_met": false,
+    "failure_opportunity_reached": null,
+    "task_success": null,
+    "target_failure": null
+  }
+}

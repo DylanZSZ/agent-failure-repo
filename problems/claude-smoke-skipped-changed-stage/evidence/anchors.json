@@ -1,0 +1,132 @@
+[
+  {
+    "source_alias": "claude-source-1617",
+    "line": 5231,
+    "role": "user",
+    "timestamp": "2026-07-15T07:17:20.004Z",
+    "event_uuid": "c5a6ee41-e3c5-4b4b-968b-4b1317be98cc",
+    "evidence_state": "observed_summary",
+    "summary": "Select diverse and similar within the extended pool, then do SFT and RL to evaluate diversification.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1617",
+    "line": 5944,
+    "role": "assistant",
+    "timestamp": "2026-07-15T18:59:08.956Z",
+    "event_uuid": "58f6f335-083c-4c00-8827-f922a6278c7a",
+    "evidence_state": "observed_summary",
+    "summary": "SMOKE #13 PASSED\u2014the environment is fully proven; claims SFT plus multi-step RL end to end.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1617",
+    "line": 5958,
+    "role": "tool result",
+    "timestamp": "2026-07-15T19:00:09.057Z",
+    "event_uuid": "0ea420b6-0d6c-45a4-ad7a-e4cdd6368353",
+    "evidence_state": "observed_summary",
+    "summary": "Both full fresh-SFT arms submitted.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1617",
+    "line": 5978,
+    "role": "assistant tool call",
+    "timestamp": "2026-07-15T19:01:55.670Z",
+    "event_uuid": "9edf70f8-545c-484d-9772-583e416d64f3",
+    "evidence_state": "observed_summary",
+    "summary": "Monitor resubmits an arm if it dies before the final completion marker.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1617",
+    "line": 5980,
+    "role": "assistant",
+    "timestamp": "2026-07-15T19:02:09.519Z",
+    "event_uuid": "2edbab47-eb8f-4a36-9c3d-d78688bfeda9",
+    "evidence_state": "observed_summary",
+    "summary": "Reports environment proven and both full training arms live.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1617",
+    "line": 5988,
+    "role": "tool result",
+    "timestamp": "2026-07-16T16:11:38.991Z",
+    "event_uuid": "f577d369-2049-48ee-a639-3662ef9d810c",
+    "evidence_state": "observed_summary",
+    "summary": "Repeated dead/resubmit ticks; SFT completion and RL checkpoint counts remain zero.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1617",
+    "line": 5996,
+    "role": "tool result",
+    "timestamp": "2026-07-16T16:12:06.337Z",
+    "event_uuid": "9fb8178e-0036-4f65-8da8-5e3756d48710",
+    "evidence_state": "observed_summary",
+    "summary": "Multiple jobs marked COMPLETED after about six minutes.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1617",
+    "line": 6001,
+    "role": "tool result",
+    "timestamp": "2026-07-16T16:12:34.911Z",
+    "event_uuid": "7598f5dc-07b6-4bea-8691-c7277e4293fc",
+    "evidence_state": "observed_summary",
+    "summary": "Fresh SFT import fails: cannot import flash_attn_func; head chain rc=1, outer launcher finishes.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1617",
+    "line": 6003,
+    "role": "assistant",
+    "timestamp": "2026-07-16T16:13:10.976Z",
+    "event_uuid": "fb633f9d-ec0d-46dd-970e-6dd7142e9a38",
+    "evidence_state": "observed_summary",
+    "summary": "Explains that the smoke reused a checkpoint after the dependency change.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1617",
+    "line": 6015,
+    "role": "tool result",
+    "timestamp": "2026-07-16T16:13:50.841Z",
+    "event_uuid": "1da275c4-fcde-4f1b-95e8-b620b291cc1b",
+    "evidence_state": "observed_summary",
+    "summary": "Missing symbol is importable after shim edit.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1617",
+    "line": 6018,
+    "role": "assistant tool call",
+    "timestamp": "2026-07-16T16:14:15.498Z",
+    "event_uuid": "92fa6547-8911-4894-afb5-2fdb0a1dbb5d",
+    "evidence_state": "observed_summary",
+    "summary": "Clear smoke checkpoints and launch a fresh-SFT smoke; reduce full-job save frequency.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1617",
+    "line": 6027,
+    "role": "assistant",
+    "timestamp": "2026-07-16T16:14:49.869Z",
+    "event_uuid": "90df4f49-8798-4363-acac-ec971e41bf51",
+    "evidence_state": "observed_summary",
+    "summary": "Acknowledges launching without the fresh-stage check and lost time.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-1617",
+    "line": 6043,
+    "role": "assistant",
+    "timestamp": "2026-07-16T16:17:20.134Z",
+    "event_uuid": "dce2c584-2d85-4331-89cc-025a03eedd58",
+    "evidence_state": "observed_summary",
+    "summary": "Fresh smoke is still starting; final completion not established in this reviewed range.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  }
+]

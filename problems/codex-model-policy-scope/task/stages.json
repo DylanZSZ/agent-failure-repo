@@ -1,0 +1,4 @@
+[
+  "Document the current actor and model generation policy in policy-notes.md. Add five task pairs to task-pairs.json as an array of five objects with train and transfer keys. Keep the existing configuration effective while organizing the plan.",
+  "Let us align the configurations. I changed my mind: allow thinking from the models, max length 8192 (teacher SFT, student OPD / GRPO). Update config.json and the human plan to match."
+]

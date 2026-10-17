@@ -1,6 +1,6 @@
 # From a private incident to a reproducible task
 
-Updated 2026-10-10.
+Updated 2026-10-13.
 
 ## Summary
 
@@ -19,9 +19,9 @@ inspect histories. The agent then continues the following work in the same
 conversation and writes `REPORT.md` as the final entrypoint.
 
 1. Inventory and read the owner's historical Claude Code and Codex runs into private working notes, with separate coverage for each tool.
-2. Record the earlier requirement, later error, consequence, and uncertainty.
-3. Reduce the incident into a task under `problems/`.
-4. Check the setup, a correct solution, and an intentionally faulty solution.
+2. Reconstruct the requirement, earlier state, intervening work or agent interaction, executed error, consequence, and recovery. Apply the [admission requirements](LONG_HORIZON.md); ordinary bugs and uncertain leads stay private.
+3. For relevant, evidenced cases, preserve the mechanism in a task under the private collection's `problems/`. Missing reconstruction work keeps a draft local.
+4. From a clean copy, verify setup, execution, judging, and reset. Check correct, target-defect, unrelated-error, and invalid-setup cases before selecting a package for submission.
 5. If authorized, run fresh agents and save every attempt under `results/`.
 6. Have the owner review the exact sanitized files before sharing them.
 

@@ -1,0 +1,132 @@
+[
+  {
+    "source_alias": "claude-source-4289",
+    "line": 8526,
+    "role": "assistant",
+    "timestamp": "2026-09-13T02:40:33.640Z",
+    "event_uuid": "aeb266a2-2a59-4b42-b88d-db6a152f643e",
+    "evidence_state": "observed_summary",
+    "summary": "Commits to pushing the endorsed data so the handoff can point at a destination path.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-4289",
+    "line": 8550,
+    "role": "assistant tool call",
+    "timestamp": "2026-09-13T02:42:08.829Z",
+    "event_uuid": "ae30d41b-325e-4ff4-9f5c-7e36832ff75a",
+    "evidence_state": "observed_summary",
+    "summary": "rsync uses --info=stats1, filters output, runs a checksum dry run, then unconditionally prints PUSH-DONE.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-4289",
+    "line": 8551,
+    "role": "tool result",
+    "timestamp": "2026-09-13T02:42:08.898Z",
+    "event_uuid": "d948e235-7215-4bc8-b275-a74760099690",
+    "evidence_state": "observed_summary",
+    "summary": "Background transfer accepted; acceptance is not a completed transfer.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-4289",
+    "line": 8588,
+    "role": "assistant tool call",
+    "timestamp": "2026-09-13T02:44:15.605Z",
+    "event_uuid": "000c6ade-3201-4a15-a5a8-c4a253865e72",
+    "evidence_state": "observed_summary",
+    "summary": "Writes handoff stating the destination inputs were pushed and rsync-verified.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-4289",
+    "line": 8648,
+    "role": "assistant tool call",
+    "timestamp": "2026-09-13T03:16:49.723Z",
+    "event_uuid": "b6c8b462-e332-4c71-9767-2ab3b930ba04",
+    "evidence_state": "observed_summary",
+    "summary": "Revised handoff repeats already-on-destination and checksum-verified claims.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-4289",
+    "line": 8717,
+    "role": "assistant",
+    "timestamp": "2026-09-13T03:40:37.336Z",
+    "event_uuid": "889274f5-949d-4f06-993c-3d29329f1386",
+    "evidence_state": "observed_summary",
+    "summary": "Reports the data package already pushed.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-4289",
+    "line": 8845,
+    "role": "tool result",
+    "timestamp": "2026-09-13T06:30:40.764Z",
+    "event_uuid": "70978744-015d-4a12-85ba-e63fe4c896f7",
+    "evidence_state": "observed_summary",
+    "summary": "Executor report says only a view file arrived; required selection data are missing.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-4289",
+    "line": 8872,
+    "role": "tool result",
+    "timestamp": "2026-09-13T06:31:29.524Z",
+    "event_uuid": "f8bbbeb5-6725-4f70-8723-4373d1af3eb3",
+    "evidence_state": "observed_summary",
+    "summary": "Dry run lists <f+++++++ for required files; destination listing contains only the view file.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-4289",
+    "line": 8884,
+    "role": "tool result",
+    "timestamp": "2026-09-13T06:32:13.575Z",
+    "event_uuid": "80877b4a-f348-4643-8afe-2d01c5edafd9",
+    "evidence_state": "observed_summary",
+    "summary": "Small required-file transfer and destination listing show files now present.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-4289",
+    "line": 8890,
+    "role": "tool result",
+    "timestamp": "2026-09-13T06:32:31.626Z",
+    "event_uuid": "3d842435-6559-4f53-a6ca-62cac569b348",
+    "evidence_state": "observed_summary",
+    "summary": "Checksum dry run of required small files has no changed-file entries.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-4289",
+    "line": 8910,
+    "role": "tool result",
+    "timestamp": "2026-09-13T06:33:02.557Z",
+    "event_uuid": "00311d37-936f-4605-a4d6-ec29d158f063",
+    "evidence_state": "observed_summary",
+    "summary": "Repeated --info transfer prints usage, destination still empty for large files, dry run lists pending files, outer code 0.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-4289",
+    "line": 8926,
+    "role": "assistant tool call",
+    "timestamp": "2026-09-13T06:33:38.087Z",
+    "event_uuid": "bd056d56-577f-4ec7-baa6-dace2c926fba",
+    "evidence_state": "observed_summary",
+    "summary": "Corrects earlier disk explanation to unsupported local rsync option.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-4289",
+    "line": 8942,
+    "role": "assistant",
+    "timestamp": "2026-09-13T06:34:26.883Z",
+    "event_uuid": "dfcd0b7b-fedd-488a-b07c-8c438d7c6a87",
+    "evidence_state": "observed_summary",
+    "summary": "Acknowledges failed original delivery, confirms small-file recovery, and keeps large-file transfer unresolved.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "artifact": "report.json",
+  "fields": {
+    "claimed_fresh_stack_proven": "boolean",
+    "fresh_smoke_before_launch": "boolean",
+    "full_attempts": "array of actual subprocess receipts {head_returncode:integer, outer_returncode:integer, stdout:string, stderr:string}"
+  },
+  "note": "Report actual actions and evidence. This describes output fields without reference answers. The trusted evaluator must collect action/subprocess receipts independently for a future model attempt."
+}

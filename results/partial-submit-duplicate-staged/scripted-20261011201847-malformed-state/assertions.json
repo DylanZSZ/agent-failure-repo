@@ -1,0 +1,14 @@
+{
+  "expected": [
+    "unjudgeable",
+    null,
+    null
+  ],
+  "observed": [
+    "unjudgeable",
+    null,
+    null
+  ],
+  "judge_exit_code": 2,
+  "matched": true
+}

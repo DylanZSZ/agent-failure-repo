@@ -1,6 +1,6 @@
 # Install the failure-collection skill
 
-Updated 2026-10-10.
+Updated 2026-10-13.
 
 ## Summary
 
@@ -14,7 +14,8 @@ Source: [Repository entrypoint](../README.md).
 Install `collect-agent-failures` once, then invoke it in an agent that can read
 historical Claude Code and Codex runs you select. Either host agent checks both
 tools' available transcripts. It searches all 20 symptom categories and new
-modes, captures detailed evidence, and builds small reproduction tasks. The
+modes, reconstructs detailed evidence, and builds faithful reproduction tasks
+for failures contributed to by earlier work or actual agent interaction. The
 installed folder includes the guides, templates, and tools; it works without
 keeping this repository clone. Installation itself does not read any history.
 
@@ -80,8 +81,15 @@ In Claude Code, begin with `/collect-agent-failures`. In Codex, begin with
 > messages, tool results, edits, tests, context changes, model settings, outcomes,
 > corrections, and counterevidence. Preserve source references and unknowns.
 > Keep a complete inventory and coverage report; do not stop after a few examples.
-> Build a minimal reproduction for every feasible credible incident and document
-> the intended error and checks. Keep originals local, show me the sanitized
+> Apply docs/LONG_HORIZON.md: select only actual failures with a sourced
+> contribution from extended work, context transitions, or agent interaction.
+> Reconstruct requirements, state, actions, consequences, and recovery with event
+> anchors; for multiple agents, record visibility and ordering. Keep ordinary bugs
+> and uncertain leads in the private inventory. Build faithful tasks for relevant,
+> evidenced cases and verify the documented commands and checker controls from
+> a clean copy before proposing submission. Zero eligible cases is fine.
+> Distinguish scripted checks from fresh agent attempts and causal comparisons.
+> Keep originals local, show me the sanitized
 > material before sharing, and leave exact continuation points for unfinished work.
 
 The agent creates a separate collection workspace. It does not write collected
@@ -94,7 +102,7 @@ selected exports or an authorized path; installation cannot unlock chat history.
 - A source inventory and search coverage for all 20 symptoms plus other modes.
 - A complete candidate index, including uncertain, duplicate, and rejected cases.
 - A detailed evidence record for each candidate, with missing fields explained.
-- Runnable task packages where feasible, plus concrete deferral reasons.
+- Selected runnable task packages that pass the admission requirements, plus local deferral reasons.
 - Every reproduction attempt and comparison, with claims matched to evidence.
 - A console explanation of findings, proposed submission files, checks, and gaps,
   with links to the complete local material.

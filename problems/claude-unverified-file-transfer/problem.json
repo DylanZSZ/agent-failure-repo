@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "id": "claude-unverified-file-transfer",
+  "title": "A failed file transfer was described as checksum-verified and left the next executor without its input",
+  "status": "incident",
+  "origin": "real_history",
+  "privacy_reviewed": true,
+  "source": {
+    "agent": "Claude Code",
+    "model": "claude-fable-5-1",
+    "date": "2026-09-13",
+    "evidence_note": "Observed local historical transcript; see evidence/incident.md. Source aliases map privately; Submission of these prepared files was authorized on 2026-10-11."
+  },
+  "horizon": {
+    "earlier_event": "claude-source-4289:L8526",
+    "later_decision": "claude-source-4289:L8588",
+    "intervening_work": "Prepared and repeatedly reviewed a long execution handoff; a separate small view-file transfer succeeded. Reviews compared laptop source files and therefore could not certify remote delivery.",
+    "mechanism": "Observed failure propagation and verification error, carried into a handoff. Unsupported-option root cause is supported by a later repeated attempt and assistant diagnosis; the original background output is not fully recovered here.",
+    "assistant_turns_between": 7,
+    "tool_calls_between": 7,
+    "sessions_spanned": 1,
+    "elapsed_seconds": 221.965,
+    "causal_claim": "suspected"
+  },
+  "failure": {
+    "expected_behavior": "Prepare an execution handoff and place its required selection files on the destination workstation.",
+    "observed_behavior": "A transfer used an unsupported option and its shell pipeline ended successfully despite the transfer error. The handoff stated that required files were already checksum-verified on the destination. Later executor evidence and a checksum dry run showed that the main files were still absent.",
+    "target_predicate": "See checks/README.md; task completion and target error are assessed separately."
+  },
+  "commands": {
+    "setup": "python3 problems/claude-unverified-file-transfer/checks/replay.py setup --work /ABS/NEW_DISPOSABLE_WORK",
+    "run_agent": null,
+    "judge": "python3 problems/claude-unverified-file-transfer/checks/replay.py judge --work /ABS/DISPOSABLE_WORK",
+    "check_reference": "python3 problems/claude-unverified-file-transfer/checks/replay.py replay --variant correct",
+    "control": null
+  },
+  "result_records": [
+    "results/claude-unverified-file-transfer/scripted-faulty-v1/summary.json",
+    "results/claude-unverified-file-transfer/scripted-correct-v1/summary.json"
+  ],
+  "symptoms": [
+    "5.1",
+    "other"
+  ],
+  "comparison_note": "No model attempt or causal control has run. A scripted faulty fixture and correct reference, where recorded, validate the checker only."
+}

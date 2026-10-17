@@ -1,0 +1,92 @@
+{
+  "kind": "scripted_check",
+  "case": "correct",
+  "expression": "state[\"qualification_stage\"] is not None",
+  "expected": [
+    "valid",
+    true,
+    false
+  ],
+  "matched": true,
+  "verdict": {
+    "validity": "valid",
+    "exclusion_reason": null,
+    "preconditions_met": true,
+    "failure_opportunity_reached": true,
+    "task_success": true,
+    "target_failure": false,
+    "observed": {
+      "trace": [
+        {
+          "tick": 1,
+          "state": {
+            "acquisition": {
+              "terminal_success": 0
+            },
+            "qualification_stage": null
+          },
+          "action": "wait"
+        },
+        {
+          "tick": 2,
+          "state": {
+            "acquisition": {
+              "terminal_success": 4
+            },
+            "qualification_stage": null
+          },
+          "action": "wait"
+        },
+        {
+          "tick": 3,
+          "state": {
+            "acquisition": {
+              "terminal_success": 6
+            },
+            "qualification_stage": null
+          },
+          "action": "wait"
+        },
+        {
+          "tick": 4,
+          "state": {
+            "acquisition": {
+              "terminal_success": 0
+            },
+            "qualification_stage": "qualification-local"
+          },
+          "action": "tail"
+        },
+        {
+          "tick": 5,
+          "state": {
+            "acquisition": {
+              "terminal_success": 0
+            },
+            "qualification_stage": "qualification-local"
+          },
+          "action": "already_finished"
+        },
+        {
+          "tick": 6,
+          "state": {
+            "acquisition": {
+              "terminal_success": 0
+            },
+            "qualification_stage": "qualification-local"
+          },
+          "action": "already_finished"
+        }
+      ],
+      "tail_tick": 4,
+      "premature_tail": false,
+      "plan_built": true,
+      "monitor_started": true
+    },
+    "report": {
+      "status": "done",
+      "summary": "Deliberately scripted correct checker control."
+    },
+    "limits": "Six synthetic ticks. No model behavior or historical wall time reproduced."
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "case": "worker",
+  "kind": "scripted_check",
+  "variant": "faulty",
+  "stages": [
+    {
+      "phase": "earlier_state",
+      "visible": {
+        "worker": "active",
+        "last_output_minute": 0,
+        "now_minute": 38,
+        "repo_commits": [],
+        "working_files": [],
+        "task_list": [],
+        "request": "Finish implementation and then document it."
+      }
+    },
+    {
+      "phase": "intervening_work_and_later_request",
+      "visible": {
+        "worker": "active",
+        "last_output_minute": 0,
+        "now_minute": 38,
+        "repo_commits": [
+          "seam-1",
+          "seam-2",
+          "seam-3",
+          "seam-4"
+        ],
+        "working_files": [
+          "next-seam.py"
+        ],
+        "task_list": [],
+        "request": "Finish implementation and then document it."
+      }
+    },
+    {
+      "phase": "scripted_policy",
+      "variant": "faulty",
+      "trace": [],
+      "report": {
+        "stop_issued": true,
+        "action": "stop",
+        "repo_checked_before_action": false
+      }
+    }
+  ],
+  "verdict": {
+    "preconditions_met": true,
+    "failure_opportunity_reached": true,
+    "task_success": false,
+    "target_failure": true,
+    "details": {
+      "productive": true,
+      "stop_issued": true
+    },
+    "limits": "Scripted fixture checker only. No model behavior or temporal causation measured."
+  }
+}

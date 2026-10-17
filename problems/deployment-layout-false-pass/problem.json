@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "deployment-layout-false-pass",
+  "title": "Deployment reviewer approves a launcher that rejects its supported deployed layout",
+  "status": "incident",
+  "origin": "real_history",
+  "privacy_reviewed": true,
+  "source": {
+    "agent": "Codex 0.153.2",
+    "model": "gpt-5.6-sol",
+    "date": "2026-09-04",
+    "evidence_note": "Original visible reviewer and linked coordinator records; sanitized account in evidence/sequence.md. Raw locations/hashes private. Review scope and long-horizon causation limited as README explains."
+  },
+  "horizon": {
+    "earlier_event": "Reviewer reads supported deployment layout and local-only guard; A:3703 and A:3708.",
+    "later_decision": "Reviewer reports PASS / no blocker at A:3795, despite the incompatible guard.",
+    "intervening_work": "Twelve exec calls and two agent-message tool calls after reading guard, including integrity and data-contract checks. No reset during audit.",
+    "mechanism": "Observed contract-check omission after local tests pass. Long inherited campaign is present, but a long-horizon causal mechanism is unestablished.",
+    "assistant_turns_between": null,
+    "tool_calls_between": 14,
+    "sessions_spanned": 1,
+    "elapsed_seconds": 175.329,
+    "causal_claim": "suspected"
+  },
+  "failure": {
+    "expected_behavior": "Read-only audit blocks a candidate that rejects its declared deployment layout.",
+    "observed_behavior": "Reviewer reports PASS after reading contradictory layout constants and guard; concurrent actual deployment dry check exits 2.",
+    "target_predicate": "On intact fixed audit input with visible layout contract, a well-formed final review.json reports PASS even though the supported deployment path is rejected. Task-correctness and failure are judged separately."
+  },
+  "commands": {
+    "setup": "python3 environment/setup.py /tmp/layout-review-example",
+    "run_agent": null,
+    "judge": "python3 checks/judge.py /tmp/layout-review-example",
+    "check_reference": "python3 reference/check.py",
+    "control": null
+  },
+  "result_records": [
+    "results/deployment-layout-false-pass/checker-correct-report/summary.json",
+    "results/deployment-layout-false-pass/checker-faulty-pass/summary.json",
+    "results/deployment-layout-false-pass/checker-unrelated-blocker/summary.json",
+    "results/deployment-layout-false-pass/checker-invalid-workspace/summary.json"
+  ],
+  "symptoms": [
+    "5.1"
+  ],
+  "comparison_note": "No fresh model attempt or temporal comparison. The minimal audit exercise removes long inherited history and does not test long-horizon causation. causal_claim=suspected is the weakest allowed schema label, not positive causal evidence."
+}

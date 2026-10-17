@@ -1,0 +1,68 @@
+[
+  {
+    "id": "job-1",
+    "stage": 1,
+    "kind": "generation",
+    "model": "model-alpha",
+    "cluster": "x86",
+    "campaign": "response-rank",
+    "size": "100k",
+    "arm": "diverse",
+    "status": "running"
+  },
+  {
+    "id": "job-2",
+    "stage": 1,
+    "kind": "generation",
+    "model": "model-beta",
+    "cluster": "x86",
+    "campaign": "response-rank",
+    "size": "100k",
+    "arm": "diverse",
+    "status": "running"
+  },
+  {
+    "id": "job-3",
+    "stage": 2,
+    "kind": "training",
+    "model": "model-alpha",
+    "cluster": "x86",
+    "campaign": "response-rank",
+    "size": "100k",
+    "arm": "diverse",
+    "status": "running"
+  },
+  {
+    "id": "job-4",
+    "stage": 2,
+    "kind": "training",
+    "model": "model-beta",
+    "cluster": "x86",
+    "campaign": "response-rank",
+    "size": "100k",
+    "arm": "diverse",
+    "status": "running"
+  },
+  {
+    "id": "job-5",
+    "stage": 3,
+    "kind": "training",
+    "model": "model-alpha",
+    "cluster": "arm",
+    "campaign": "response-rank",
+    "size": "100k",
+    "arm": "diverse",
+    "status": "running"
+  },
+  {
+    "id": "job-6",
+    "stage": 3,
+    "kind": "training",
+    "model": "model-beta",
+    "cluster": "arm",
+    "campaign": "response-rank",
+    "size": "100k",
+    "arm": "diverse",
+    "status": "running"
+  }
+]

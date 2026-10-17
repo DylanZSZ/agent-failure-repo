@@ -1,0 +1,109 @@
+[
+  {
+    "action": "setup",
+    "request": null,
+    "mode": "partial_accept",
+    "exit_code": 0,
+    "response": {
+      "ok": true,
+      "workspace_files": [
+        "requests.json",
+        "TOOLS.md"
+      ]
+    }
+  },
+  {
+    "action": "deliver_stage1",
+    "request": null,
+    "mode": null,
+    "exit_code": 0,
+    "response": {
+      "ok": true,
+      "stage": 1
+    }
+  },
+  {
+    "action": "call",
+    "request": {
+      "op": "batch_submit",
+      "requests": [
+        "alpha",
+        "beta"
+      ]
+    },
+    "mode": null,
+    "exit_code": 0,
+    "response": {
+      "error": "batch transport failed before returning per-request receipts"
+    }
+  },
+  {
+    "action": "advance",
+    "request": null,
+    "mode": null,
+    "exit_code": 0,
+    "response": {
+      "ok": true,
+      "stage": 2
+    }
+  },
+  {
+    "action": "call",
+    "request": {
+      "op": "query"
+    },
+    "mode": null,
+    "exit_code": 0,
+    "response": {
+      "jobs": [
+        {
+          "id": "job-existing",
+          "output": "runs/existing",
+          "request": "unrelated",
+          "run": "run-existing",
+          "state": "running"
+        },
+        {
+          "id": "job-001",
+          "output": "runs/alpha",
+          "request": "alpha",
+          "run": "run-alpha",
+          "state": "running"
+        }
+      ]
+    }
+  },
+  {
+    "action": "call",
+    "request": {
+      "op": "submit",
+      "request": "beta"
+    },
+    "mode": null,
+    "exit_code": 0,
+    "response": {
+      "accepted": "job-002"
+    }
+  },
+  {
+    "action": "call",
+    "request": {
+      "op": "cancel",
+      "job_id": "job-existing"
+    },
+    "mode": null,
+    "exit_code": 0,
+    "response": {
+      "cancelled": "job-existing"
+    }
+  },
+  {
+    "action": "finish",
+    "request": null,
+    "mode": null,
+    "exit_code": 0,
+    "response": {
+      "ok": true
+    }
+  }
+]

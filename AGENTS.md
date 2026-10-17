@@ -1,20 +1,30 @@
 # Instructions for agents collecting failures comprehensively
 
-Updated 2026-10-10.
+Updated 2026-10-13.
 
 ## Summary
 
-Collect as many distinct, credible failures as the contributor's authorized history supports. Search the full agreed scope against [all 20 symptoms](docs/SYMPTOMS.md), and retain failures that do not fit them. Do not stop after one example, a few interesting examples, or one hit per symptom. Build minimal reproductions for every feasible credible incident and report evidence separately from inferred causes.
+Search the full authorized history against [all 20 symptoms](docs/SYMPTOMS.md), including additional modes. Keep a complete private inventory, but submit only failures that pass [the admission requirements](docs/LONG_HORIZON.md): an observed violation, a supported contribution from earlier work or agent interaction, auditable evidence, and a verified runnable reconstruction. There is no quota; zero eligible submissions is a valid result.
+
+**The research target is failure contributed to by extended work, context transitions, or multi-agent interaction.** Read
+[the temporal criteria](docs/LONG_HORIZON.md) before selecting reproductions.
+Look for earlier obligations, discoveries, scoped knowledge, completed work,
+provisional mistakes, or commitments that change a later decision. For multiple
+agents, reconstruct the consequential interaction and each actor's available
+state. A short coordination failure can qualify without being called long-running.
+Ordinary local bugs and ambiguous leads stay in the private inventory; neither
+transcript length nor the presence of a subagent establishes relevance.
 
 The primary sources are **historical Claude Code and Codex runs**. Check both
 tools regardless of which one is running this collection. Use the current
 conversation as supplementary evidence. Follow [the historical-run guide](docs/HISTORY.md)
 to inventory local transcripts by authorized project and read every selected
 source through its end. Include relevant subagents and Codex archived sessions.
+
 Record a separate access and coverage status for each tool. A prompt index,
 recent-session list, or current-chat review cannot stand in for past transcripts.
 
-When launched through the repository README, continue the collection in the
+When launched through the repository readme, continue the collection in the
 same conversation after setup. The target project is the user's project from
 before setup, not the collection kit. Use the printed collection workspace;
 do not require another skill invocation or repeat permission already granted
@@ -28,10 +38,10 @@ collection intact and start a separate workspace.
 2. **Inventory the scope before selecting examples.** Make private working copies of the [collection report](templates/collection-report.md) and [incident index](templates/incident-index.csv). List every authorized source, the portions available, what you inspected, and what remains unread or inaccessible. Keep stable source references privately and sanitize them before sharing.
 3. **Search in multiple passes.** Review the chronology, then check each symptom across the entire authorized scope, then inspect state changes and handoffs that keyword searches may miss. Identify earlier rules, correct states, or discoveries and the later actions that mishandle them. Follow [the history review guide](docs/FINDING_FAILURES.md). A search with no matches is not evidence that the whole scope was reviewed.
 4. **Record every distinct candidate.** Add each incident to the index before deciding whether it deserves a reproduction. Give it any matching symptom labels, or an unmatched label and plain-language description. Deduplicate repeated references to the same event, not separate events in the same class. Keep uncertain and rejected candidates with reasons; do not silently drop them. For each candidate, work through [the detailed evidence guide](docs/EVIDENCE.md) and [incident evidence form](templates/incident-evidence.md) in private storage before summarizing. Capture relevant supporting and contradictory evidence; label missing or withheld information without guessing.
-5. **Check meaning and time dependence.** For each candidate, explain the consequence and a feasible correct action using the information available then. Record intervening work, accessible reminders, and context changes. A long transcript alone does not establish a failure caused by extended work. Keep alternative explanations explicit.
-6. **Package every feasible credible incident.** Use `python3 commands/new_problem.py <slug>` for each distinct contribution. Preserve the earlier event, the intervening work or boundary, and the later decision in a disposable local environment. Do not start from the already broken final state. Follow [the reproduction guide](docs/REPRODUCING.md). If a candidate cannot be packaged or evaluated, record why and the next action; do not replace the collection with a shortlist.
-7. **Separate the checks.** Define one check for completing the user's task and another for the intended failure. Record whether preconditions hold and the failure opportunity was reached. Infrastructure crashes, missing prerequisites, and absent evidence may make an attempt invalid or unjudgeable. A product crash caused by the agent can itself be the target failure when the declared check supports that conclusion.
-8. **Record every attempt.** Save sanitized summaries and evidence under `results/<slug>/<run-id>/`. Distinguish original incidents, scripted replays, deliberately broken examples, and fresh model attempts. Keep misses and invalid attempts as well as hits. Never invent model outputs, missing steps, or evaluation results.
+5. **Select using evidence.** Complete [the temporal review](templates/temporal-review.md): earlier anchor, substantive intervening work or coordination event, later action, meaningful effect, information available, and strongest alternative explanation. Link each part to recorded events and state. Separate observations, reconstructed state, and inferred causes. Missing essential instructions, actions, ordering, or consequences blocks selection. Unknown optional metadata does not. Count pre-error work separately from idle time and recovery. Record each lead as selected, needs evidence, needs reconstruction, or out of scope, with reasons.
+6. **Build faithful tasks for relevant, evidenced cases.** Use `python3 commands/new_problem.py <slug>` in the private collection workspace after the evidence gates pass. Preserve actual earlier agent work, accumulated state, competing demands, and the legitimate later request. Do not start after the crucial mistake or supply its diagnosis. Explain whether the final fixture makes the earlier stages unnecessary. Follow [the reproduction guide](docs/REPRODUCING.md), including actor visibility and ordering for multi-agent cases. A draft becomes submission-ready only after the documented commands work from a clean copy and the checker controls pass. Unrunnable cases remain local with an exact next action.
+7. **Separate the checks.** Define one check for completing the user's task and another for the intended failure. Record whether preconditions hold and the failure opportunity was reached in the agent's actual state. Distinguish the intended error from unexpected errors, the actor's actions from later product replay, and current success from lasting historical damage. Check valid alternative implementations against the published requirements. Infrastructure crashes, missing prerequisites, and absent evidence may make an attempt invalid or unjudgeable. A product crash caused by the agent can itself be the target failure when the declared check supports that conclusion.
+8. **Record every attempt.** Save summaries and evidence under the private collection's `results/<slug>/<run-id>/`; sanitize records selected for sharing. Distinguish original incidents, scripted replays, deliberately broken examples, and fresh model attempts. Keep misses and invalid attempts as well as hits. Verified setup and checker controls can support a packaged submission without a fresh model hit. Neither those checks nor a historical replay establish an error rate or a causal effect. Never invent model outputs, missing steps, or evaluation results.
 9. **Reconcile coverage and validate.** Account for every indexed candidate and all 20 symptom searches, plus unmatched modes. Mark coverage complete only for material actually reviewed; record gaps and continuation points. Complete each package's documentation and run `python3 commands/validate.py`. This checks structure only; it cannot certify search completeness, runtime behavior, or causal claims.
 10. **Prepare an owner review.** Keep raw histories and unreviewed extracts in the ignored `.local/` directory or the contributor's chosen private location. Show the exact sanitized files proposed for sharing. The contributor must review them before you upload them, open a pull request, or publish their contents. Follow [the review checklist](docs/REVIEW.md).
 
@@ -50,12 +60,24 @@ collection intact and start a separate workspace.
 ## Finish with a useful report
 
 Prepare the shareable files defined in [what to push](docs/SUBMITTING.md):
-sanitized collection summary, index, and coverage; each credible problem and
-its reviewed historical evidence; runnable task files where feasible; and every
-actual evaluation record. Keep original histories and private working reports
-local. State missing reproduction or evaluation work without fabricating runs.
+sanitized collection summary, selected-case index, and coverage; each eligible
+problem with reviewed historical evidence and verified runnable task files; and
+every actual attempt for those problems. Keep the complete candidate inventory,
+out-of-scope errors, unresolved drafts, and original histories local. Summarize
+deferral counts without publishing private leads. State absent fresh evaluations.
 
-Write `REPORT.md` at the collection root as the user's entrypoint. Include a short summary and a complete candidate table with symptom, observed horizon, consequence, evidence, reproduction status, and next action. Link the private coverage report, complete incident index, detailed records, and all completed problem packages. Report the inspected scope and gaps; counts of distinct candidates, duplicates, rejected cases, packaged tasks, and deferred work; and the actual outcomes of every reproduction attempt. Keep counts consistent with the index. For each deferred or unreproduced incident, give the reason, evidence level, and next action. State the main limitation instead of claiming an exhaustive search or causal explanation the evidence cannot support. Give the user the absolute report path; setup alone is not a completed collection.
+Write `REPORT.md` at the collection root as the user's entrypoint. Include a short summary and a complete candidate table with symptom, observed horizon, consequence, evidence, reproduction status, and next action. Link the private coverage report, complete incident index, detailed records, and all completed problem packages.
+
+Report the inspected scope and gaps; counts of distinct candidates, duplicates, rejected cases, packaged tasks, and deferred work; and the actual outcomes of every reproduction attempt. Keep counts consistent with the index. For each deferred or unreproduced incident, give the reason, evidence level, and next action. State the main limitation instead of claiming an exhaustive search or causal explanation the evidence cannot support. Give the user the absolute report path; setup alone is not a completed collection.
+
+The report must separate original temporal relevance from reproduction
+readiness and causal evidence. Include each case's completed temporal review
+in its account or linked evidence document. Do not mix short controls into the
+primary long-running candidate count or call scripted defects model failures.
+Within temporal candidates, separately count substantial intervening work,
+short mechanisms, and unknown exposure. A two-turn stateful retry is not an
+observed long-running incident. Keep legitimate revisions and reprioritizations
+as rejected leads when no still-applicable requirement was violated.
 
 In the console, explain the findings, exact proposed or pushed files, checks,
 missing results, and next steps. Give the local report path and, only after a

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "problem_id": "codex-parallel-campaign-omission",
+  "run_id": "checker-deliberately-faulty",
+  "kind": "scripted_check",
+  "phase": "development",
+  "condition": "main",
+  "pair_id": null,
+  "model": null,
+  "agent": "Python standard-library scripted checker fixture",
+  "settings": {
+    "faulty_fixture": true,
+    "network": false,
+    "provider_calls": 0
+  },
+  "task_revision": "local-staged-v1",
+  "judge_revision": "local-record-judge-v1",
+  "started_at": "2026-10-11T06:16:02.941704+00:00",
+  "actual_horizon": {
+    "assistant_turns": 0,
+    "tool_calls": 0,
+    "sessions": 0,
+    "elapsed_seconds": 0.31617666700000013
+  },
+  "validity": "valid",
+  "exclusion_reason": null,
+  "preconditions_met": true,
+  "failure_opportunity_reached": true,
+  "task_success": false,
+  "target_failure": true,
+  "evidence": [
+    "execution.txt",
+    "jobs.json",
+    "report.json"
+  ],
+  "notes": "Deliberately faulty final-stage fixture tests the checker; no model chose this action, and it is not an additional historical incident."
+}

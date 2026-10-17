@@ -1,0 +1,102 @@
+[
+  {
+    "source_alias": "claude-source-12852",
+    "line": 1,
+    "role": "delegated task",
+    "timestamp": "2026-09-08T14:38:45.164Z",
+    "event_uuid": "9bee4cbe-cd56-4c61-864c-a333a0b1c4db",
+    "evidence_state": "observed_summary",
+    "summary": "Scratch dry runs with PATH shims for dashboard and remote tools are required; the pack is otherwise read-only.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-12852",
+    "line": 118,
+    "role": "assistant tool call",
+    "timestamp": "2026-09-08T14:41:49.103Z",
+    "event_uuid": "4bd55365-00b3-4669-a94d-3eac1750b946",
+    "evidence_state": "observed_summary",
+    "summary": "Sets a temporary dashboard-directory environment variable, then invokes the real update tool for done and completed states.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-12852",
+    "line": 119,
+    "role": "tool result",
+    "timestamp": "2026-09-08T14:41:49.470Z",
+    "event_uuid": "33c02be2-b5b1-4c53-b55c-8a500d3b6909",
+    "evidence_state": "observed_summary",
+    "summary": "done updates the real dashboard; completed is rejected by state validation.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-12852",
+    "line": 122,
+    "role": "assistant",
+    "timestamp": "2026-09-08T14:41:53.403Z",
+    "event_uuid": "1b224307-2f3f-4be8-885a-c7b4ee0a0f09",
+    "evidence_state": "observed_summary",
+    "summary": "Acknowledges accidental real-dashboard write because the environment override is unsupported.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-12852",
+    "line": 124,
+    "role": "tool result",
+    "timestamp": "2026-09-08T14:41:54.541Z",
+    "event_uuid": "0535c120-94dd-4b73-a130-d7bf9dac3d20",
+    "evidence_state": "observed_summary",
+    "summary": "Finds the stray run and code showing the fixed runs directory.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-12852",
+    "line": 127,
+    "role": "assistant tool call",
+    "timestamp": "2026-09-08T14:41:56.959Z",
+    "event_uuid": "bb38eb61-4db1-40e2-99ab-8bde0207fe9d",
+    "evidence_state": "observed_summary",
+    "summary": "Removes only the stray verification run.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-12852",
+    "line": 128,
+    "role": "tool result",
+    "timestamp": "2026-09-08T14:41:57.094Z",
+    "event_uuid": "4e1b3f32-accb-4858-89d7-afbb7db5cbe8",
+    "evidence_state": "observed_summary",
+    "summary": "Stray run no longer found.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-12852",
+    "line": 132,
+    "role": "tool result",
+    "timestamp": "2026-09-08T14:42:03.025Z",
+    "event_uuid": "7d0ca989-aa1d-4a53-9c1e-4dd9cff03ba3",
+    "evidence_state": "observed_summary",
+    "summary": "Test ID still exists in the top-level JSON/HTML index.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-12852",
+    "line": 138,
+    "role": "assistant tool call",
+    "timestamp": "2026-09-08T14:42:07.734Z",
+    "event_uuid": "25ddafb4-8df0-4228-87a8-c8853649a6c1",
+    "evidence_state": "observed_summary",
+    "summary": "Regenerates the dashboard index and checks for the test ID.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-12852",
+    "line": 139,
+    "role": "tool result",
+    "timestamp": "2026-09-08T14:42:08.299Z",
+    "event_uuid": "42e4a899-e294-4f91-8f49-1d693fa5ca92",
+    "evidence_state": "observed_summary",
+    "summary": "Index regeneration completes; no test-ID match printed.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  }
+]

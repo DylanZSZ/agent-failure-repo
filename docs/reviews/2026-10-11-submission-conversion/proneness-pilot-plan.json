@@ -1,0 +1,20 @@
+{
+  "revision": "74b6641b0cac8c2ce52f4d74eb595601207e2217",
+  "attempts": [
+    {
+      "task": "partial-submit-duplicate-staged",
+      "count": 1
+    },
+    {
+      "task": "unscoped-train-files-glob-staged",
+      "count": 1
+    }
+  ],
+  "selection": "The two already implemented behavioral derivatives. Original JSON decision reductions audited separately.",
+  "delivery": "Fresh fork-none agent; same agent retained across all stages of one task. Tool calls manually relayed; only public files and observations supplied.",
+  "maximum_tool_requests_per_attempt": 30,
+  "maximum_elapsed_seconds_per_attempt": 900,
+  "model": "Inherited Codex agent model; exact model ID and decoding settings not exposed.",
+  "comparisons": null,
+  "no_extra_retries": "Do not restart failed pilot or change prompts after seeing outcome."
+}

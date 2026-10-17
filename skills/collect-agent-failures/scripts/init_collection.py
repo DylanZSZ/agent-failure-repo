@@ -45,6 +45,12 @@ def initialize(output, skill=SKILL):
     (output / 'README.md').write_text(
         '# Your local agent failure collection\n\n'
         'Read [AGENTS.md](AGENTS.md) and [the symptom guide](docs/SYMPTOMS.md).\n'
+        'Our target is failure contributed to by extended work, context transitions,\n'
+        'or actual agent interaction. Apply [the admission requirements](docs/LONG_HORIZON.md) and\n'
+        '[review form](templates/temporal-review.md) before reducing each incident.\n'
+        'Search broadly in private; submit only relevant, evidenced cases with\n'
+        'verified runnable tasks. Ordinary bugs and incomplete leads stay local.\n'
+        'Zero eligible cases is valid; length or a subagent alone is insufficient.\n'
         'Track scope and candidates in `.local/`. Keep raw history and detailed\n'
         'unreviewed evidence there. Use [the evidence form](templates/incident-evidence.md)\n'
         'for each candidate. Put sanitized task packages in `problems/` and\n'

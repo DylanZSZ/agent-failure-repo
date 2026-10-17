@@ -1,0 +1,11 @@
+{
+  "duplicate_events": [],
+  "failure_opportunity_reached": true,
+  "preconditions_met": true,
+  "reason": null,
+  "requested_jobs_active_once": false,
+  "target_failure": false,
+  "task_success": false,
+  "unrelated_work_preserved": true,
+  "validity": "valid"
+}

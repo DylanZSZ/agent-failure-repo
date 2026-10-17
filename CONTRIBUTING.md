@@ -1,10 +1,12 @@
-# Collect as many real failures as your history supports
+# Search broadly and submit supported, reproducible failures
 
-Updated 2026-10-10.
+Updated 2026-10-13.
 
 ## Summary
 
-Ask your agent to search the full history you authorize and collect every distinct credible failure it can find. Use [all 20 symptoms](docs/SYMPTOMS.md) as a search checklist, while retaining other modes too. There is no quota or limit, and finding one example does not finish the search. Incident reports are welcome when a runnable reproduction is not yet feasible.
+Ask your agent to search the full history you authorize, then submit only failures with clear evidence that extended work, a context transition, or actual multi-agent interaction contributed. Use [all 20 symptoms](docs/SYMPTOMS.md) as search directions, including other modes where relevant. There is no quota, and zero qualifying cases is a valid result. Keep the complete lead inventory private.
+
+Apply the [four submission gates](docs/LONG_HORIZON.md#four-gates-for-new-submissions): an actual violation, a sourced contribution from the target mechanism, an auditable evidence chain, and a clean runnable reconstruction verified with checker controls. A long transcript or the presence of subagents does not satisfy those gates. Brief coordination failures can qualify without supporting a claim about duration.
 
 Start with **historical Claude Code and Codex runs** for your selected project.
 The collecting agent checks both tools' transcript stores and reports coverage
@@ -15,18 +17,18 @@ and read](docs/HISTORY.md).
 
 | Contribution | What it contains | What it supports |
 |---|---|---|
-| Incident only | A sanitized account and available evidence | This incident occurred; the proposed cause may be uncertain |
-| Packaged reproduction | A reduced environment, tasks, commands, and checks | Others can attempt the task; a model failure is not yet established |
+| Local incident draft | Available evidence and specific missing evidence or reconstruction work | A lead to investigate; not a new public submission |
+| Packaged reproduction | All four gates passed, including a faithful environment and recorded checker controls | Others can attempt the task; a fresh model failure is not yet established |
 | Model reproduced | Fresh model attempts with complete run records | The intended failure occurred again in the reduced task |
 | Temporal evidence supported | Matched attempts that vary the relevant history | Evidence that the earlier work or boundary affects the failure |
 
-These are evidence levels, not a promise that every incident must reach the last one. A single fresh failure does not establish a general failure rate or a cause. A scripted replay or an intentionally broken implementation cannot satisfy the model reproduction level.
+New submissions start at packaged reproduction. Fresh model attempts and controlled causal comparisons are not required for that level; report them as not run when absent. A single fresh failure does not establish a general failure rate or cause, and a scripted replay cannot satisfy the model reproduction level. The existing `incident` status remains available for local drafts and legacy records; preserve existing submissions and add dated reviews when interpretations change.
 
 ## Give your agent a clear scope
 
 Point your agent to [AGENTS.md](AGENTS.md) and name the histories it may inspect. For example:
 
-> Read this repository's AGENTS.md and docs/SYMPTOMS.md. You may inspect the conversation exports I selected and the accompanying project copies. Search the entire authorized scope in multiple passes for all 20 symptoms and any unmatched failure modes. Collect as many distinct credible incidents as you can; do not stop after a few examples or one per class. Inventory every candidate and document coverage and gaps. Build a minimal reproduction for every feasible credible incident; record the reason and next action for anything deferred. Keep raw material private and show me the exact sanitized contribution before uploading anything.
+> Read this repository's AGENTS.md, docs/LONG_HORIZON.md, and docs/SYMPTOMS.md. You may inspect the selected exports and project copies. Search the full authorized history for failures to which extended work, context transitions, or actual multi-agent interaction contributed. Reconstruct the applicable instruction, earlier state, intervening work or interaction, actor visibility, executed action, consequence, and recovery with source anchors. Keep every lead in a private inventory, but prepare public packages only for cases passing all four submission gates. Build and verify faithful runnable reconstructions without supplying the diagnosis or removing the dependency. Keep all actual attempts, including misses. Mark missing evidence or reconstruction work as local drafts; ordinary local bugs are out of scope. Zero qualifying submissions is acceptable. Show the exact sanitized contribution before uploading anything.
 
 If the agent cannot access your old conversations, give it a selected export or describe an incident. Do not give it broad access to your accounts simply to fill in missing details.
 
@@ -34,11 +36,11 @@ If the agent cannot access your old conversations, give it a selected export or 
 
 1. Copy the [collection report](templates/collection-report.md) and [incident index](templates/incident-index.csv) into private working storage. Inventory the authorized sources, then follow [the multi-pass search guide](docs/FINDING_FAILURES.md).
 2. Add every candidate to the index with evidence, symptom labels or an unmatched mode, and its disposition. Deduplicate the same event appearing in multiple records; keep different incidents within the same symptom class.
-3. Create a directory for each credible distinct contribution with `python3 commands/new_problem.py <slug>`. Use a descriptive name such as `lost-fixture-after-handoff`. Fill in the account, temporal connection, consequence, and available evidence.
-4. Build a task for every feasible incident using [the reproduction guide](docs/REPRODUCING.md). If a reproduction or model evaluation is not feasible, keep the incident report and state what is missing and the next action.
-5. Put sanitized run summaries and evidence under `results/<slug>/<run-id>/`. Include every attempted run and its condition, even when the model avoids the failure or the setup breaks.
-6. Reconcile the index, all symptom searches, completed packages, and deferred work. Run `python3 commands/validate.py` and perform the [owner review](docs/REVIEW.md). Validation checks structure; reviewers still need to inspect scope coverage, tasks, and evidence.
-7. Prepare the exact shareable file set in [what to push](docs/SUBMITTING.md). Explain it in the console along with findings, checks, and gaps. Once the owner has reviewed and authorized those files, push a contribution branch (in a fork if needed) and open a pull request against this repository's `main`. Otherwise deliver the complete local submission for review. Do not present a shortlist as the complete collection.
+3. Apply the first three evidence gates. Keep missing-evidence leads and ordinary local errors in the private inventory with their disposition. Once those gates pass, use `python3 commands/new_problem.py <slug>` in the private collection workspace to begin the reconstruction needed for gate 4.
+4. Follow [the reproduction guide](docs/REPRODUCING.md). Run clean setup and checker controls, preserving the relevant historical dependency and information available to each actor. If the reconstruction cannot be completed, keep the case local as needs reconstruction with an exact next action.
+5. Put sanitized run summaries and evidence under `results/<slug>/<run-id>/`. Include every actual attempt for each selected case, even when the model avoids the failure or the setup breaks. Do not create model run records when no model evaluation occurred.
+6. Reconcile the private inventory and coverage with the selected cases. Run `python3 commands/validate.py` and perform the [owner review](docs/REVIEW.md). Validation checks structure; it does not establish scientific admission or reproducibility.
+7. Prepare the selected, shareable file set in [what to push](docs/SUBMITTING.md), including a sanitized selected index and summary. Explain the findings, checks, gaps, and reasons for selection in the console. Once the owner has reviewed and authorized those files, push a contribution branch (in a fork if needed) and open a pull request against this repository's `main`. Otherwise deliver the local package for review. Clearly distinguish selected submissions from the complete private search inventory.
 
 ## Keep the parts separate
 

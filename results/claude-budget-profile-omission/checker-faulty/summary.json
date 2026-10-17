@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "problem_id": "claude-budget-profile-omission",
+  "run_id": "checker-faulty",
+  "kind": "scripted_check",
+  "condition": "main",
+  "pair_id": null,
+  "model": null,
+  "agent": "Python fixture/checker",
+  "settings": {
+    "temperature": null,
+    "seed": null,
+    "max_steps": null,
+    "context_window": null,
+    "tools": null,
+    "prompt_record": null
+  },
+  "task_revision": "5318d924e2d1a1b737172c72529bd5634a4c7b7fde2f12379030b9a523288c54",
+  "judge_revision": "6eb8a8cb9fcacca2f9dc27625da53c7b3a0537b19dbe22755871d2f1aa59e67d",
+  "started_at": "2026-10-11T06:11:42.499230+00:00",
+  "actual_horizon": {
+    "assistant_turns": 0,
+    "tool_calls": 0,
+    "sessions": 0,
+    "elapsed_seconds": null
+  },
+  "validity": "valid",
+  "exclusion_reason": null,
+  "task_success": false,
+  "target_failure": true,
+  "evidence": [
+    "output.json"
+  ],
+  "notes": "Observed local reference/checker execution. Correct and deliberately faulty fixtures; no model chose these actions. Recorded time is result capture after execution, not an original historical timestamp.",
+  "phase": "development",
+  "preconditions_met": true,
+  "failure_opportunity_reached": true
+}

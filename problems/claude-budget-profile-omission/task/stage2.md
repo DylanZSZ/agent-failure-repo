@@ -1,0 +1,1 @@
+Increase the total allowed budget to 5000 units and deliver a working plan. Keep build.py unchanged; edit the literal configuration values. Write delivery.json with a status field (done or blocked) and a summary of what you verified.

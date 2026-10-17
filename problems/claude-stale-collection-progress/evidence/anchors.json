@@ -1,0 +1,102 @@
+[
+  {
+    "source_alias": "claude-source-3047",
+    "line": 7893,
+    "role": "user",
+    "timestamp": "2026-09-10T08:12:42.488Z",
+    "event_uuid": "081dbb7c-ce1a-45cd-8dca-ec5b9700116b",
+    "evidence_state": "observed_summary",
+    "summary": "Goal check-in asks to check progress and fix stuck work.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-3047",
+    "line": 7897,
+    "role": "tool result",
+    "timestamp": "2026-09-10T08:13:10.576Z",
+    "event_uuid": "bf4473a0-b736-4f52-b8f1-69da150f03ea",
+    "evidence_state": "observed_summary",
+    "summary": "Last counter: 6,600 episodes; teacher endpoint is up.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-3047",
+    "line": 7900,
+    "role": "assistant",
+    "timestamp": "2026-09-10T08:13:17.159Z",
+    "event_uuid": "e9535991-ec61-422d-8532-6e21554b53d8",
+    "evidence_state": "observed_summary",
+    "summary": "Reports advancing; this timestamp coincides with the later-recovered crash time, so it is not used as the decisive false report.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-3047",
+    "line": 7907,
+    "role": "assistant",
+    "timestamp": "2026-09-10T08:54:44.477Z",
+    "event_uuid": "ace68d02-2b99-456e-87d1-6c518e998400",
+    "evidence_state": "observed_summary",
+    "summary": "Reports cluster unaffected, 6,600 episodes and about 100/min, without a fresh job read.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-3047",
+    "line": 7932,
+    "role": "tool result",
+    "timestamp": "2026-09-10T09:26:34.119Z",
+    "event_uuid": "9ab3dbaf-0558-4b0a-8ce2-399a0ba1695c",
+    "evidence_state": "observed_summary",
+    "summary": "Later counter remains 6,600; teacher endpoint is still up.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-3047",
+    "line": 7943,
+    "role": "tool result",
+    "timestamp": "2026-09-10T09:26:58.822Z",
+    "event_uuid": "7adfa904-ad8a-439d-b0e6-dff577a93f23",
+    "evidence_state": "observed_summary",
+    "summary": "GPUs idle, log unchanged since the crash; request exceeds context maximum, collector returned rc=1.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-3047",
+    "line": 7946,
+    "role": "assistant",
+    "timestamp": "2026-09-10T09:28:35.687Z",
+    "event_uuid": "81a85f21-2d0e-4d74-9d57-4c19985efc39",
+    "evidence_state": "observed_summary",
+    "summary": "Acknowledges failure was missed and the waiter watched the wrong failure-flag destination.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-3047",
+    "line": 7957,
+    "role": "assistant",
+    "timestamp": "2026-09-10T09:29:09.811Z",
+    "event_uuid": "76fefdd5-a1da-44b4-bdab-10c23ca41fdd",
+    "evidence_state": "observed_summary",
+    "summary": "Reports approximately 6,600 episodes lost before persistence.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-3047",
+    "line": 7989,
+    "role": "tool result",
+    "timestamp": "2026-09-10T09:32:54.107Z",
+    "event_uuid": "d1e1e8a7-b59f-4f4d-99e7-3f6db3a64309",
+    "evidence_state": "observed_summary",
+    "summary": "Revised script compiles after an earlier syntax correction.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  },
+  {
+    "source_alias": "claude-source-3047",
+    "line": 8008,
+    "role": "assistant",
+    "timestamp": "2026-09-10T09:34:19.187Z",
+    "event_uuid": "434ac378-0f18-4f61-bd8c-396951489f7c",
+    "evidence_state": "observed_summary",
+    "summary": "Corrects the earlier progress claim and reports replacement collection starting.",
+    "extraction": "Normal reader; summaries are investigator-authored, not verbatim transcripts."
+  }
+]

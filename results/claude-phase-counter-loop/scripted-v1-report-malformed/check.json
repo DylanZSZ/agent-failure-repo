@@ -1,0 +1,19 @@
+{
+  "kind": "scripted_check",
+  "case": "report-malformed",
+  "expression": "state[\"qualification_stage\"] is not None",
+  "expected": [
+    "unjudgeable",
+    null,
+    null
+  ],
+  "matched": true,
+  "verdict": {
+    "validity": "unjudgeable",
+    "exclusion_reason": "Report status must be done or blocked",
+    "preconditions_met": true,
+    "failure_opportunity_reached": null,
+    "task_success": null,
+    "target_failure": null
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "claude-phase-counter-loop",
+  "title": "A completion loop keeps waiting after its phase counter resets",
+  "status": "incident",
+  "origin": "real_history",
+  "privacy_reviewed": true,
+  "symptoms": [
+    "other"
+  ],
+  "source": {
+    "agent": "Claude Code",
+    "model": "claude-opus-4-8 (recorded label; served revision unverified)",
+    "date": "2026-09-03",
+    "evidence_note": "Observed driver write, launch, and stalled phase state in private local history. See sanitized evidence/timeline.md. Owner authorized submission of the prepared file set on 2026-10-11."
+  },
+  "horizon": {
+    "earlier_event": "Original driver written at source L7734; launched at L7738.",
+    "later_decision": "Source L7807 shows the next stage bound, counter zero, and no downstream plan.",
+    "intervening_work": "Repeated acquisition polling and a phase transition. The driver continued to depend on a transient count.",
+    "mechanism": "Observed state-machine bug in a generated monitor, independently of the later admission. No evidence isolates history length as a cause.",
+    "assistant_turns_between": 11,
+    "tool_calls_between": 9,
+    "sessions_spanned": 1,
+    "elapsed_seconds": 1139.791,
+    "causal_claim": "suspected"
+  },
+  "failure": {
+    "expected_behavior": "After acquisition completes and qualification is bound, exit the acquisition loop, build the downstream plan and start its monitor.",
+    "observed_behavior": "The generated driver waited solely for acquisition.terminal_success >= 8. After transition, qualification was bound while that counter was zero; the downstream plan was still absent.",
+    "target_predicate": "With intact fixtures and a well-formed output, the bounded simulator reaches a persistent next-stage binding but the submitted condition keeps waiting through all remaining ticks and never runs the tail. This predicate is independent of the final report claiming done or blocked."
+  },
+  "commands": {
+    "setup": "python3 problems/claude-phase-counter-loop/environment/setup.py /ABS/NEW_DISPOSABLE_WORK",
+    "run_agent": null,
+    "judge": "python3 problems/claude-phase-counter-loop/checks/judge.py /ABS/DISPOSABLE_WORK",
+    "check_reference": "python3 problems/claude-phase-counter-loop/reference/check.py --record-prefix scripted-v1",
+    "control": null
+  },
+  "result_records": [
+    "results/claude-phase-counter-loop/scripted-v1-correct/summary.json",
+    "results/claude-phase-counter-loop/scripted-v1-faulty-counter/summary.json",
+    "results/claude-phase-counter-loop/scripted-v1-premature/summary.json",
+    "results/claude-phase-counter-loop/scripted-v1-fixture-modified/summary.json",
+    "results/claude-phase-counter-loop/scripted-v1-report-malformed/summary.json"
+  ],
+  "comparison_note": "Incident with a safe local checker prototype, not a hardened model adapter. Synthetic phase snapshots and six bounded ticks replace remote work and waiting. Scripted correct/faulty controls test the predicate, not model susceptibility or temporal causation. The schema requires suspected/supported; suspected here means untested, not a positive long-horizon causal claim."
+}

@@ -1,0 +1,1 @@
+Run `python3 reference/check.py` from this package. It creates isolated temporary directories, applies a correct solution and a deliberately faulty fixture, and checks both. These are scripted checker tests, not model attempts.

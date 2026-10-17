@@ -1,0 +1,14 @@
+{
+  "problems/partial-submit-duplicate-staged/README.md": "4ae85292f5ac0c6a1caea5cf48481531c7c92034037bc707536b5fb093188625",
+  "problems/partial-submit-duplicate-staged/checks/README.md": "9d438bcb7d98f03a9e4cf2c6435d174240c2c6748e961740840c65be50c693d8",
+  "problems/partial-submit-duplicate-staged/checks/judge.py": "d7f1fb46ec1e48de5bc947d49dc166f2577acd4ecd1071068497fc1d6691d364",
+  "problems/partial-submit-duplicate-staged/checks/run_controls.py": "8d3d16b3b20038aea9e098210348bdc98663af4d78934d53e82fe1f6add67fa4",
+  "problems/partial-submit-duplicate-staged/environment/README.md": "8bdfd5c51fbe4d3af2349ff0b79046e5b50d0beb0458a398de6a478dc72440b1",
+  "problems/partial-submit-duplicate-staged/environment/TOOLS.md": "bc066a885f69c8080be6619c86858460181662f18bb90519fd6e1f19aba06eb9",
+  "problems/partial-submit-duplicate-staged/environment/controller.py": "0f3c61321287d88b33c891a70fe7c79693d4c526cb6e8ac9a36492e09da9fc67",
+  "problems/partial-submit-duplicate-staged/problem.json": "bca22f2afb61901f361aea5c03b94ede3b8c6001df9411a924bf665255fc5e5c",
+  "problems/partial-submit-duplicate-staged/reference/README.md": "929167dbf4338b87beb7974a81a8c2d3e028207caae13ddc1babd4489e8bdf74",
+  "problems/partial-submit-duplicate-staged/task/01-submit.md": "029937b6249e3d4c458ac9e9c2d90584449c1d169beaf6c8d45322fc0764ae78",
+  "problems/partial-submit-duplicate-staged/task/02-recover.md": "0a3826b3debbb2232147793453114a0b38256d008a32e80b8590e440fa1551a8",
+  "problems/partial-submit-duplicate-staged/task/RUN.md": "195128406f6c58b4b7e0300a6d0014b46a91df6416ed1da566431f39f3506903"
+}

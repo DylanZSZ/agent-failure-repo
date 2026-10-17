@@ -1,13 +1,14 @@
 # Coverage of the selected interaction history
 
-Updated 2026-10-10.
+Updated 2026-10-13.
 
 ## Summary
 
 Copy this form into private working storage before searching. Record the date,
 contributor-approved scope, and search progress. It is a working inventory, not
 an evaluation result. Do not publish private source names, paths, or excerpts.
-An owner-reviewed, sanitized version may later be stored under docs/collections/.
+Prepare a separate owner-reviewed summary under docs/collections/ containing
+only selected cases, coverage, and safe aggregate disposition counts.
 
 ## Scope and access
 
@@ -52,6 +53,26 @@ label their uncertainty instead of silently discarding them.
 - Fresh model reproductions:
 - Rejected or duplicate candidates, with reasons in the index:
 - Deferred candidates and unsearched ranges:
+
+Apply [the admission requirements](../docs/LONG_HORIZON.md) separately from the
+historical relevance labels below. Count selected cases, needs evidence, needs
+reconstruction, and out of scope; explain duplicates separately. Zero selected
+cases is valid. Link each selected case's essential event chain and actual
+clean-copy verification log. Never count a filled template as evidence.
+
+Report original relevance separately from reproduction status:
+
+- Temporal candidates with a plausible earlier-to-later dependency:
+- Within those candidates: substantial intervening work observed / short mechanism only / exposure unknown, counted separately:
+- Evidence-needed leads with a specific missing anchor or causal bridge:
+- Short controls without established dependence on earlier work:
+- Coordination candidates with an evidenced interaction between actors; identify brief interactions without calling them long-running:
+- Current tasks ready for pilots, needing redesign, limited to short mechanism demonstrations, or not built:
+
+Include relevance and task readiness in the full candidate table. Link each
+completed temporal review. These are review judgments, not measured error rates.
+Do not mix short controls into the primary long-running candidate count or infer
+temporal causation from a packaged status. Keep every candidate in the inventory.
 
 ## Symptom coverage
 
@@ -98,10 +119,12 @@ missed requirement or false report.
 
 ## Reduction queue
 
-Every distinct candidate needs a disposition: investigate, incident only,
-packaged, model reproduced, temporal evidence supported, duplicate, rejected,
-or deferred. Explain deferrals and rejections. Prioritize strong consequences
-and clear evidence, but do not silently drop the rest after packaging one example.
+Every distinct candidate needs an admission decision and reason: selected,
+needs evidence, needs reconstruction, or out of scope. Keep duplicate links and
+the exact next step for deferrals. Record incident/packaged/model reproduced/
+temporal evidence supported separately as evidence levels. Only relevant,
+auditable, runnable cases enter the proposed submission; all others remain in
+this private ledger. Existing submissions receive dated reassessments.
 
 ## Limitations and remaining work
 

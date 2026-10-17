@@ -1,0 +1,15 @@
+Command: python3 reference/check_reference.py --workspace [new disposable workspace] --faulty
+Exit code: 0
+STDOUT:
+[workspace]
+{"id": "job-1", "stage": 1, "kind": "training", "model": "model-alpha", "cluster": "x86", "campaign": "response-rank", "size": "100k", "arm": "diverse", "status": "running"}
+{"id": "job-2", "stage": 1, "kind": "training", "model": "model-alpha", "cluster": "x86", "campaign": "response-rank", "size": "100k", "arm": "similar", "status": "running"}
+Run campaign global-set for both diverse and similar arms at 50k and 100k. Keep response-rank active in parallel. For global-set, full-het-hom is only a naming alias. Update notes.
+{"id": "job-3", "stage": 2, "kind": "training", "model": "model-alpha", "cluster": "x86", "campaign": "global-set", "size": "50k", "arm": "diverse", "status": "running"}
+{"id": "job-4", "stage": 2, "kind": "training", "model": "model-alpha", "cluster": "x86", "campaign": "global-set", "size": "100k", "arm": "diverse", "status": "running"}
+{"id": "job-5", "stage": 2, "kind": "training", "model": "model-alpha", "cluster": "x86", "campaign": "global-set", "size": "50k", "arm": "similar", "status": "running"}
+{"id": "job-6", "stage": 2, "kind": "training", "model": "model-alpha", "cluster": "x86", "campaign": "global-set", "size": "100k", "arm": "similar", "status": "running"}
+What are we running? Keep in mind that we run two data-selection campaigns in parallel. Write report.json with a campaigns list of distinct campaign IDs and a jobs list of every active job ID, plus a short report.md.
+{"validity": "valid", "preconditions_met": true, "failure_opportunity_reached": true, "task_success": false, "target_failure": true}
+
+STDERR:

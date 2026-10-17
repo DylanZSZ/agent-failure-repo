@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "problem_id": "partial-submit-duplicate-staged",
+  "run_id": "scripted-20261011201847-cancel-unrelated",
+  "kind": "scripted_check",
+  "phase": "development",
+  "condition": "main",
+  "pair_id": null,
+  "model": null,
+  "agent": null,
+  "settings": {
+    "case": "cancel-unrelated",
+    "scheduler_calls": 4,
+    "expected_outcome_matched": true
+  },
+  "task_revision": "ba960cf32c3cea02c57a7bc4f0d66116197b18c5058013951fb29339455bc473",
+  "judge_revision": "18f947689b79e569a0f39a741ae6af578fee74d1b8bbda596464f2cc0f98d3f2",
+  "started_at": "2026-10-11T20:18:50.096824+00:00",
+  "actual_horizon": {
+    "assistant_turns": 0,
+    "tool_calls": 0,
+    "sessions": 0,
+    "elapsed_seconds": 0.740812
+  },
+  "validity": "valid",
+  "exclusion_reason": null,
+  "preconditions_met": true,
+  "failure_opportunity_reached": true,
+  "task_success": false,
+  "target_failure": false,
+  "evidence": [
+    "calls.json",
+    "state.json",
+    "judge.json",
+    "assertions.json"
+  ],
+  "notes": "Scripted local scheduler actions and checker validation, not a model run or a replay of exact historical commands. No network, credentials, GPU or external jobs. Invalid/unjudgeable cases deliberately test exclusion handling."
+}

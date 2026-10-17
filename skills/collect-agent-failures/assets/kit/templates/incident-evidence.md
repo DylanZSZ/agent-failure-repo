@@ -1,12 +1,18 @@
 # Incident evidence: <short descriptive title>
 
-Template updated 2026-10-10. Record the actual collection and event dates below.
+Template updated 2026-10-13. Record the actual collection and event dates below.
 
 ## Summary
 
 Copy this form to `.local/incidents/<incident-id>.md` or another owner-approved private location. Adjust the guide links for the record's new location: from `.local/incidents/`, use `../../docs/`. This is a working evidence record, not permission to publish its contents. Complete a separate, owner-reviewed sanitized copy for sharing. Follow [the evidence guide](../docs/EVIDENCE.md).
 
-For **each field**, enter a supported value and source, or `Unknown`, `Unavailable`, `Not applicable`, or `Withheld`, with a reason. Label recollections `Contributor-reported` and conclusions `Inferred`. Do not invent missing settings, messages, counts, or model reasoning. Empty cells are unfinished work, not zero or “none.” Add rows and attachments as needed; there is no incident or evidence quota.
+For **each field**, enter a supported value and source, or `Unknown`, `Unavailable`, `Not applicable`, or `Withheld`, with a reason. Label recollections `Contributor-reported`, conclusions `Inferred`, and states recreated later `Reconstructed`. Do not invent missing settings, messages, counts, or model reasoning. Empty cells are unfinished work, not zero or “none.” Add rows and attachments as needed; there is no incident or evidence quota.
+
+This form also holds local drafts. Submission requires the selection gate in
+docs/LONG_HORIZON.md and clean runnable checks in docs/REPRODUCING.md. Optional
+unknown metadata is acceptable; missing essential evidence or an unverified
+reproduction requires deferral. Refer to existing evidence sections rather than
+copying the same account into every form.
 
 ## Identity and disposition
 
@@ -21,6 +27,12 @@ For **each field**, enter a supported value and source, or `Unknown`, `Unavailab
 - Reason for each label:
 - One-sentence observed behavior:
 - Current disposition: incident only / reproduction in progress / packaged / evaluated / deferred.
+- Submission decision: selected / local draft only; gate evidence or exact missing prerequisite:
+- Original temporal relevance: temporal candidate / evidence needed / short control; reason:
+- Original work exposure: substantial intervening work observed / short mechanism only / unknown; evidence:
+- If rejected as a nonfailure: still-applicable requirement checked, reason, and relevance not applicable:
+- Current task readiness: faithful enough for a pilot / needs redesign / short mechanism demonstration / not built:
+- Completed temporal-review.md record or answers embedded below:
 - Incident-index row and problem package path, if present:
 - Duplicate of, related incidents, or causal chain IDs:
 - Reason records are distinct or duplicates; whether they share an earlier state:
@@ -101,6 +113,8 @@ Use only available observable records. Do not request private chain-of-thought, 
 - Existing failures and unrelated known limitations:
 - Where this information remained available to the later agent:
 - Evidence the later agent actually read it, or explicit statement that only availability is established:
+- If studying propagation: the earlier provisional mistake and how it enters later work; do not label it a correct baseline:
+- State provenance: original recorded snapshot / reconstructed from sources / inferred; relevant base, patches, substitutions, and independent reconstruction checks:
 
 ## Complete relevant chronology
 
@@ -119,6 +133,8 @@ Use one row per relevant event; add intervening ranges with accurate counts when
 - First evidence of the consequence:
 - User correction or complaint:
 - Subsequent agent response, correction, rollback, recovery, recurrence, or unresolved state:
+- Last inspected event and unknown ending or ordering:
+- Source anchors for the essential chain: applicable requirement → earlier state or interaction → intervening process → executed wrong action → effect:
 
 ## Excerpt and artifact register
 
@@ -144,6 +160,7 @@ Keep enough context to interpret each excerpt. Preserve call/result pairs and om
 - Effective configuration or runtime path and precedence:
 - Teammate changes and proof of compatibility with the requested task:
 - State visible to the agent, delivered state, and tested state; explain any differences:
+- For multiple actors: shared versus isolated workspaces, per-actor visibility, message delivery/read evidence, ordering barriers, and unresolved interleaving:
 
 ## Checks and counterfactuals
 
@@ -181,6 +198,9 @@ Record **every relevant result**, including a pass after a failure on unchanged 
 - Why intervening work or a boundary might matter:
 - Temporal conclusion: observed sequence / suspected contribution / comparison supports contribution / no temporal connection established.
 - Evidence supporting that conclusion and strongest alternative explanation:
+- Whole-session duration, pre-error span, idle time, and recovery kept separate:
+- Separate first-mistake-to-later-harm interval if propagation is the target:
+- Completed temporal review from templates/temporal-review.md, following docs/LONG_HORIZON.md:
 
 ## Intended failure and meaningfulness
 
@@ -215,6 +235,8 @@ Record **every relevant result**, including a pass after a failure on unchanged 
 - Agent-visible material at each stage:
 - Evaluator-only material and safeguards against exposing it:
 - Correct reference path and independent task/failure checks:
+- Multi-agent stage schedule, if applicable: actor/session, live / historical replay / scripted role, release condition, visible state, actual output, and receipt by the next actor:
+- Clean-copy verification: submitted revision, setup and reset, exact command log, required output artifacts, reference/faulty/unrelated-error/invalid-setup results; link records rather than duplicate them:
 
 | Original detail | Retained / sanitized / simplified / omitted / unavailable | Reproduction equivalent | Effect on fidelity and temporal claim |
 |---|---|---|---|
@@ -245,4 +267,4 @@ Write this section **after** preserving the evidence above.
 - Owner review of these exact files completed: yes / no; evidence and date:
 - Collection index and coverage report reconciled: yes / no; remaining differences:
 
-Before calling this record complete, account for supporting and contrary evidence, later recovery, every reproduction attempt, and every unknown field. Completion means the authorized evidence has been accounted for; it does not mean the failure has been reproduced or its cause established.
+Before calling this record complete, account for supporting and contrary evidence, later recovery, every reproduction attempt, and every unknown field. Completion means the authorized evidence has been accounted for; it does not mean the case is selected, the failure has been reproduced by a fresh agent, or its cause established.

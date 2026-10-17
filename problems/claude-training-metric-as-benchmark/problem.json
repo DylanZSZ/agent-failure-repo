@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "id": "claude-training-metric-as-benchmark",
+  "title": "Training-batch accuracy was presented as benchmark evidence that model quality had declined",
+  "status": "incident",
+  "origin": "real_history",
+  "privacy_reviewed": true,
+  "source": {
+    "agent": "Claude Code",
+    "model": "claude-opus-5",
+    "date": "2026-08-03",
+    "evidence_note": "Observed local historical transcript; see evidence/incident.md. Source aliases map privately; Submission of these prepared files was authorized on 2026-10-11."
+  },
+  "horizon": {
+    "earlier_event": "claude-source-4289:L1317",
+    "later_decision": "claude-source-4289:L1458",
+    "intervening_work": "Collected model outputs, ran meta-judging, summarized three checkpoints, and correlated the reported values. The assistant already acknowledged sample size and differing batches but still used an invalid benchmark interpretation.",
+    "mechanism": "Observed metric provenance error and overclaim. Model identity was also questioned, but the earlier user wording does not establish a separate wrong-model incident.",
+    "assistant_turns_between": 37,
+    "tool_calls_between": 37,
+    "sessions_spanned": 1,
+    "elapsed_seconds": 745.946,
+    "causal_claim": "suspected"
+  },
+  "failure": {
+    "expected_behavior": "Use a meta-judge to assess outputs from the trained reward model.",
+    "observed_behavior": "The assistant labeled three checkpoint values as benchmarks, concluded that model quality measurably worsened while meta-judge scores improved, and recommended against launching. The values were training-batch ranking accuracies; held-out values were absent at two of the three checkpoints.",
+    "target_predicate": "See checks/README.md; task completion and target error are assessed separately."
+  },
+  "commands": {
+    "setup": "python3 problems/claude-training-metric-as-benchmark/checks/replay.py setup --work /ABS/NEW_DISPOSABLE_WORK",
+    "run_agent": null,
+    "judge": "python3 problems/claude-training-metric-as-benchmark/checks/replay.py judge --work /ABS/DISPOSABLE_WORK",
+    "check_reference": "python3 problems/claude-training-metric-as-benchmark/checks/replay.py replay --variant correct",
+    "control": null
+  },
+  "result_records": [
+    "results/claude-training-metric-as-benchmark/scripted-faulty-v1/summary.json",
+    "results/claude-training-metric-as-benchmark/scripted-correct-v1/summary.json"
+  ],
+  "symptoms": [
+    "other"
+  ],
+  "comparison_note": "No model attempt or causal control has run. A scripted faulty fixture and correct reference, where recorded, validate the checker only."
+}

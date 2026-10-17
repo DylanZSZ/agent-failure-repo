@@ -1,18 +1,20 @@
 # What contributors should push
 
-Updated 2026-10-10.
+Updated 2026-10-13.
 
 ## Summary
 
-Submit a reviewed collection summary, every shareable credible incident, its
-minimal reproduction when feasible, and records of every evaluation actually
-attempted. Include enough sanitized evidence for another person to assess the
-claim. Collect broadly across historical Claude Code and Codex runs and all
-20 symptoms; keep new modes too. There is no quota or one-per-symptom limit.
+Submit only cases passing the [four admission gates](LONG_HORIZON.md#four-gates-for-new-submissions): an actual violation, a sourced material contribution from extended work, a context transition, or multi-agent interaction, an auditable evidence chain, and a clean runnable reconstruction verified with checker controls. Include a reviewed selected summary and index, the selected problem packages, and every actual attempt for those cases.
 
-Prepare this material locally before requesting the owner's review. An
-incident-only contribution is useful when code or evaluation is unavailable.
-State the achieved evidence level and missing work honestly.
+Search authorized Claude Code and Codex histories comprehensively, but keep the complete inventory and excluded leads private. There is no quota; zero admitted cases is valid. Missing essential evidence or reconstruction work remains a local draft. Existing incident-only records are preserved, not a precedent for new incomplete submissions.
+
+Prepare all files locally before owner review. Include the completed [temporal review](../templates/temporal-review.md) in each selected account or linked evidence file. Separate original relevance, task readiness, and causal support. A brief coordination case may qualify without a duration claim. Fresh model evaluations and controlled causal comparisons are optional for a packaged submission; state when they have not run.
+
+Begin private task construction after the first three evidence gates pass. It
+becomes eligible for public submission only after clean reconstruction and
+checker controls satisfy gate 4. Do not upload partial scaffolds to fill the
+gap, and do not remove or rewrite existing packages or result records when
+applying these rules to new contributions.
 
 ## Files to include
 
@@ -21,29 +23,29 @@ identifiers. Paths below are relative to the destination repository.
 
 | Path | What to include | When required |
 | --- | --- | --- |
-| `docs/collections/<collection-id>/README.md` | Collection summary, findings, package links, limits, and next actions. | Every submission. |
-| `docs/collections/<collection-id>/incidents.csv` | Sanitized candidate index, including uncertain, duplicate, rejected, and deferred entries. | Every submission. |
-| `docs/collections/<collection-id>/coverage.md` | Separate Claude Code and Codex coverage, all symptom searches, and unread or inaccessible ranges. | Every submission. |
-| `problems/<id>/README.md` and `problem.json` | The original incident, its meaning and horizon, the intended error, evidence level, and runnable commands. | Every shared incident. |
-| `problems/<id>/evidence/` | Reviewed excerpts, tool calls/results, relevant diffs, checks, and redaction notes. | When supporting material can be shared. |
-| `problems/<id>/task/`, `environment/`, `checks/`, `reference/` | Ordered prompts, minimal starting files, evaluators, and a correct solution. | Runnable content for packaged reproductions; explanatory files for incident-only reports. |
-| `results/<id>/<run-id>/summary.json` and supporting files | Actual attempt settings, outcomes, commands, and sanitized evidence. | Every attempt that was made. |
+| `docs/collections/<collection-id>/README.md` | Selected findings, admission decisions, package links, scope limits, and next actions. | Every submission. |
+| `docs/collections/<collection-id>/incidents.csv` | Sanitized index containing only admitted cases. | Every submission. |
+| `docs/collections/<collection-id>/coverage.md` | Sanitized Claude Code and Codex coverage and search limitations, without excluded incidents or private locators. | Every submission. |
+| `problems/<id>/README.md` and `problem.json` | The original incident, mechanism, admission evidence, intended error, achieved evidence level, and runnable commands. | Every selected case. |
+| `problems/<id>/evidence/` | Reviewed excerpts, tool calls/results, relevant before/after state, checks, and redaction notes establishing the essential chain. | Every selected case; evidence may instead be embedded in its account. |
+| `problems/<id>/task/`, `environment/`, `checks/`, `reference/` | Runnable ordered prompts, starting files, pinned dependencies where relevant, evaluators, and a correct solution. | Every selected case. |
+| `results/<id>/<run-id>/summary.json` and supporting files | Actual attempt settings, outcomes, commands, and sanitized evidence, including checker controls. | Every attempt for a selected case. |
 
 Source: [problem layout](../problems/README.md), [result format](../results/README.md),
 and [contribution levels](../CONTRIBUTING.md).
 
-Use reviewed derivatives of the private index and coverage report. Replace
-machine paths and sensitive identifiers with consistent source aliases; make
-every shared link resolve to a shared file. Account for withheld incidents
-with neutral labels and reasons where shareable. If even a count is sensitive,
-state that the public inventory is incomplete and why. Keep the complete
-private ledger; never quietly drop candidates or count withheld records as
-reviewed evidence available to the reader.
+Create the public index by selecting admitted cases from the private inventory.
+Replace machine paths and sensitive identifiers with consistent source aliases;
+make every shared link resolve to a shared file. State explicitly that this is
+a selected submission, not the complete search inventory. Share aggregate
+exclusion counts only when reviewed and non-sensitive. Keep excluded case
+details and the complete ledger private, including evidence-needed drafts.
+Do not count withheld essential evidence as available for reader verification.
 
 For each incident, answer explicitly:
 
 1. **What happened?** The user's task, expected behavior, observed action, and
-   concrete consequence, supported by the original record where available.
+   concrete consequence, supported by anchored original evidence.
 2. **Was the horizon long?** The earlier event, intervening work, later decision,
    and observed turns, calls, sessions, or time with counting rules. Use unknown
    for missing measurements; separate observation from a causal claim.
@@ -51,26 +53,46 @@ For each incident, answer explicitly:
    what a correct agent could have done, and plausible alternative explanations.
 4. **What error should the reproduction trigger and detect?** The preconditions,
    exact failure rule, correct task outcome, and invalid or unjudgeable cases.
+5. **How did extended work, a context transition, or agent interaction contribute?**
+   Anchors for the earlier condition and later action, substantive work or the
+   actual interaction, information or artifacts carrying the dependency, actor
+   visibility, and the strongest alternative explanation. Missing essential
+   links keep the case local as needs evidence.
+6. **Does the reduction preserve that dependency?** The natural continuation or later request,
+   competing demands, actual state passed forward, independent behavioral check,
+   accidental answer cues, successful clean reconstruction and checker controls,
+   and what the proposed comparison can establish.
 
 Retain enough of the relevant sequence to assess those answers, including
 contrary evidence and later recovery. Excerpts can span multiple files; keep
 stable event anchors and label omissions, paraphrases, and redactions. Do not
-replace available evidence with a polished narrative alone. If evidence cannot
-be shared, explain the limitation and narrow the claim accordingly.
+replace available evidence with a polished narrative alone. If essential
+evidence cannot be shared, retain the lead privately until a faithful sanitized
+reconstruction and evidence chain are possible.
 
-## Minimum submission and optional progress
+## Minimum submission and optional evaluations
 
-An **incident-only** submission includes the collection files and a problem
-created by the scaffolder. Keep `status` as `incident`; document unavailable
-evidence or reproduction work. Keep the scaffold's four task directories and
-their explanatory files so the required structure survives Git. Unimplemented
-commands remain null. With no attempts, `result_records` is empty and no run
-record is created. Do not upload an untouched result template as an evaluation.
+A new submission must be a **packaged reproduction** or stronger: actual stage
+prompts, starting files, fixtures, dependencies, setup and run commands,
+separate task and failure checks, and a feasible correct reference. Run the
+documented commands from a clean disposable environment and retain the records.
+The correct control must complete the task without the target error; the faulty
+control must trigger the declared check. These are scripted checker tests, not
+fresh model failures. Preserve the earlier event and later decision; an already
+broken final file is insufficient.
 
-A **packaged reproduction** adds actual stage prompts, starting files, fixtures,
-dependencies, setup and run commands, separate task and failure checks, and a
-correct reference. Record the scripted checks you ran. Preserve the earlier
-event and later decision; an already broken final file is insufficient.
+An **incident-only** account remains a local draft when essential evidence or
+reconstruction work is missing. The schema's `incident` status and null command
+fields remain supported for those drafts and legacy records. No schema changes
+or deletion of existing cases are required. Do not upload an untouched scaffold
+or result template to imply that reconstruction or evaluation occurred.
+
+Complete the reduction review before calling it ready for a pilot. An exact
+decision dictionary or self-reported action is insufficient when the intended
+failure concerns executed behavior. A final fixture that supplies the diagnosis
+or correct observation does not recreate the original discovery burden and
+fails the faithful reconstruction gate. Keep historical suitability distinct
+from task quality.
 
 For **fresh model evaluations**, include every attempt: hits, misses, invalid
 or unjudgeable attempts, development trials, and controls. Record model and
@@ -87,12 +109,19 @@ directory. Put original historical evidence in the problem account or its
 Describe that evidence in `source.evidence_note` and link it from the problem
 readme; do not invent additional manifest fields.
 
+Record the temporal review and relevance decision in Markdown; keep the current
+problem/result schema unchanged. Existing submissions retain their records.
+Add a dated reassessment when applying these criteria to an older package.
+Metadata validation does not certify that a temporal review is scientifically
+adequate; maintainers must read it.
+
 ## Material that stays local
 
 Keep these outside the outgoing commit and its history:
 
-- `.local/`, including history indexes, raw reader pages, private incident
-  notes, and the mapping from sanitized aliases to real identities.
+- `.local/`, including the complete candidate inventory, excluded leads,
+  evidence-needed and reconstruction-needed drafts, raw reader pages, private
+  incident notes, and the mapping from sanitized aliases to real identities.
 - Original Claude Code/Codex transcript stores, prompt indexes, credentials,
   account configuration, unrelated conversations, and full private checkouts.
 - The working `REPORT.md` when it links to private notes. Publish its reviewed
@@ -105,7 +134,7 @@ reviewers. During evaluation, expose only the intended prompts and starting
 files to the tested agent; keep the judge, reference, and historical failing
 answers outside its accessible workspace.
 
-Ordinary incident submissions add collection, problem, and result files.
+Ordinary submissions add only selected collection, problem, and result files.
 Put task-specific setup and checking scripts inside their problem package.
 Changes to shared kit instructions, `commands/`, templates, or the installed
 skill are separate maintenance work and should be explained as such.
@@ -152,7 +181,8 @@ the authorized pull request. Preserve existing submissions and run records.
 
 In the final chat response, provide:
 
-- What was found, how many distinct incidents were packaged, and the main gaps.
+- What was found, how many cases passed all four gates, how many remain local
+  or out of scope, and the main gaps. Zero admitted cases is a valid result.
 - The exact files proposed for sharing, or the files actually committed and pushed.
 - Which scripted checks and model evaluations ran, and which were not run.
 - The local report path and, if uploaded, the branch, commit, and pull-request link.

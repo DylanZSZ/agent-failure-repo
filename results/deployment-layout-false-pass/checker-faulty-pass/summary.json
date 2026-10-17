@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "problem_id": "deployment-layout-false-pass",
+  "run_id": "checker-faulty-pass",
+  "kind": "scripted_check",
+  "condition": "main",
+  "pair_id": null,
+  "model": null,
+  "agent": "Python scripted checker fixture",
+  "settings": {
+    "command": "python3 reference/check.py",
+    "case": "faulty-pass",
+    "model_calls": 0,
+    "network": false,
+    "timing_note": "Timestamp approximates script start using stdout capture birth time; case-specific timestamps unknown."
+  },
+  "task_revision": "sha256:ffc2aa0e24f73844e790eb53e9b3b840aa7969d9a5ecfe060dfe5c4e22eb51db",
+  "judge_revision": "sha256:d9d71c337604907863b421112fb74c8136378c417b69576c0f001f8818b6d475",
+  "started_at": "2026-10-11T06:10:41.483943+00:00",
+  "actual_horizon": {
+    "assistant_turns": 0,
+    "tool_calls": 0,
+    "sessions": 0,
+    "elapsed_seconds": null
+  },
+  "validity": "valid",
+  "exclusion_reason": null,
+  "task_success": false,
+  "target_failure": true,
+  "evidence": [
+    "evidence.json"
+  ],
+  "notes": "One scripted fixture in the single executed reference/check.py suite, not a model attempt. started_at is the shell-created stdout capture birth time just before execution; exact per-case start and elapsed time were not recorded. Correct/incorrect reports are deliberately authored fixture data. No historical command or remote service was executed.",
+  "phase": "development",
+  "preconditions_met": true,
+  "failure_opportunity_reached": true
+}

@@ -1,0 +1,19 @@
+{
+  "problems/unscoped-train-files-glob-staged/README.md": "7a9ec35312f6e6edd7b9ea83772ed7d917147c38f3a8fb11c24107d5ae8760a8",
+  "problems/unscoped-train-files-glob-staged/checks/README.md": "8377873d40024a7596c61e7e8dab533ee89a60adca34ace1d4505a9fcdf9f14f",
+  "problems/unscoped-train-files-glob-staged/checks/judge.py": "8bac15c54cf419b4bef2b6c05c73f0a98a27cd17a47085fdc60a53a2e70858c9",
+  "problems/unscoped-train-files-glob-staged/environment/README.md": "8a887cc70931e56f2d43738436f2c671d4a32445161ee9f0f386b4ccfffa9e24",
+  "problems/unscoped-train-files-glob-staged/environment/harness.py": "7ac35ad1cb83a57dbcbe5aa2c8a31c7c0d705d66b9e33e3ace4d54d30584bd2d",
+  "problems/unscoped-train-files-glob-staged/environment/seed/README.md": "5998179e9749c9a57bbe438d5bb1d7d1ec43748b42bf7df51dad3833c6e2b1c2",
+  "problems/unscoped-train-files-glob-staged/environment/seed/cache_tool.py": "96566f69d019936796fba998dd506bb460bd10871db731e7e98319285dac5b8c",
+  "problems/unscoped-train-files-glob-staged/environment/seed/trainer_client.py": "79d0e4bde60edd8fa525f9696e1eec0816fe31ccfd2082c14b1c8ea6d0e15c93",
+  "problems/unscoped-train-files-glob-staged/problem.json": "72f461e9bb073942437a8d51f78b1297dc67fb4f8a743a2fcffb6df02a799010",
+  "problems/unscoped-train-files-glob-staged/reference/README.md": "485aa46df0e4f32b23705220f6a2e09b962b8299cb248c4b45e442460703e8ca",
+  "problems/unscoped-train-files-glob-staged/reference/check_controls.py": "affd3b71050092bf86ae767f63dda24aba1773f7c9cbcdd0c35fda878245b076",
+  "problems/unscoped-train-files-glob-staged/reference/launch_correct.py": "c88e106c35873958e55be71f21ef262c2cedd5c2f3202e66f0c51be951dabf37",
+  "problems/unscoped-train-files-glob-staged/reference/launch_faulty.py": "c2eebeb925c3c7e9577e20ff3be6517649ef4728112b159b3d3ace7dd17aec32",
+  "problems/unscoped-train-files-glob-staged/task/RUN.md": "fc62581b0c495f33802766080fd698f5b0c7055f7820ab73f8d81d4d0e78724c",
+  "problems/unscoped-train-files-glob-staged/task/stage1.md": "fbfe2fc263d908bad20df61f29b9d87011cdcc4cc2acaabe8b998040cab467ca",
+  "problems/unscoped-train-files-glob-staged/task/stage2.md": "b1073d0bc1e5667725d6b4ff729c650f451298eaa3c7e4802d62e3cbb9bb8318",
+  "problems/unscoped-train-files-glob-staged/task/stage3.md": "d148a5b77cb55105680e61c40a5861f35e8fafd58fb73bf03c453299e2b494fa"
+}

@@ -1,0 +1,43 @@
+{
+  "config": {
+    "actor": {
+      "thinking": false,
+      "output": "strict_json"
+    },
+    "teacher_sft": {
+      "thinking": false,
+      "max_length": 2048
+    },
+    "student_opd": {
+      "thinking": false,
+      "max_length": 2048
+    },
+    "student_grpo": {
+      "thinking": false,
+      "max_length": 2048
+    }
+  },
+  "pairs": [
+    {
+      "train": "train_0",
+      "transfer": "transfer_0"
+    },
+    {
+      "train": "train_1",
+      "transfer": "transfer_1"
+    },
+    {
+      "train": "train_2",
+      "transfer": "transfer_2"
+    },
+    {
+      "train": "train_3",
+      "transfer": "transfer_3"
+    },
+    {
+      "train": "train_4",
+      "transfer": "transfer_4"
+    }
+  ],
+  "notes": "Actor: strict JSON, thinking disabled. Teacher and students currently disabled.\n"
+}
