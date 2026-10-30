@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SKILL = Path("skills/collect-agent-failures")
 FILES = (
     ".gitignore", "AGENTS.md", "CONTRIBUTING.md",
-    "commands/new_problem.py", "commands/validate.py", "commands/history.py",
+    "commands/new_problem.py", "commands/validate.py", "commands/history.py", "commands/frozen_pages.py",
     "problems/README.md", "results/README.md",
     *(f"docs/{name}.md" for name in (
         "FINDING_FAILURES", "HISTORY", "LONG_HORIZON", "REPRODUCING", "REVIEW", "SUBMITTING", "SYMPTOMS", "EVIDENCE")),
@@ -71,8 +71,8 @@ def build(root=ROOT, check=False):
     real_path(receipt, root)
     if check:
         actual = tree_files(kit)
-        expected_dirs = {str(parent) for name in expected for parent in Path(name).parents
-                         if str(parent) != "."}
+        expected_dirs = {parent.as_posix() for name in expected for parent in Path(name).parents
+                         if parent != Path(".")}
         actual_dirs = {p.relative_to(kit).as_posix() for p in kit.rglob("*") if p.is_dir()}
         if (actual != expected or actual_dirs != expected_dirs or not receipt.is_file()
                 or receipt.read_bytes() != manifest):

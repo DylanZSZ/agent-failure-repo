@@ -21,6 +21,14 @@ their scope, and goals displaced by ongoing work; use `other` when needed.
 
 A single incident can match several modes. Give it one incident ID and multiple tags, then count the incident once. Separate incidents require separate observed episodes or consequences, not merely different descriptions of the same action. A mode's absence from accessible history is not evidence that an agent never makes that error.
 
+Keep process observations outside the 20 confirmed-failure labels when no
+still-applicable requirement was violated. For example, repeated test runs,
+broader reviews, or growing self-written rules may be observable despite a
+successful delivery. Record their sequence and state in the private inventory;
+do not force them into 5.2, which requires an unsupported repair claim and a
+remaining defect. Also identify whose behavior the text describes: the
+collecting agent, an evaluated agent in a quoted trace, or the research harness.
+
 ## 1. Required changes are incomplete
 
 ### 1.1 — A standing project rule is dropped

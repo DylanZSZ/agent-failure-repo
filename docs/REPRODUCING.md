@@ -153,7 +153,7 @@ Keep task success separate from these outcomes. An agent can fail the task witho
 
 A broken runner, missing setup dependency, or infrastructure crash can make an attempt invalid or unjudgeable. An agent-caused product crash is different: it can be the specified failure if the preconditions, opportunity, and evidence satisfy the declared rule. Do not exclude crashes categorically or count every crash as a hit.
 
-Check the checker against a correct reference and a deliberately faulty version. Label those as checker tests; neither is a model reproduction. If text judgment is needed, record the rubric, evaluator, and uncertainty rather than disguising a subjective decision as an objective test.
+Check the checker against a correct reference, a behaviorally equivalent correct variant, and a deliberately faulty version. The variant should use a different valid representation where the public contract allows one (for example, a resolved path, link label, section shape, or ordering). A reference-only green check can hide an overstrict judge. If a saved model artifact is later rejected by such a judge, preserve the original verdict and rejudge the saved artifact under a versioned corrected checker; do not call that a new model run. Label these as checker tests; none is a model reproduction. If text judgment is needed, record the rubric, evaluator, and uncertainty rather than disguising a subjective decision as an objective test.
 
 ## Separate kinds of evidence
 

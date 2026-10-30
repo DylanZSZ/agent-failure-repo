@@ -39,30 +39,27 @@ def initialize(output, skill=SKILL):
     shutil.copytree(kit, output)
     private = output / '.local'
     private.mkdir(mode=0o700)
-    for name in ('collection-report.md', 'incident-index.csv'):
+    for name in ('collection-report.md', 'source-review-ledger.csv',
+                 'session-selection.csv'):
         shutil.copyfile(output / 'templates' / name, private / name)
-    (private / 'incidents').mkdir()
     (output / 'README.md').write_text(
         '# Your local agent failure collection\n\n'
-        'Read [AGENTS.md](AGENTS.md) and [the symptom guide](docs/SYMPTOMS.md).\n'
-        'Our target is failure contributed to by extended work, context transitions,\n'
-        'or actual agent interaction. Apply [the admission requirements](docs/LONG_HORIZON.md) and\n'
-        '[review form](templates/temporal-review.md) before reducing each incident.\n'
-        'Search broadly in private; submit only relevant, evidenced cases with\n'
-        'verified runnable tasks. Ordinary bugs and incomplete leads stay local.\n'
-        'Zero eligible cases is valid; length or a subagent alone is insufficient.\n'
-        'Track scope and candidates in `.local/`. Keep raw history and detailed\n'
-        'unreviewed evidence there. Use [the evidence form](templates/incident-evidence.md)\n'
-        'for each candidate. Put sanitized task packages in `problems/` and\n'
-        'reviewed run records in `results/`. The initializer does not create a\n'
-        'Git repository or upload anything. If this directory is inside an existing\n'
-        'repository, check its tracking state before adding private material.\n\n'
-        'Review historical runs from both Claude Code and Codex using\n'
-        '[the historical-run guide](docs/HISTORY.md) and `commands/history.py`.\n'
+        'Read the current checkout or installed skill rules; this AGENTS.md is a creation-time copy.\n'
+        'Collect observable behavior, then assess long-horizon candidates separately.\n'
         'Use the authorized target project from before setup, not this kit.\n'
-        'Record each tool\'s coverage and gaps separately.\n\n'
-        'From this directory, run `python3 commands/new_problem.py short-name`\n'
-        'to start a package and `python3 commands/validate.py` to check metadata.\n',
+        'Inventory available Claude Code and Codex sources with\n'
+        '`commands/history.py`, then work in a stated batch.\n'
+        'Group by actual task; one source may contain several tasks.\n\n'
+        'Select a session when it has a real task and observed agent action,\n'
+        'a specific design use, and locatable original evidence. Keep full\n'
+        'available conversation sources or verifiable local archive references.\n'
+        'Use `.local/session-selection.csv` for selected, needs-evidence, and\n'
+        'not-selected decisions, and `.local/source-review-ledger.csv` for\n'
+        'read and unread ranges. Link private `templates/task-candidate.md` cards\n'
+        'from design_use_or_reason for proposed long-horizon tasks. Deliver `REPORT.md`.\n\n'
+        'The detailed incident, temporal-review, reproduction, and submission\n'
+        'guides apply only when separately requested. The initializer does not\n'
+        'inspect history, create a Git repository, or upload data.\n',
         encoding='utf-8',
     )
     return output
@@ -77,7 +74,7 @@ def main():
     except (OSError, ValueError) as exc:
         parser.exit(1, f'Cannot initialize collection: {exc}\n')
     print(f'Created collection: {output}')
-    print('Start with AGENTS.md and .local/collection-report.md. No history was read or uploaded.')
+    print('Start with AGENTS.md and .local/session-selection.csv. No history was read or uploaded.')
 
 
 if __name__ == '__main__':

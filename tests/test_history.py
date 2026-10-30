@@ -326,6 +326,123 @@ class HistoryTests(unittest.TestCase):
         self.assertEqual(turn["developer_instructions"], "VISIBLE_DEVELOPER_INSTRUCTION")
         self.assertEqual(turn["user_instructions"], "VISIBLE_USER_INSTRUCTION")
 
+    def test_codex_goal_settings_and_usage_records_are_distinguished(self):
+        path = self.codex(records=[
+            self.codex_meta(),
+            {"type": "event_msg", "payload": {"type": "thread_goal_updated", "goal": {
+                "objective": "VISIBLE_OBJECTIVE", "status": "paused", "tokensUsed": 123,
+                "private_extra": "HIDDEN_EXTRA"}}},
+            {"type": "event_msg", "payload": {"type": "thread_settings_applied",
+                "thread_id": "thread-one", "thread_settings": {"model": "model-one",
+                    "approval_policy": "never", "collaboration_mode": {"mode": "default",
+                        "private_extra": "HIDDEN_MODE"}, "private_extra": "HIDDEN_SETTING"}}},
+            {"type": "token_usage_record", "payload": {"private_extra": "HIDDEN_USAGE"}},
+            {"type": "unrecognized_record", "payload": {"private_extra": "HIDDEN_UNKNOWN"}},
+        ])
+        index, inventory = self.inventory()
+        page = self.read(index, self.source_for(inventory, path))
+        self.assertEqual(page["events"][1]["goal"]["status"], "paused")
+        self.assertEqual(page["events"][1]["goal"]["objective"], "VISIBLE_OBJECTIVE")
+        self.assertEqual(page["events"][2]["thread_settings"]["collaboration_mode"],
+                         {"mode": "default"})
+        self.assertEqual(page["omissions"]["non_conversation_metadata"], 1)
+        self.assertEqual([gap["line"] for gap in page["schema_gaps"]], [5])
+        serialized = json.dumps(page)
+        for hidden in ("HIDDEN_EXTRA", "HIDDEN_MODE", "HIDDEN_SETTING", "HIDDEN_USAGE", "HIDDEN_UNKNOWN"):
+            self.assertNotIn(hidden, serialized)
+
+    def test_history_summary_lists_long_visible_fields_without_content(self):
+        long_text = "VISIBLE_LONG_" * 400
+        path = self.codex(records=[
+            self.codex_meta(),
+            self.codex_message(long_text),
+            self.codex_message("HIDDEN_ANALYSIS", channel="analysis"),
+            {"type": "mystery", "payload": {"text": "HIDDEN_UNKNOWN"}},
+        ])
+        index, inventory = self.inventory()
+        source = self.source_for(inventory, path)
+        result = self.call("read", "--index", index, "--source", source["id"],
+                           "--start-line", 1, "--max-lines", 4, "--summary")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        summary = json.loads(result.stdout)
+        self.assertEqual(summary["source_id"], source["id"])
+        self.assertEqual(summary["long_fields"], [{
+            "line": 2, "event_type": "message", "path": "$.content[0].text",
+            "chars": len(long_text),
+        }])
+        self.assertEqual(summary["schema_gaps"][0]["line"], 4)
+        for hidden in ("VISIBLE_LONG_", "HIDDEN_ANALYSIS", "HIDDEN_UNKNOWN"):
+            self.assertNotIn(hidden, result.stdout)
+
+    def test_human_manifest_preserves_all_human_lines_and_excludes_hook_replay(self):
+        path = self.claude(records=[
+            self.claude_message("First real request"),
+            self.claude_message("Stop hook feedback: 反复检查"),
+            {"type": "attachment", "sessionId": "claude-main", "cwd": str(self.project),
+             "attachment": {"type": "queued_command", "origin": {"kind": "human"},
+                            "prompt": "Correct the long task"}},
+            self.claude_message([{"type": "tool_result", "content": "HIDDEN_TOOL_BODY"}]),
+            self.claude_message("A" * 25),
+        ])
+        index, inventory = self.inventory()
+        source = self.source_for(inventory, path)
+        result = self.call("human", "--index", index, "--source", source["id"],
+                           "--char-limit", 20)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        manifest = json.loads(result.stdout)
+        self.assertEqual([item["line"] for item in manifest["messages"]], [1, 3, 5])
+        self.assertEqual(manifest["messages"][1]["kind"], "human_queued_command")
+        self.assertIsNone(manifest["messages"][2]["text"])
+        self.assertTrue(manifest["messages"][2]["needs_expansion"])
+        self.assertEqual(manifest["automatic_user_texts_excluded"], 1)
+        self.assertEqual(manifest["empty_or_tool_user_records_excluded"], 1)
+        self.assertFalse(manifest["delivery_verified"])
+        self.assertNotIn("HIDDEN_TOOL_BODY", result.stdout)
+
+    def test_human_manifest_codex_input_text_only(self):
+        path = self.codex(records=[
+            self.codex_meta(),
+            {"type": "response_item", "payload": {"type": "message", "role": "user",
+                "content": [{"type": "input_text", "text": "Real correction"}]}},
+            {"type": "response_item", "payload": {"type": "message", "role": "user",
+                "content": [{"type": "input_text", "text": "Goal check-in: automatic"}]}},
+            self.codex_message("HIDDEN_ASSISTANT"),
+        ])
+        index, inventory = self.inventory()
+        source = self.source_for(inventory, path)
+        result = self.call("human", "--index", index, "--source", source["id"])
+        self.assertEqual(result.returncode, 0, result.stderr)
+        manifest = json.loads(result.stdout)
+        self.assertEqual([item["line"] for item in manifest["messages"]], [2])
+        self.assertEqual(manifest["messages"][0]["text"], "Real correction")
+        self.assertNotIn("HIDDEN_ASSISTANT", result.stdout)
+
+    def test_human_manifest_excludes_claude_system_provenance_without_prefix(self):
+        typed = self.claude_message("Actual human correction")
+        typed["origin"] = {"kind": "human"}
+        typed["promptSource"] = "typed"
+        continuation = self.claude_message("Goal set: continue experiments")
+        continuation["origin"] = {"kind": "auto-continuation"}
+        continuation["promptSource"] = "system"
+        scheduled = self.claude_message("Check experiment balance")
+        scheduled["isMeta"] = True
+        scheduled["promptSource"] = "system"
+        scheduled["scheduledTaskId"] = "task-1"
+        coordinator = self.claude_message("Review experiment progress")
+        coordinator["origin"] = {"kind": "coordinator"}
+        coordinator["isMeta"] = True
+        unknown = self.claude_message("Candidate without provenance")
+        path = self.claude(records=[typed, continuation, scheduled, coordinator, unknown])
+        index, inventory = self.inventory()
+        source = self.source_for(inventory, path)
+        result = self.call("human", "--index", index, "--source", source["id"])
+        self.assertEqual(result.returncode, 0, result.stderr)
+        manifest = json.loads(result.stdout)
+        self.assertEqual([item["line"] for item in manifest["messages"]], [1, 5])
+        self.assertEqual(manifest["automatic_user_texts_excluded"], 3)
+        self.assertEqual(manifest["messages"][0]["text"], "Actual human correction")
+        self.assertEqual(manifest["messages"][1]["text"], "Candidate without provenance")
+
     def test_native_codex_exec_patch_and_web_events_keep_visible_results(self):
         events = [
             {"type": "exec_command_begin", "call_id": "exec-one",
@@ -378,6 +495,110 @@ class HistoryTests(unittest.TestCase):
         self.assertNotIn("OMITTED_ANALYSIS", json.dumps(middle))
         self.assertIn("SECOND_VISIBLE", json.dumps(middle))
         self.assertIn("LAST_VISIBLE", json.dumps(last))
+
+    def test_mid_turn_human_queued_command_is_visible_once_with_delivery(self):
+        path = self.claude(records=[
+            self.claude_message("Earlier request."),
+            {"type": "user", "sessionId": "claude-main", "cwd": str(self.project),
+             "timestamp": "2026-10-01T12:01:00Z", "message": {"content": [
+                 {"type": "tool_result", "content": "Automatic permission denial."}]}},
+            {"type": "queue-operation", "sessionId": "claude-main",
+             "timestamp": "2026-10-01T12:01:02Z", "operation": "remove",
+             "content": "Please clean up dead processes."},
+            {"type": "attachment", "sessionId": "claude-main",
+             "timestamp": "2026-10-01T12:00:30Z", "attachment": {
+                 "type": "queued_command", "prompt": "Please clean up dead processes.",
+                 "source_uuid": "human-one", "commandMode": "prompt",
+                 "origin": {"kind": "human"}, "timestamp": "2026-10-01T12:00:30Z"}},
+        ])
+        index, inventory = self.inventory()
+        page = self.read(index, self.source_for(inventory, path))
+        self.assertEqual([event["type"] for event in page["events"]],
+                         ["message", "message", "queue_operation", "queued_command"])
+        command = page["events"][-1]
+        self.assertEqual(command["origin_kind"], "human")
+        self.assertEqual(command["prompt"], "Please clean up dead processes.")
+        self.assertEqual(command["source_uuid"], "human-one")
+        self.assertEqual(command["queued_at"], "2026-10-01T12:00:30Z")
+        self.assertEqual(page["events"][-2]["operation"], "remove")
+        self.assertEqual(page["human_queued_command_lines"], [4])
+
+    def test_codex_inter_agent_and_completed_items_keep_visible_evidence(self):
+        path = self.codex(records=[
+            self.codex_meta(),
+            {"type": "response_item", "payload": {
+                "type": "agent_message", "id": "agent-one", "author": "/root/worker",
+                "recipient": "/root", "content": [
+                    {"type": "input_text", "text": "VISIBLE_HANDOFF"},
+                    {"type": "encrypted_content", "text": "HIDDEN_CONTENT"}],
+                "internal_chat_message_metadata_passthrough": {
+                    "turn_id": "turn-one", "create_time": 1}}},
+            {"type": "event_msg", "payload": {"type": "item_completed",
+                "turn_id": "turn-one", "item": {"type": "AgentMessage",
+                    "id": "agent-one", "content": [{"type": "Text", "text": "VISIBLE_HANDOFF"}]} }},
+            {"type": "event_msg", "payload": {"type": "item_completed",
+                "item": {"type": "CommandExecution", "id": "exec-one",
+                    "command": "VISIBLE_COMMAND", "stdout": "VISIBLE_RESULT", "exit_code": 0}}},
+            {"type": "event_msg", "payload": {"type": "item_completed",
+                "item": {"type": "Reasoning", "raw_content": "HIDDEN_REASONING"}}},
+        ])
+        index, inventory = self.inventory()
+        page = self.read(index, self.source_for(inventory, path))
+        self.assertEqual([e["type"] for e in page["events"]],
+                         ["session_meta", "agent_message", "item_completed", "item_completed"])
+        self.assertEqual(page["events"][1]["author"], "/root/worker")
+        self.assertEqual(page["events"][1]["recipient"], "/root")
+        self.assertEqual(page["events"][2]["item_type"], "AgentMessage")
+        self.assertEqual(page["events"][3]["stdout"], "VISIBLE_RESULT")
+        self.assertIn("VISIBLE_HANDOFF", json.dumps(page))
+        self.assertNotIn("HIDDEN_CONTENT", json.dumps(page))
+        self.assertNotIn("HIDDEN_REASONING", json.dumps(page))
+        self.assertEqual(page["omissions"].get("reasoning"), 2)
+
+    def test_codex_turn_index_splits_reused_child_and_ignores_mirror(self):
+        path = self.codex("child-turns", records=[
+            self.codex_meta("child-turns"),
+            {"type": "response_item", "payload": {"type": "agent_message",
+             "content": [{"type": "input_text", "text": "Message Type: NEW_TASK Task name: /root/audit Sender: /root Payload: encrypted"}]}},
+            {"type": "event_msg", "payload": {"type": "agent_message",
+             "message": "Message Type: NEW_TASK Task name: /root/audit"}},
+            self.codex_message("Read-only review completed."),
+            {"type": "response_item", "payload": {"type": "function_call",
+             "name": "send_message", "call_id": "one", "arguments": "{}"}},
+            {"type": "response_item", "payload": {"type": "agent_message",
+             "content": [{"type": "input_text", "text": "Message Type: NEW_TASK Task name: /root/audit Sender: /root Payload: encrypted"}]}},
+            self.codex_message("Built a new task packet."),
+            {"type": "event_msg", "payload": {"type": "world_state", "hidden": "DO_NOT_PROJECT"}},
+        ])
+        index, inventory = self.inventory()
+        source = self.source_for(inventory, path)
+        result = self.call("turns", "--index", index, "--source", source["id"],
+                           "--char-limit", 18)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        data = json.loads(result.stdout)
+        self.assertEqual(data["turn_count"], 2)
+        self.assertEqual([(x["start_line"], x["end_line"], x["tool_calls"])
+                          for x in data["task_turns"]], [(2, 5, 1), (6, 8, 0)])
+        self.assertEqual(data["task_turns"][0]["first_assistant"]["preview"],
+                         "Read-only review c")
+        self.assertEqual(data["task_turns"][1]["last_assistant"]["preview"],
+                         "Built a new task p")
+        self.assertEqual(data["schema_gap_anchors"],
+                         [{"line": 8, "reason": "unknown_record", "type": "world_state"}])
+        self.assertNotIn("DO_NOT_PROJECT", result.stdout)
+
+    def test_claude_bridge_session_keeps_relationship_without_owner_ids(self):
+        path = self.claude(records=[
+            self.claude_message(),
+            {"type": "bridge-session", "sessionId": "claude-main",
+             "bridgeSessionId": "bridge-one", "lastSequenceNum": 7,
+             "ownerAccountUuid": "HIDDEN_OWNER"},
+        ])
+        index, inventory = self.inventory()
+        page = self.read(index, self.source_for(inventory, path))
+        self.assertEqual(page["events"][-1]["type"], "bridge_session")
+        self.assertEqual(page["events"][-1]["bridgeSessionId"], "bridge-one")
+        self.assertNotIn("HIDDEN_OWNER", json.dumps(page))
 
     def test_multibyte_pagination_crosses_byte_checkpoints_without_losing_lines(self):
         path = self.codex(records=[self.codex_meta()] + [

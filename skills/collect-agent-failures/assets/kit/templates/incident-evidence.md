@@ -22,10 +22,17 @@ copying the same account into every form.
 - Collector and contributor aliases:
 - Collection date and timezone:
 - Record version and later amendments:
-- Status: candidate / confirmed observed failure / rejected / duplicate / needs more evidence.
+- Status: candidate / observed process / confirmed observed failure / rejected / duplicate / needs more evidence.
 - Matching symptom IDs and names from [SYMPTOMS.md](../docs/SYMPTOMS.md), or `other`:
 - Reason for each label:
 - One-sentence observed behavior:
+- Subject of observation: collecting agent / evaluated agent / coordinator / harness / other; source:
+- Process observation (if any): action sequence, object, actor, versions, inputs, and whether delivery succeeded:
+- Process count definitions and source level: original tool calls / coordinator summary / diagnostic counter; tests versus other calls; unresolved discrepancies:
+- Work stages evidenced separately: prepared / launched / progressed / completed / target opportunity reached; anchors or unknowns:
+- Stop condition: configured value, authority, actual trigger, affected run identity, and any verified continuation:
+- Human correction versus automated notice or replay; how identified:
+- Pre-correction claim or action, its then-available basis, correction evidence, and later recovery:
 - Current disposition: incident only / reproduction in progress / packaged / evaluated / deferred.
 - Submission decision: selected / local draft only; gate evidence or exact missing prerequisite:
 - Original temporal relevance: temporal candidate / evidence needed / short control; reason:

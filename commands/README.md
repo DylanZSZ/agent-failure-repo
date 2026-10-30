@@ -1,11 +1,11 @@
-# Start a collection and inspect its packages locally
+# Start a session collection and inspect local sources
 
 Updated 2026-10-10.
 
 ## Summary
 
-Give your agent the launch message in the repository readme to run the full
-collection. The commands below support that workflow with Python
+Give your agent the launch message in the repository readme to select
+task-design reference sessions. The commands below support that workflow with Python
 3.9 or newer and no third-party dependencies.
 
 Source: [Repository entrypoint](../README.md).
@@ -19,8 +19,10 @@ python3 commands/start.py
 ```
 
 This creates `.local/collection/` and prints its absolute path, next agent
-action, index, coverage report, and final `REPORT.md` destination. Repeating it
-resumes a recognized workspace without rewriting evidence. To select another
+action, session list, coverage report, and final `REPORT.md` destination. Repeating it
+resumes a recognized workspace without rewriting evidence. The response supplies
+workflow_rules (the current checkout AGENTS.md), workflow_rules_sha256, and
+candidate_template; read these current rules rather than the workspace snapshot. To select another
 new directory whose parent exists:
 
 ```bash
@@ -38,8 +40,8 @@ original target project when changing directories.
 
 ## Work inside the collection
 
-First inventory historical Claude Code and Codex runs for the target project,
-then read each eligible source in successive pages:
+Inventory authorized historical Claude Code and Codex runs for the target
+project, then read the source ranges needed to assess this batch:
 
 ```bash
 python3 commands/history.py inventory --project /path/to/target-project --output .local/history-index.json
@@ -48,13 +50,31 @@ python3 commands/history.py read --index .local/history-index.json --source SOUR
 
 Replace `SOURCE_ID` with the source's `id` from the index. `next_start_line`
 is the starting line for the next page; `eof` means the end of the file.
-Read through that end, recording reviewed ranges. Both tools are
-checked by default, including Codex archived sessions. The helper never modifies
-transcripts; its output is private and unredacted. Read [the history guide](../docs/HISTORY.md)
+Record reviewed and unread ranges in `.local/source-review-ledger.csv`. Both
+tools are checked by default, including Codex archived sessions. The helper
+never modifies transcripts; its output is private and unredacted. Read [the history guide](../docs/HISTORY.md)
 for custom roots, aliases, subagents, duplicate events, and unsupported records.
 
-Change to the printed workspace before creating or checking submissions.
-For the default workspace, from the kit root:
+For a fixed-page comparison, keep a private freeze JSON with the absolute
+source path, SHA-256, physical line count, page size, and selected page starts.
+The guarded reader refuses source changes and unselected lines:
+
+```bash
+python3 commands/frozen_pages.py --freeze .local/freeze.json --check
+python3 commands/frozen_pages.py --freeze .local/freeze.json --page 401
+python3 commands/frozen_pages.py --freeze .local/freeze.json --line 418
+```
+
+The source path and returned text are private. Selected records are projected
+through the same visible-event allowlist as `history.py`; hidden reasoning and
+unknown bodies are counted as omissions rather than printed. This is a sampling
+aid; it does not mark the rest of a source as reviewed. If original records are
+needed to adjudicate a candidate, inspect them separately after freezing the
+first-pass report, and label that evidence as a follow-up.
+
+If a user later requests a runnable task or public submission, change to the
+printed workspace before using the separate problem tools. For the default
+workspace, from the kit root:
 
 ```bash
 cd .local/collection
