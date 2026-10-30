@@ -12,12 +12,11 @@ path. This page covers optional installation for reuse in later sessions.
 Source: [Repository entrypoint](../README.md).
 
 Install `collect-agent-failures` once, then invoke it in an agent that can read
-historical Claude Code and Codex runs you select. Either host agent checks both
-tools' available transcripts. It searches all 20 symptom categories and new
-modes, reconstructs detailed evidence, and builds faithful reproduction tasks
-for failures contributed to by earlier work or actual agent interaction. The
-installed folder includes the guides, templates, and tools; it works without
-keeping this repository clone. Installation itself does not read any history.
+the Claude Code and Codex histories you authorize. The skill selects real
+sessions with concrete task-design uses and locatable originals. Detailed
+failure review and reproduction remain optional follow-up work. The installed
+folder includes the guides, templates, and tools; it works without keeping
+this repository clone. Installation itself does not read any history.
 
 ## Install from the repository
 
@@ -67,30 +66,17 @@ to a product that does not have it. For older Codex setups, `--dest` also lets
 you select a configured legacy skill directory. Do not install duplicate copies
 under several discovery roots.
 
-## Ask it to collect comprehensively
+## Ask it to collect sessions
 
 In Claude Code, begin with `/collect-agent-failures`. In Codex, begin with
-`$collect-agent-failures`. Append this request, replacing the bracketed scope:
+`$collect-agent-failures`. Give the authorized project, sessions, exports, or
+dates, then request task-design reference sessions:
 
-> Review historical Claude Code and Codex runs for [these projects, sessions, exports,
-> and dates], which I authorize you to inspect. Check both tools regardless of
-> which agent you are. Use the current conversation as supplementary evidence.
-> Collect as many distinct failures as the evidence supports, using all 20
-> symptom categories and additional modes.
-> Get as much relevant information as possible for each candidate: exact requests,
-> messages, tool results, edits, tests, context changes, model settings, outcomes,
-> corrections, and counterevidence. Preserve source references and unknowns.
-> Keep a complete inventory and coverage report; do not stop after a few examples.
-> Apply docs/LONG_HORIZON.md: select only actual failures with a sourced
-> contribution from extended work, context transitions, or agent interaction.
-> Reconstruct requirements, state, actions, consequences, and recovery with event
-> anchors; for multiple agents, record visibility and ordering. Keep ordinary bugs
-> and uncertain leads in the private inventory. Build faithful tasks for relevant,
-> evidenced cases and verify the documented commands and checker controls from
-> a clean copy before proposing submission. Zero eligible cases is fine.
-> Distinguish scripted checks from fresh agent attempts and causal comparisons.
-> Keep originals local, show me the sanitized
-> material before sharing, and leave exact continuation points for unfinished work.
+> Select sessions with a real task and agent action, a concrete use for agent
+> failure task design, and locatable original evidence. Keep the relevant full
+> conversation sources locally. Give event anchors, design uses, and selected,
+> needs-evidence, or not-selected decisions. Record unread ranges and deliver a
+> short report. Do not require a proven failure or runnable reproduction.
 
 The agent creates a separate collection workspace. It does not write collected
 histories into the installed skill. It follows [the historical-run guide](HISTORY.md)
@@ -99,16 +85,12 @@ selected exports or an authorized path; installation cannot unlock chat history.
 
 ## What you should receive
 
-- A source inventory and search coverage for all 20 symptoms plus other modes.
-- A complete candidate index, including uncertain, duplicate, and rejected cases.
-- A detailed evidence record for each candidate, with missing fields explained.
-- Selected runnable task packages that pass the admission requirements, plus local deferral reasons.
-- Every reproduction attempt and comparison, with claims matched to evidence.
-- A console explanation of findings, proposed submission files, checks, and gaps,
-  with links to the complete local material.
+- A short local report and private session decision list.
+- Original source locations, event anchors, concrete design uses, and material gaps.
+- An exact account of read and unread ranges and the next batch when work remains.
 
-The [submission guide](SUBMITTING.md) defines the reviewed collection reports,
-problem packages, and actual run records to push after owner approval.
+The [submission guide](SUBMITTING.md) applies only if you later request a public
+problem package. Collection itself does not upload material.
 
 ## Update or remove
 

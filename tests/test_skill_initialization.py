@@ -55,9 +55,10 @@ class SkillInitializationTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         private = self.output / ".local"
         self.assertEqual(stat.S_IMODE(private.stat().st_mode), 0o700)
-        self.assertTrue((private / "incidents").is_dir())
-        for name in ("collection-report.md", "incident-index.csv"):
+        for name in ("collection-report.md", "source-review-ledger.csv",
+                     "session-selection.csv"):
             self.assertEqual((private / name).read_bytes(), (self.kit / "templates" / name).read_bytes())
+        self.assertFalse((private / "incident-index.csv").exists())
         self.assertIn("/.local/", (self.output / ".gitignore").read_text())
         self.assertIn("Your local agent failure collection", (self.output / "README.md").read_text())
         self.assertFalse((self.output / ".git").exists())

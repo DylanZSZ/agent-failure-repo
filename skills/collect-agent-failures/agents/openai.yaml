@@ -1,4 +1,4 @@
 interface:
-  display_name: "Collect Agent Failures"
-  short_description: "Investigate past failures and build reproducible tasks"
-  default_prompt: "Use $collect-agent-failures to review my authorized historical Claude Code and Codex runs and collect detailed, reproducible failure cases."
+  display_name: "Collect Agent Sessions"
+  short_description: "Select real sessions for agent failure task design"
+  default_prompt: "Use $collect-agent-failures to select task-design reference sessions from my authorized Claude Code and Codex history."

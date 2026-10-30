@@ -60,7 +60,7 @@ For each incident, capture the following before explaining its cause:
 1. **Original intent.** The user's goal, acceptance criteria, scope, standing rules, later changes to those rules, permissions, and permitted stopping options. Preserve exact relevant wording where authorized. Identify which instructions actually applied at the decision time.
 2. **Earlier state.** The rule, working implementation, discovery, completed delivery, or teammate addition that the later action mishandled. Record what shows it existed and worked. A passing import or unrelated test is weaker than a check of the relevant behavior.
 3. **Intervening work.** Every relevant task, pause, repository switch, context reset, compaction, memory edit, tool-output truncation, teammate action, or environment change. Record unrelated work by its actual extent when it contributes to the measured span; do not collect unrelated personal content.
-4. **Decision and action.** The later request, evidence available then, messages and tool calls, complete relevant tool results, actual file or state changes, and any report of completion. Separate what the agent said it would do from commands that ran and effects that occurred.
+4. **Decision and action.** The later request, evidence available then, messages and tool calls, complete relevant tool results, actual file or state changes, and any report of completion. Include queued human commands and their delivery events when the export stores them outside ordinary user messages; preserve both file order and recorded timestamps. Separate what the agent said it would do from commands that ran and effects that occurred.
 5. **Consequence.** Independent checks, user corrections, lost work, incorrect output, exposure to an unauthorized destination, or blocked follow-on work. Record measured impact separately from hypothetical impact.
 6. **Recovery and recurrence.** What happened after discovery: correction, rollback, retry, explanation, successful handoff, unresolved damage, or the same mistake again. Keep later recovery; it may change the conclusion even when it does not erase the original failure.
 
@@ -82,6 +82,11 @@ resulting diff, and independent checks. Label any assumed or substituted part;
 never fabricate a missing tool result, message, timestamp, or teammate action.
 If the sources do not determine the state needed for the claim, record that
 gap rather than silently choosing the version that produces a failure.
+
+For an alleged omission, compare the meaning of the requirement with the
+pre-edit artifact or a verified diff. A zero count for an exact phrase only
+shows that phrase was absent. An agent's later statement that the requirement
+was lost is evidence of its judgment, not independent proof of the old state.
 
 Distinguish an original recorded check from a check run now on reconstructed
 state. The latter can corroborate the effect of a recorded edit; it does not
@@ -126,6 +131,24 @@ For code and file changes, preserve the smallest relevant before/after snapshots
 
 For tests, retain the exact command, relevant environment, state under test, output, exit code, and time. Distinguish baseline checks, checks run by the agent, hidden acceptance checks, later investigator checks, and counterfactual checks. Save all repeated results on the same state, including failures followed by passes. A post-hoc test is useful evidence, but it was not information available to the original agent.
 
+When describing repeated verification, classify original tool calls by action
+before counting: a post-edit call may be a test, inspection, edit, environment
+probe, or driver-prompted no-op. Record the count definition and denominator.
+If only a coordinator's summary or a diagnostic counter is available, label
+the observation secondary and preserve any difference between those counts;
+do not turn all post-edit calls into repeated tests.
+
+For work-progress claims, record separate evidence for preparation, real
+launch, partial progress, completion, and whether a target mechanism was
+present and reached. Do not call a completed run a valid test of a mechanism
+whose precondition was absent. For a complaint about delayed action, pair the
+human message with actual tool and result anchors, available prerequisites,
+and any runtime blocker. Check the authority and actual effect of any budget
+or stop condition; a configured limit and an observed halt are separate facts.
+Separate the tested agent's actions from the
+collector's, coordinator's, and evaluator's actions. Record later repair
+without rewriting the earlier observation.
+
 ## Measure the horizon rather than calling it long
 
 Record the earliest relevant event, the later decision, and the failure or discovery event. Measure the span between clearly named endpoints using whatever the source actually provides:
@@ -146,7 +169,7 @@ Explain why the incident matters using actual consequences and a feasible correc
 
 Then evaluate the proposed mechanism. List evidence for and against memory loss, stale memory, local imitation, missing search, budget pressure, test overfitting, or another explanation. Compare these with short-task difficulty, ambiguous requirements, unavailable information, a flawed evaluator, service failures, and teammate interference. State what comparison would distinguish them. A similar earlier rule and later wrong code do not establish that one caused the other.
 
-Link related incidents and repeated references. Use one incident ID for one episode even when it matches several symptoms; use separate IDs for distinct episodes. Record `duplicate_of` and the reason for merging records. Preserve dependencies between incidents: a missing handoff and a later false completion may be separate observed events in one chain rather than independent samples.
+Link related incidents and repeated references. Use one incident ID for one episode even when it matches several symptoms; use separate IDs for distinct episodes. Record `duplicate_of` and the reason for merging records. A repeated human complaint across root files may describe one concern while different agents performed different actions; link the concern without merging their trajectories or counting the complaint twice. Preserve dependencies between incidents: a missing handoff and a later false completion may be separate observed events in one chain rather than independent samples.
 
 ## Preserve attempts and reduction decisions
 

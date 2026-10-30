@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Prepare or resume a private collection. This setup command does not inspect history."""
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import runpy
@@ -15,16 +16,17 @@ REQUIRED_FILES = (
     'commands/new_problem.py', 'commands/validate.py',
     'templates/incident-evidence.md', 'templates/problem/problem.json',
     'templates/problem/README.md', '.local/collection-report.md',
-    '.local/incident-index.csv',
+    '.local/source-review-ledger.csv',
 )
 REQUIRED_DIRS = ('docs', 'commands', 'templates', 'problems', 'results',
-                 '.local', '.local/incidents')
+                 '.local')
 
 
 def resume(workspace):
     """Recognize only our own complete workspace without changing any content."""
     marker_path = workspace / MARKER
-    for name in (*REQUIRED_DIRS, *REQUIRED_FILES, str(MARKER)):
+    ledgers = ('.local/session-selection.csv', '.local/incident-index.csv')
+    for name in (*REQUIRED_DIRS, *REQUIRED_FILES, *ledgers, str(MARKER)):
         path = workspace
         for part in Path(name).parts:
             path = path / part
@@ -48,6 +50,8 @@ def resume(workspace):
     for name in REQUIRED_DIRS:
         if not (workspace / name).is_dir():
             raise ValueError(f'Existing workspace is incomplete: missing {name}/')
+    if not any((workspace / name).is_file() for name in ledgers):
+        raise ValueError('Existing workspace is incomplete: missing selection or legacy incident index')
 
 
 def start(output=None, root=ROOT):
@@ -85,17 +89,25 @@ def start(output=None, root=ROOT):
             'workspace': str(workspace),
         }, indent=2) + '\n', encoding='utf-8')
         status = 'created'
+    session_index = workspace / '.local/session-selection.csv'
+    if not session_index.is_file():
+        session_index = workspace / '.local/incident-index.csv'
+    instructions = root / 'AGENTS.md'
+    rules_hash = hashlib.sha256(instructions.read_bytes()).hexdigest()
     return {
         'status': status,
         'workspace': str(workspace),
+        'workflow_rules': str(instructions),
+        'workflow_rules_sha256': rules_hash,
+        'candidate_template': str(root / 'templates/task-candidate.md'),
         'agent_next_action': (
-            f'Continue collection in this turn: read {workspace / "AGENTS.md"}, '
+            f'Continue collection in this turn: read {instructions}, '
             'then follow its collection workflow using authorized available history. '
             'Setup is not completion.'
         ),
         'report': str(workspace / '.local/collection-report.md'),
         'summary_report': str(workspace / 'REPORT.md'),
-        'index': str(workspace / '.local/incident-index.csv'),
+        'index': str(session_index),
         'setup_only': True,
         'history_scanned': False,
         'model_run': False,

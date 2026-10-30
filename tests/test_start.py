@@ -1,5 +1,6 @@
 """Exercise one-command setup and non-destructive resume in disposable copies."""
 import json
+import hashlib
 from pathlib import Path
 import shutil
 import subprocess
@@ -18,6 +19,10 @@ class StartTests(unittest.TestCase):
         self.base = Path(temporary.name).resolve()
         self.root = self.base / 'repository'
         (self.root / 'commands').mkdir(parents=True)
+        shutil.copyfile(REPOSITORY / 'AGENTS.md', self.root / 'AGENTS.md')
+        (self.root / 'templates').mkdir()
+        shutil.copyfile(REPOSITORY / 'templates/task-candidate.md',
+                        self.root / 'templates/task-candidate.md')
         shutil.copyfile(REPOSITORY / 'commands/start.py', self.root / 'commands/start.py')
         shutil.copytree(REPOSITORY / 'skills/collect-agent-failures',
                         self.root / 'skills/collect-agent-failures',
@@ -42,9 +47,11 @@ class StartTests(unittest.TestCase):
         self.assertTrue(data['setup_only'])
         self.assertFalse(data['history_scanned'])
         self.assertFalse(data['model_run'])
-        self.assertIn(str(self.default / 'AGENTS.md'), data['agent_next_action'])
+        self.assertIn(str(self.root / 'AGENTS.md'), data['agent_next_action'])
+        self.assertTrue(Path(data['candidate_template']).is_file())
         self.assertTrue(Path(data['report']).is_file())
         self.assertTrue(Path(data['index']).is_file())
+        self.assertTrue((self.default / '.local/source-review-ledger.csv').is_file())
         self.assertEqual(data['summary_report'], str(self.default / 'REPORT.md'))
         self.assertFalse(Path(data['summary_report']).exists())
         self.assertEqual((self.root / '.local').stat().st_mode & 0o777, 0o700)
@@ -55,15 +62,44 @@ class StartTests(unittest.TestCase):
         self.assertTrue((self.default / 'problems/observed-incident/problem.json').is_file())
         self.assertFalse((self.default / '.git').exists())
 
-    def test_repeat_preserves_report_index_and_incident_artifacts(self):
+    def test_repeat_preserves_report_index_and_private_artifacts(self):
         self.assertEqual(self.call().returncode, 0)
-        for relative in ('.local/collection-report.md', '.local/incident-index.csv',
-                         '.local/incidents/details.md', 'problems/work-in-progress.txt'):
+        for relative in ('.local/collection-report.md', '.local/source-review-ledger.csv',
+                         '.local/session-selection.csv',
+                         '.local/private-note.md', 'problems/work-in-progress.txt'):
             (self.default / relative).write_text(f'Contributor work: {relative}\n')
         before = self.snapshot(self.root)
         result = self.call()
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(json.loads(result.stdout)['status'], 'resumed')
+        self.assertEqual(before, self.snapshot(self.root))
+
+    def test_resume_uses_updated_checkout_rules_without_rewriting_workspace(self):
+        self.assertEqual(self.call().returncode, 0)
+        rules = self.root / 'AGENTS.md'
+        rules.write_text('Current revised collection rules.\n')
+        before = self.snapshot(self.default)
+        result = self.call()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        data = json.loads(result.stdout)
+        self.assertEqual(data['workflow_rules'], str(rules))
+        self.assertEqual(data['workflow_rules_sha256'],
+                         hashlib.sha256(rules.read_bytes()).hexdigest())
+        self.assertIn(str(rules), data['agent_next_action'])
+        self.assertEqual(before, self.snapshot(self.default))
+
+    def test_legacy_index_can_resume_without_rewriting_history(self):
+        self.assertEqual(self.call().returncode, 0)
+        selection = self.default / '.local/session-selection.csv'
+        legacy = self.default / '.local/incident-index.csv'
+        selection.rename(legacy)
+        before = self.snapshot(self.root)
+        result = self.call()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        data = json.loads(result.stdout)
+        self.assertEqual(data['status'], 'resumed')
+        self.assertEqual(data['index'], str(legacy))
+        self.assertIn(str(self.root / 'AGENTS.md'), data['agent_next_action'])
         self.assertEqual(before, self.snapshot(self.root))
 
     def test_custom_output_and_resume(self):

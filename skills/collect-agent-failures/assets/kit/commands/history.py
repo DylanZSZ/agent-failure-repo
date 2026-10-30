@@ -396,7 +396,7 @@ class Projection:
                 self.omit('unknown_block')
                 continue
             kind = block.get('type')
-            if kind in ('text', 'input_text', 'output_text') and isinstance(block.get('text'), str):
+            if kind in ('text', 'Text', 'input_text', 'output_text') and isinstance(block.get('text'), str):
                 result.append({'type': kind, 'text': block['text']})
             elif kind == 'tool_use' and provider == 'claude':
                 result.append({'type': kind, **scalar_metadata(block, ('id', 'name')),
@@ -405,7 +405,8 @@ class Projection:
                 result.append({'type': kind,
                                **scalar_metadata(block, ('tool_use_id', 'is_error')),
                                'content': self.blocks(block.get('content', ''), provider)})
-            elif kind in ('thinking', 'redacted_thinking', 'reasoning', 'encrypted_reasoning'):
+            elif kind in ('thinking', 'redacted_thinking', 'reasoning', 'encrypted_reasoning',
+                          'encrypted_content'):
                 self.omit('reasoning')
             elif kind in ('image', 'image_url', 'input_image', 'output_image', 'document',
                           'audio', 'input_audio', 'file'):
@@ -459,6 +460,25 @@ class Projection:
     def claude(self, record):
         kind = record.get('type')
         base = {'line': self.line, **self.metadata(record)}
+        if kind == 'attachment':
+            attachment = record.get('attachment')
+            if isinstance(attachment, dict) and attachment.get('type') == 'queued_command':
+                prompt = attachment.get('prompt')
+                if isinstance(prompt, str):
+                    origin = attachment.get('origin')
+                    return {**base, 'type': 'queued_command', 'prompt': prompt,
+                            'source_uuid': attachment.get('source_uuid'),
+                            'command_mode': attachment.get('commandMode'),
+                            'origin_kind': origin.get('kind') if isinstance(origin, dict) else None,
+                            'queued_at': attachment.get('timestamp')}
+                self.omit('invalid_content', 'queued_command')
+                return None
+        if kind == 'queue-operation':
+            return {**base, 'type': 'queue_operation',
+                    **scalar_metadata(record, ('operation', 'content', 'reason'))}
+        if kind == 'bridge-session':
+            return {**base, 'type': 'bridge_session',
+                    **scalar_metadata(record, ('bridgeSessionId', 'lastSequenceNum'))}
         if kind in ('user', 'assistant'):
             message = record.get('message')
             if not isinstance(message, dict):
@@ -483,7 +503,7 @@ class Projection:
                 event['compact_metadata'] = scalar_metadata(metadata, ('trigger', 'preTokens', 'postTokens'))
             return event
         if kind in ('attachment', 'file-history-snapshot', 'file-history-delta', 'progress',
-                    'queue-operation', 'last-prompt', 'ai-title', 'mode', 'permission-mode'):
+                    'last-prompt', 'ai-title', 'mode', 'permission-mode'):
             self.omit('non_conversation_metadata', kind)
         else:
             self.omit('unknown_record', kind)
@@ -493,6 +513,9 @@ class Projection:
         kind = record.get('type')
         payload = record.get('payload')
         base = {'line': self.line, **self.metadata(record)}
+        if kind == 'token_usage_record':
+            self.omit('non_conversation_metadata', kind)
+            return None
         if not isinstance(payload, dict):
             self.omit('unknown_record', kind)
             return None
@@ -506,6 +529,14 @@ class Projection:
                 self.omit('assistant_analysis')
                 return None
             base.update(self.metadata(payload))
+            if subtype == 'agent_message':
+                passthrough = payload.get('internal_chat_message_metadata_passthrough')
+                return {**base, 'type': 'agent_message',
+                        **scalar_metadata(payload, ('author', 'recipient')),
+                        'content': self.blocks(payload.get('content'), 'codex'),
+                        'delivery_metadata': scalar_metadata(passthrough, ('turn_id', 'create_time'))
+                        if isinstance(passthrough, dict) else {},
+                        'mirror_note': 'event_msg item_completed may repeat this message; retain IDs'}
             if subtype == 'message':
                 role = payload.get('role')
                 if role not in ('user', 'assistant', 'system', 'developer', 'tool'):
@@ -531,6 +562,30 @@ class Projection:
                     or payload.get('channel') == 'analysis' or payload.get('phase') == 'analysis'):
                 self.omit('reasoning')
                 return None
+            if subtype == 'thread_goal_updated':
+                goal = payload.get('goal')
+                if not isinstance(goal, dict):
+                    self.omit('invalid_content', subtype)
+                    return None
+                return {**base, 'type': subtype, 'goal': scalar_metadata(goal,
+                    ('objective', 'status', 'threadId', 'createdAt', 'updatedAt',
+                     'tokensUsed', 'timeUsedSeconds'))}
+            if subtype == 'thread_settings_applied':
+                settings = payload.get('thread_settings')
+                if not isinstance(settings, dict):
+                    self.omit('invalid_content', subtype)
+                    return None
+                event = {**base, 'type': subtype,
+                         **scalar_metadata(payload, ('thread_id',))}
+                event['thread_settings'] = scalar_metadata(settings,
+                    ('model', 'model_provider', 'service_tier', 'approval_policy',
+                     'approval_mode', 'cwd', 'reasoning_effort', 'personality'))
+                mode = settings.get('collaboration_mode')
+                if isinstance(mode, dict):
+                    event['thread_settings']['collaboration_mode'] = scalar_metadata(mode, ('mode',))
+                elif isinstance(mode, str):
+                    event['thread_settings']['collaboration_mode'] = mode
+                return event
             if subtype in ('user_message', 'agent_message'):
                 text = payload.get('message')
                 if not isinstance(text, str):
@@ -542,6 +597,39 @@ class Projection:
                 return {**base, 'type': subtype, 'message': text,
                         **self.metadata(payload),
                         'mirror_note': 'response_item may repeat this message; retained without deduplication'}
+            if subtype == 'item_completed':
+                item = payload.get('item')
+                if not isinstance(item, dict):
+                    self.omit('invalid_content', subtype)
+                    return None
+                item_type = item.get('type')
+                if item_type == 'Reasoning':
+                    self.omit('reasoning')
+                    return None
+                visible = ('UserMessage', 'AgentMessage', 'CommandExecution', 'FileChange',
+                           'SubAgentActivity', 'CollabAgentToolCall', 'Extension',
+                           'ContextCompaction', 'McpToolCall', 'ImageView')
+                if item_type not in visible:
+                    self.omit('unknown_record', item_type)
+                    return None
+                event = {**base, 'type': 'item_completed', 'item_type': item_type,
+                         **scalar_metadata(payload, ('turn_id', 'thread_id', 'started_at_ms',
+                                                     'completed_at_ms')),
+                         **scalar_metadata(item, ('id', 'phase', 'status', 'kind', 'exit_code',
+                                                  'duration', 'source', 'agent_path',
+                                                  'agent_thread_id', 'sender_thread_id',
+                                                  'server', 'tool', 'path')),
+                         'mirror_note': 'May repeat response_item; match IDs and actions before counting'}
+                if item_type in ('UserMessage', 'AgentMessage'):
+                    event['content'] = self.blocks(item.get('content'), 'codex')
+                else:
+                    for key in ('command', 'cwd', 'stdout', 'stderr', 'aggregated_output',
+                                'formatted_output', 'changes', 'agents_states',
+                                'receiver_agents', 'receiver_thread_ids', 'action',
+                                'query', 'results', 'arguments', 'result'):
+                        if key in item:
+                            event[key] = self.data(item[key])
+                return event
             if subtype in ('exec_command_begin', 'exec_command_end', 'patch_apply_begin', 'patch_apply_end',
                            'mcp_tool_call_begin', 'mcp_tool_call_end', 'web_search_begin', 'web_search_end'):
                 event = {**base, 'type': subtype, **self.metadata(payload)}
@@ -580,6 +668,9 @@ class Projection:
             if 'replacement_history' in payload:
                 self.omit('replacement_history')
             return event
+        elif kind == 'inter_agent_communication_metadata':
+            self.omit('non_conversation_metadata', kind)
+            return None
         self.omit('unknown_record', subtype if kind in ('event_msg', 'response_item') else kind)
         return None
 
@@ -680,6 +771,59 @@ def read_page(source, index, start, maximum):
     return records
 
 
+def human_queued_command_lines(events):
+    """List visible human queued commands in this read range for instruction review."""
+    return [event['line'] for event in events
+            if event.get('type') == 'queued_command' and event.get('origin_kind') == 'human']
+
+
+def redact_long_strings(value, limit):
+    """Preserve structure while withholding projected strings at a declared limit."""
+    if isinstance(value, str):
+        return {'omitted_long_field_chars': len(value)} if len(value) >= limit else value
+    if isinstance(value, list):
+        return [redact_long_strings(item, limit) for item in value]
+    if isinstance(value, dict):
+        return {key: redact_long_strings(item, limit) for key, item in value.items()}
+    return value
+
+
+def summarize_visible_page(result, min_chars=4000):
+    """Inventory projected events and long fields without emitting their bodies."""
+    long_fields = []
+
+    def visit(value, path, line, event_type):
+        if isinstance(value, str):
+            if len(value) >= min_chars:
+                long_fields.append({'line': line, 'event_type': event_type,
+                                    'path': path, 'chars': len(value)})
+        elif isinstance(value, dict):
+            for key, child in value.items():
+                visit(child, f'{path}.{key}', line, event_type)
+        elif isinstance(value, list):
+            for index, child in enumerate(value):
+                visit(child, f'{path}[{index}]', line, event_type)
+
+    event_types = Counter()
+    item_types = Counter()
+    for event in result['events']:
+        event_type = event['type']
+        event_types[event_type] += 1
+        if 'item_type' in event:
+            item_types[event['item_type']] += 1
+        visit(event, '$', event['line'], event_type)
+    header = {key: result[key] for key in ('source_id', 'provider', 'start_line', 'end_line',
+              'line_count', 'next_start_line', 'eof', 'physical_lines') if key in result}
+    summary = {**header, 'event_types': dict(sorted(event_types.items())),
+            'item_types': dict(sorted(item_types.items())),
+            'long_fields': long_fields, 'long_field_min_chars': min_chars,
+            'human_queued_command_lines': result['human_queued_command_lines'],
+            'omissions': result['omissions'], 'schema_gaps': result['schema_gaps'],
+            'errors': result['errors'],
+            'reading_note': 'Inventory of allowlisted projected events only; no event bodies are emitted.'}
+    return redact_long_strings(summary, min_chars)
+
+
 def read_history(index_path, identifier, start, maximum):
     if start < 1 or maximum < 1:
         raise ValueError('--start-line and --max-lines must be positive integers.')
@@ -725,13 +869,174 @@ def read_history(index_path, identifier, start, maximum):
     return {'source_id': identifier, 'provider': provider, 'path': str(path),
             'start_line': start, 'end_line': end, 'line_count': source['line_count'],
             'next_start_line': None if eof else end + 1, 'eof': eof,
-            'events': events, 'omissions': dict(projection.omissions), 'errors': errors,
+            'events': events, 'human_queued_command_lines': human_queued_command_lines(events),
+            'omissions': dict(projection.omissions), 'errors': errors,
             'omission_anchors': projection.omission_anchors,
             'schema_gaps': projection.gaps,
             'metadata_notes': source['metadata_notes'],
             'fingerprint_check': 'device/inode/size/mtime_ns plus identity and project metadata anchors',
             'reading_note': 'Pagination counts original physical lines; content is not text-truncated. '
                             'Only recognized visible events are projected; omissions are not reviewed evidence.'}
+
+
+NONHUMAN_USER_PREFIXES = (
+    '<task-notification>', '<codex_internal_context', '<environment_context',
+    '<system-reminder>', '<local-command-caveat>', '<local-command-stdout>',
+    '<command-name>', '[Request interrupted by user', '[orchestrator ',
+    '[一次性 ·', 'Another Claude session sent a message:',
+    '# AGENTS.md instructions', 'Goal check-in:',
+    'A session-scoped Stop hook is now active', 'Stop hook feedback:',
+    'This session is being continued from a previous conversation',
+)
+
+
+def user_text(content):
+    if isinstance(content, str):
+        return content.strip()
+    if isinstance(content, list):
+        return ' '.join(part['text'] for part in content
+                        if isinstance(part, dict) and part.get('type') in ('text', 'input_text')
+                        and isinstance(part.get('text'), str)).strip()
+    return ''
+
+
+def claude_explicit_automatic_user(record):
+    """Prefer source provenance over text when excluding generated user turns."""
+    origin = record.get('origin')
+    if isinstance(origin, dict):
+        kind = origin.get('kind')
+        if isinstance(kind, str) and kind != 'human':
+            return True
+    return record.get('promptSource') == 'system' or bool(record.get('scheduledTaskId'))
+
+
+def human_manifest(index_path, identifier, char_limit=4000):
+    """Scan one checked source for human text; never claim queued delivery here."""
+    if char_limit < 1:
+        raise ValueError('--char-limit must be positive.')
+    # This also validates source identity, project scope and a verified parent.
+    read_history(index_path, identifier, 1, 1)
+    with open_regular(absolute(index_path)) as stream:
+        index = json.load(stream)
+    source = next(s for s in index['sources'] if s.get('id') == identifier)
+    provider = source['provider']
+    messages, automatic, empty, malformed = [], 0, 0, 0
+    for start in range(1, source['line_count'] + 1, 1000):
+        for line, record, error in read_page(source, index, start, 1000):
+            if error:
+                malformed += 1
+                continue
+            kind, value = None, ''
+            if provider == 'claude':
+                if record.get('type') == 'attachment':
+                    attachment = record.get('attachment')
+                    if (isinstance(attachment, dict) and attachment.get('type') == 'queued_command'
+                            and isinstance(attachment.get('origin'), dict)
+                            and attachment['origin'].get('kind') == 'human'):
+                        value = user_text(attachment.get('prompt'))
+                        kind = 'human_queued_command'
+                elif record.get('type') == 'user':
+                    message = record.get('message')
+                    value = user_text(message.get('content')) if isinstance(message, dict) else ''
+                    kind = 'ordinary_user_candidate'
+            else:
+                if record.get('type') == 'response_item':
+                    payload = record.get('payload')
+                    if isinstance(payload, dict) and payload.get('role') == 'user':
+                        value = user_text(payload.get('content'))
+                        kind = 'ordinary_user_candidate'
+            if kind is None:
+                continue
+            if not value:
+                empty += 1
+                continue
+            if kind == 'ordinary_user_candidate' and (
+                    value.startswith(NONHUMAN_USER_PREFIXES)
+                    or (provider == 'claude' and claude_explicit_automatic_user(record))):
+                automatic += 1
+                continue
+            messages.append({'line': line, 'kind': kind, 'chars': len(value),
+                             'text': value if len(value) < char_limit else None,
+                             'text_sha256': hashlib.sha256(value.encode()).hexdigest(),
+                             'needs_expansion': len(value) >= char_limit})
+    return {'source_id': identifier, 'provider': provider,
+            'physical_lines': source['line_count'], 'messages': messages,
+            'automatic_user_texts_excluded': automatic,
+            'empty_or_tool_user_records_excluded': empty,
+            'malformed_records': malformed, 'delivery_verified': False,
+            'reading_note': 'Private human-source navigation only; inspect queue operations, '
+                            'agent actions, replay and unknown formats before making a finding.'}
+
+
+def projected_text(content):
+    if not isinstance(content, list):
+        return ''
+    return ' '.join(part['text'] for part in content
+                    if isinstance(part, dict) and part.get('type') in ('text', 'input_text', 'output_text')
+                    and isinstance(part.get('text'), str)).strip()
+
+
+def text_anchor(line, value, char_limit):
+    return {'line': line, 'chars': len(value),
+            'preview': value[:char_limit],
+            'sha256': hashlib.sha256(value.encode()).hexdigest()}
+
+
+def child_task_turns(index_path, identifier, char_limit=300):
+    """Index visible Codex NEW_TASK turns without classifying review or outcome."""
+    if char_limit < 1:
+        raise ValueError('--char-limit must be positive.')
+    first_page = read_history(index_path, identifier, 1, 1)
+    if first_page['provider'] != 'codex':
+        raise ValueError('The turns command currently supports Codex sources only.')
+    count = first_page['line_count']
+    turns, current = [], None
+    errors, gaps = 0, 0
+    gap_anchors, error_anchors = [], []
+    anchor_limit = 100
+    for start in range(1, count + 1, 1000):
+        page = read_history(index_path, identifier, start, 1000)
+        errors += len(page['errors'])
+        gaps += len(page['schema_gaps'])
+        for gap in page['schema_gaps']:
+            if len(gap_anchors) < anchor_limit:
+                gap_anchors.append({key: gap[key] for key in ('line', 'reason', 'type') if key in gap})
+        for error in page['errors']:
+            if len(error_anchors) < anchor_limit:
+                error_anchors.append({key: error[key] for key in ('line', 'error') if key in error})
+        for event in page['events']:
+            kind = event['type']
+            if kind == 'agent_message' and 'Message Type: NEW_TASK' in projected_text(event.get('content')):
+                if current is not None:
+                    current['end_line'] = event['line'] - 1
+                current = {'turn': len(turns) + 1, 'start_line': event['line'],
+                           'end_line': None, 'first_assistant': None,
+                           'last_assistant': None, 'tool_calls': 0}
+                turns.append(current)
+                continue
+            if current is None:
+                continue
+            if kind == 'message' and event.get('role') == 'assistant':
+                value = projected_text(event.get('content'))
+                if value:
+                    anchor = text_anchor(event['line'], value, char_limit)
+                    if current['first_assistant'] is None:
+                        current['first_assistant'] = anchor
+                    current['last_assistant'] = anchor
+            elif kind in ('function_call', 'custom_tool_call', 'local_shell_call'):
+                current['tool_calls'] += 1
+    if current is not None:
+        current['end_line'] = count
+    return {'source_id': identifier, 'provider': 'codex', 'physical_lines': count,
+            'task_turns': turns, 'turn_count': len(turns),
+            'unsegmented_prefix_lines': turns[0]['start_line'] - 1 if turns else count,
+            'parse_errors': errors, 'parse_error_anchors': error_anchors,
+            'schema_gaps': gaps, 'schema_gap_anchors': gap_anchors,
+            'anchors_truncated': errors > anchor_limit or gaps > anchor_limit,
+            'reading_note': 'Private navigation only. NEW_TASK boundaries are not independent review '
+                            'events; inspect each turn\'s actual request, calls, artifact and version. '
+                            'Only response_item agent messages define boundaries; mirrored event_msg '
+                            'records are not counted again.'}
 
 
 def main():
@@ -748,12 +1053,30 @@ def main():
     reader.add_argument('--source', required=True)
     reader.add_argument('--start-line', type=int, default=1)
     reader.add_argument('--max-lines', type=int, default=200)
+    reader.add_argument('--summary', action='store_true',
+                        help='Inventory projected event types and long fields without event bodies.')
+    manifest = commands.add_parser('human', help='List human-source messages across one checked source.')
+    manifest.add_argument('--index', required=True, type=Path)
+    manifest.add_argument('--source', required=True)
+    manifest.add_argument('--char-limit', type=int, default=4000,
+                          help='Hide text at or above this many characters; retain line and length.')
+    turns = commands.add_parser('turns', help='Index visible Codex child NEW_TASK turns.')
+    turns.add_argument('--index', required=True, type=Path)
+    turns.add_argument('--source', required=True)
+    turns.add_argument('--char-limit', type=int, default=300,
+                       help='Maximum preview characters from first/last visible assistant messages.')
     args = parser.parse_args()
     try:
         if args.command == 'inventory':
             result = inventory(args.project, args.claude_home, args.codex_home, args.output)
-        else:
+        elif args.command == 'read':
             result = read_history(args.index, args.source, args.start_line, args.max_lines)
+            if args.summary:
+                result = summarize_visible_page(result)
+        elif args.command == 'turns':
+            result = child_task_turns(args.index, args.source, args.char_limit)
+        else:
+            result = human_manifest(args.index, args.source, args.char_limit)
     except (OSError, ValueError, TypeError, KeyError, AttributeError, RecursionError) as exc:
         print(json.dumps({'error': str(exc), 'command': args.command}), file=sys.stderr)
         return 1
